@@ -1,0 +1,48 @@
+h1{
+    color : red !important;
+    text-align: center;
+}
+.back{
+    background-image: url('/file.png');
+    color : snow;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 4px;
+    filter: grayscale(80%)
+}
+/*Password*/
+.p-flex{
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+.form{
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    border: 2px solid snow;
+}
+.img{
+    cursor: pointer;
+    width: 40px;
+    margin-left: -48px;
+    position: relative;
+    z-index: 2;
+    filter: grayscale(100%);
+}
+#mail{
+   margin-top: 1%;
+}
+.form{
+    text-align: center;
+}
+.valider{
+    margin-top:2%;
+    background-color: #0F07AC;;
+    color: snow;
+}
+.valider:hover{
+    background-color: #4C44E1;
+    border: 1px solid #9747FF;
+    color: #ABA41C;
+}

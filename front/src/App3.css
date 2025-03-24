@@ -1,0 +1,54 @@
+@media (max-width:768px) {
+    .header{
+      position: fixed;
+      z-index: 1;
+      padding: 1px;
+      background-size: cover ;
+      width: 97%;
+      margin-left: 2%;
+      margin-top: 0%;
+      margin-bottom: 5%;
+    }
+        .ul{
+          display: none;
+        }
+        .d-flex{
+          width: 263px;
+        }
+        .menu{
+          display: block;
+          cursor: pointer;
+          padding: 15px;
+        }
+        #icon{
+          color: #FFBD00;
+          
+        }
+        /*1ère partie du main (section t-flex)*/
+        .nain{
+             
+             z-index: 0;
+        }
+        .t-flex{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 30px;
+          
+          
+        }
+        /*2ème parti du main section(v-flex) */
+        .v-flex{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 30px;
+        }
+        /*Alignement centrer*/
+        p{
+          text-align: center;
+        }
+        h3{
+          text-align: center;
+        }
+  }

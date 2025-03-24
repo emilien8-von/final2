@@ -1,0 +1,28 @@
+@media (min-width : 768px) and (max-width:1024px) {
+    .header{
+        margin-left: 2%;
+    }
+    .nain{
+        margin-left: 2%;
+    }
+    .footer{
+        margin-left: 2%;
+    }
+    .ligne4{
+        width: 30px;
+        border: 1px solid #FFBD00;
+      }
+      .d-flex{
+        display: flex;
+         width: 300px;
+         justify-content: space-between;
+      }
+      .ul{
+        display: block;
+      }
+      .menu{
+        display: none;
+      }
+      
+
+}
