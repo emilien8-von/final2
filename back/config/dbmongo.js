@@ -1,8 +1,8 @@
 const mongoose = require('mongoose') 
 
-const mongo = (mongoURI,dbname) =>  {
+const mongo = (mongoURI) =>  {
     mongoose
-  .connect(mongoURI, {DB_NAME : dbname }) 
+  .connect(mongoURI) 
   .then(() => console.log('connection reussi!'))
   .catch(error => console.log(error.message)
   )
