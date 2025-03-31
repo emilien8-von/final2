@@ -8,11 +8,15 @@ const app = express()
 connect(ENV.DB_URI,ENV.DB_NAME)
 
 const user = require('./router/pseudo.router')
+const comment = require('./router/comment_router')
+const category = require('./router/details.router')
 
 app.use(cookie())
 app.use(express.json())
 app.use(cors())
 
-app.use("/api/user",user)
+app.use("/game/user",user)
+app.use("/game/comment",comment)
+app.use("/game/category",category)
 
 module.exports = app
