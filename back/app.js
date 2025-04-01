@@ -17,6 +17,6 @@ app.use(cors())
 
 app.use("/game/user",user)
 app.use("/game/comment",comment)
-app.use("/game/category",category)
+app.use("/game/details",category)
 
 module.exports = app

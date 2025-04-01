@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const comments = require('./comments')
 
-category = mongoose.Schema(
+detail = mongoose.Schema(
     {
         titre : 
         {
@@ -43,4 +43,4 @@ category = mongoose.Schema(
     } ,{Timestamp : {createdAt : true} }
 )
 
-module.exports = mongoose.model("Category",category)
+module.exports = mongoose.model("Category",detail)
