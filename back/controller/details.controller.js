@@ -1,6 +1,6 @@
 const Category = require('../models/details')
 const erreur = require('../middlewares/erreur')
-
+const connecte = require('../models/pseudo')
 const pCategory = async(req,res) =>{
     try{ 
        const reponse = await Category.create(req.body)
@@ -22,6 +22,8 @@ const gCategory = async(req,res) =>{
         
     }
 }
+
+
 const idCategory = async(req,res) =>{
     try{
         const check = await Category.findById(req.params.id)
@@ -35,8 +37,7 @@ const idCategory = async(req,res) =>{
 }
 const deleteCategory = async(req,res,next) =>{
     try{
-        
-        
+               
         await Category.findByIdAndDelete(req.params.id) 
         res.status(200).json('page effacer')
     }
@@ -48,7 +49,7 @@ const deleteCategory = async(req,res,next) =>{
 const Changecategorie = async(req,res,next) =>{
     try{
           const check = await Category.findById(req.params.id)
-          if(!check) return next(erreur(404,'user not found'))
+          if(!check) return next(erre+ur(404,'user not found'))
             const change = await Category.findByIdAndUpdate(req.params.id, req.body,{new:true})
             res.status(200).json(change)
     } catch(error){

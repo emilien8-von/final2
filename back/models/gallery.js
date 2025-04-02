@@ -12,4 +12,4 @@ const gallery = mongoose.Schema(
   } ,{Timestamp : {createdAt : true} }
 )
 
-module.exports = gallery
+module.exports = mongoose.Model('Gallery',gallery)

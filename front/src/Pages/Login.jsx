@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './css/Login.css'
 import { Link } from 'react-router'
 const Login = () => {
+     const [login,setLogin] = useState([])
   const verification = (event) =>
     {
         let pass2 = document.getElementById("pass")

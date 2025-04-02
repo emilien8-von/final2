@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './css/Formulaire.css'
 import { Link } from 'react-router'
 const Formulaire = () => {
+    const [inscrit , setInscrit] = useState([])
+    
     const pass = () =>
       {
        const img = document.getElementById("img")
