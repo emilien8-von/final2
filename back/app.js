@@ -6,17 +6,21 @@ const connect = require('./config/dbmongo')
 const app = express()
 
 connect(ENV.DB_URI,ENV.DB_NAME)
-
+//ROUTER
 const user = require('./router/pseudo.router')
 const comment = require('./router/comment_router')
-const category = require('./router/details.router')
-
+const jeux = require('./router/jeux.router')
+const console = require('./router/console.router')
+const emulateur = require('./router/emulateur.router')
+//Middleweare
 app.use(cookie())
 app.use(express.json())
 app.use(cors())
 
+//Lien pour postman
 app.use("/game/user",user)
 app.use("/game/comment",comment)
-app.use("/game/details",category)
-
+app.use("/game/jeux",jeux)
+app.use("/game/console",console)
+app.use("/game/emulateur",emulateur)
 module.exports = app

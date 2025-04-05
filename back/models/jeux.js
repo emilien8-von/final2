@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const comments = require('./comments')
 
-detail = mongoose.Schema(
+
+const jeux = mongoose.Schema(
     {
         titre : 
         {
@@ -14,14 +14,19 @@ detail = mongoose.Schema(
         },
         brand : {
             type : String,
+            required : true
         },
-
+        franchise : {
+            type : String,
+            required : true
+        },
         genre : {
             type: String,
-            enum : ["Platforme","Sports","Combats","Course","RPG"]
+            enum : ["Platforme","Sports","Combats","Course","RPG","open world","beat them all","action"]
         },
-        date_sortie : {
+        annee_sortie : {
             type : Number,
+            required : true
         },
         comments:{
            type : mongoose.Schema.Types.ObjectId, ref :"Comments"
@@ -37,10 +42,15 @@ detail = mongoose.Schema(
         },
         rating:{
             type: Number,
-            required : true
+            required : true,
+            maxlength : 5
+        },
+        exclusivite : {
+            type : Boolean,
+            required :  true
         }
 
     } ,{Timestamp : {createdAt : true} }
 )
 
-module.exports = mongoose.model("Category",detail)
+module.exports = mongoose.model("Jeux",jeux)

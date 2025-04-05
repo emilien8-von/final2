@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Category = require('../controller/details.controller')
+const Category = require('../controller/jeux.controller')
 
 router.post('/add',Category.pCategory)
 router.get('/all',Category.gCategory)

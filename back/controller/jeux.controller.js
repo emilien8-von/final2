@@ -1,4 +1,4 @@
-const Category = require('../models/details')
+const Category = require('../models/jeux')
 const erreur = require('../middlewares/erreur')
 const connecte = require('../models/pseudo')
 const pCategory = async(req,res) =>{
@@ -49,7 +49,7 @@ const deleteCategory = async(req,res,next) =>{
 const Changecategorie = async(req,res,next) =>{
     try{
           const check = await Category.findById(req.params.id)
-          if(!check) return next(erre+ur(404,'user not found'))
+          if(!check) return next(erreur(404,'user not found'))
             const change = await Category.findByIdAndUpdate(req.params.id, req.body,{new:true})
             res.status(200).json(change)
     } catch(error){
