@@ -25,8 +25,12 @@ const user = mongoose.Schema(
         type : String,
         minLength:3,
         required: true
-        
-       }                     
+       } ,
+       avatar :
+       {
+        type : String,
+        default : "https://cdn-icons-png.flaticon.com/512/3541/3541871.png"
+       }                    
     } , {Timestamps : {createdAt : true}}
 )
 

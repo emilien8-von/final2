@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import './css/Formulaire.css'
 import { Link } from 'react-router'
+import URLS from '../utils/constants/Api'
+import { REGISITER } from '../utils/configs/Form'
 const Formulaire = () => {
-    const [inscrit , setInscrit] = useState([])
-    
+    const [inscrit , setInscrit] = useState({
+      pseudo : "",
+      password : "",
+      email : ""
+    })
+    const handleChange = event =>{
+       const {name,value} = event.target
+       setInscrit(prevUser => ({...prevUser,[name]:value}))
+    }
     const pass = () =>
       {
        const img = document.getElementById("img")
@@ -16,20 +26,22 @@ const Formulaire = () => {
         img.setAttribute("src","/eye.svg")
        }
     }
-    const verification = (event) =>
+    const verification = async event =>
     {
+      event.preventDefault()
         let pass2 = document.getElementById("passw")
         let pseudo = document.getElementById("pseudo")
         let email = document.getElementById("mail")
         if(pass2.value && pseudo.value && email.value){
-          if(pass2.value.length < 8)
-           {
-            alert("le mot de passe doit etre  égale ou superieur à 8!")
-            event.preventDefault()
-           }
-          else
-          {
-            alert("bien jouée!")
+          try{
+            const response = await axios.post(URLS.POST_REGISTER,inscrit)
+            console.log(response);
+            
+            
+          }
+          catch(error){
+            console.log(error.message);
+            
             event.preventDefault()
           }
         }
@@ -43,18 +55,17 @@ const Formulaire = () => {
     <div className='back'> 
        <h1>Rejoin Nous ! </h1>
       <form onSubmit={verification}  id='form' className='form' method='post' >
-        <label htmlFor="Pseudo">Pseudo:</label>
-        <input type="text" placeholder='player1' name="pseudo" id="pseudo" /> <br />
-        <div className='p-flex'> 
-          <label htmlFor="Password">Password:</label>
-          <input type="password" name="password" className='passw' id="passw" placeholder='player1' /> 
-          <span> <img onClick={pass} src="/eye.svg" alt="eye" id='img' className='img'/></span>
-        </div>
-        <br />
-        <p> <strong> Nous vous conseillons  de metttre  au moins 1 majuscule, 1 caractere spéciale et éviter les mot de pass simple (ex : Azerty*1)</strong></p>
-         <label htmlFor="Email">Email:</label>
-         <input type="email" name="email" id="mail" placeholder='player1@gmail.com'/>
-          <br />
+        
+        {REGISITER.map(field =>(
+          <div key={field.id}>
+
+            <label htmlFor={field.id}>{field.label}</label>
+            <input type={field.type} name={field.name} className={field.className} id = {field.id} placeholder={field.placeholder}
+             onChange={handleChange} 
+            />
+          </div>
+        ))}
+           <span> <img onClick={pass} src="/eye.svg" alt="eye" id='img' className='img'/></span>
          <button  className='valider'>Valider</button>
       </form>
       <p> Retour à la page d'<Link className='link' to='/'>acceuil</Link> ?</p>

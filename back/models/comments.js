@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const comment = mongoose.Schema( 
+const avis = mongoose.Schema( 
     {
         pseudo : {
             type : mongoose.Schema.Types.ObjectId,
@@ -10,7 +10,7 @@ const comment = mongoose.Schema(
             type : Number,
             required : true
         },
-         commentaire : {
+         message : {
             type:String,
             required: true
          },
@@ -18,6 +18,13 @@ const comment = mongoose.Schema(
             type : String,
             enum : ["user","admin","gadmin","consultant","designer"],
             required : true
+         } ,
+         date : {
+            type: Date,
+            required : true
+         },
+         like : {
+            type : Number,
          }
 
 
@@ -25,4 +32,4 @@ const comment = mongoose.Schema(
     {timestamps: { createdAt: true } }
 )
 
-module.exports = mongoose.model('Comments',comment)
+module.exports = mongoose.model('Avis',avis)

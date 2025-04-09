@@ -1,4 +1,4 @@
-const Emulateur = require('../models/category-emulateur')
+const Emulateur = require('../models/emulateur')
 const erreur = require('../middlewares/erreur')
 
 const  Pemulateur  = async(req,res,next) =>{

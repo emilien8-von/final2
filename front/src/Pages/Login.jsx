@@ -1,41 +1,48 @@
-import React, { useState } from 'react'
+import React, { useState , useContext} from 'react'
 import './css/Login.css'
 import { Link } from 'react-router'
+import { LOGIN } from '../utils/configs/Form'
+import { Context } from '../utils/context/Context'
 const Login = () => {
-     const [login,setLogin] = useState([])
-  const verification = (event) =>
+     const [sign,setSign] = useState({})
+     const {login} = useContext(Context)
+     const handleChange = event =>{
+      const {name,value} = event.target
+      setSign(prevUser => ({...prevUser,[name]:value}))
+   }
+   const pass = () =>
     {
-        let pass2 = document.getElementById("pass")
-        let pseudo = document.getElementById("pseudo")
-        let email = document.getElementById("mail")
-        if(pass2.value && pseudo.value && email.value){
-          if(pass2.value.length < 8)
-           {
-            alert("le mot de passe doit etre  égale ou superieur à 8!")
-            event.preventDefault()
-           }
-          else
-          {
-            alert("bien jouée!")
-            event.preventDefault()
-          }
-        }
-        else
-        {
-          alert("formulaire incomplet")
-          event.preventDefault()
-        } 
+     const img = document.getElementById("img")
+     const change =  document.getElementById("pass")
+     if(change.type === "password"){
+      change.type = "text"
+      img.setAttribute("src","/closed-eye.svg")
+     } else{
+      change.type = "password"
+      img.setAttribute("src","/eye.svg")
+     }
+  }
+     const verification = (event) =>
+
+    {
+      event.preventDefault()
+      login(sign)
+      
     }
   return (
     <div>
        <h1 className='h1'>Login</h1>
        <form onSubmit={verification} id='form' className='form'>
-         <label>Pseudo : </label>
-         <input type="text" id='pseudo'  placeholder='player1'/> <br /> <br />
-         <label>Password:</label>
-         <input type="password" id='pass' placeholder='azerty' /> <br /> <br />
-         <label >Email:</label>
-         <input type="email" name="" id="mail" placeholder='email' /> <br /> <br />
+                {LOGIN.map(field =>(
+                          <div key={field.id}>
+                
+                            <label htmlFor={field.id}>{field.label}</label>
+                            <input type={field.type} name={field.name} className={field.className} id = {field.id} placeholder={field.placeholder}
+                             onChange={handleChange} 
+                            />
+                          </div>
+                        ))}
+                           <span> <img onClick={pass} src="/eye.svg" alt="eye" id='img' className='img'/></span>
          <button type="submit">Valider</button>
        </form>
        <p>Retour a la page d'acceuil <Link className='link' to='/'>acceuil </Link></p>
