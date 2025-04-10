@@ -16,7 +16,7 @@ const emulateur = require('./router/emulateur.router')
 app.use(cookie())
 app.use(express.json())
 app.use(cors())
-
+app.use(express.static('dist')) // Pour connecter le front et le back
 //Lien pour postman
 app.use("/game/user",user)
 app.use("/game/comment",comment)

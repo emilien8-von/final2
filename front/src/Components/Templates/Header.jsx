@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router'
 import { HEADER_LINKS } from '../../utils/configs/Links'
-
+import { Context } from '../../utils/context/Context'
 const Header = () => {
+  const {auth,logout} = useContext(Context)
+
+  
   const menu = () =>{
     let list = document.getElementById("ul")
     let icon = document.getElementById("icon")
@@ -29,7 +32,10 @@ const Header = () => {
                     </div>
                  </ul>
                     <button className='but1'><Link to='/formulaire' className='but2'>Inscription</Link></button>
+                    { !auth?
                     <button className='but1'><Link to='/login' className='but2'>Connexion</Link></button>
+                    :
+                    <button onClick={logout} className='but1'><Link to='/login' className='but2'>Déconnexion</Link></button>}
                     <div onClick={menu} className='menu'><i id='icon' class="fa-solid fa-bars"></i> </div>
                 </div>
                 <input id='input' type="text" placeholder='Rechercher un jeux:' />

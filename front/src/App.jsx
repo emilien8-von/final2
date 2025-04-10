@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { Route,Routes } from 'react-router'
 /**CSS */
@@ -23,10 +22,10 @@ function App() {
       <Route path='/' element={<Layout/>}>
         <Route index element={<Acceuil/>}/>
           {/*Route Public */}
-           <Route element = {<Public/>}> 
+          { /*<Route element = {<Public/>}> */}
             <Route path='/formulaire' element={<Formulaire/>}/>
             <Route path='/login' element={<Login/>}/>
-          </Route>
+         { /*</Route>*/}
           {/*Fin de Route Public */}
           <Route path='/dashboard' element={<Template/>}>
 

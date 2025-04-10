@@ -1,8 +1,8 @@
-import { Navigate,Outlet } from "react-router";
+import { Navigate, Outlet } from "react-router";
 
-const Public = () =>{
-    const auth = localStorage.get('auth')
-    return auth ?  <Navigate to='/'/> : <Outlet/> 
+const Public = () => {
+  const auth = localStorage.getItem('auth');
+  return auth ? <Navigate to='/'/> : <Outlet/> ;
 }
 
 export default Public

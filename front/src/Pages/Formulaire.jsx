@@ -34,10 +34,8 @@ const Formulaire = () => {
         let email = document.getElementById("mail")
         if(pass2.value && pseudo.value && email.value){
           try{
-            const response = await axios.post(URLS.POST_REGISTER,inscrit)
+            const response = await axios.post(`http://localhost:8000/game/user/add`,inscrit)
             console.log(response);
-            
-            
           }
           catch(error){
             console.log(error.message);
@@ -69,6 +67,7 @@ const Formulaire = () => {
          <button  className='valider'>Valider</button>
       </form>
       <p> Retour à la page d'<Link className='link' to='/'>acceuil</Link> ?</p>
+      <p>Tu possède déja  un compte  alors <strong> <Link className='link' to = '/login'> clique sur ici </Link></strong></p>
     </div>
   )
 }

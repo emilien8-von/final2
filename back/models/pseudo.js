@@ -23,8 +23,8 @@ const user = mongoose.Schema(
        password : 
        {
         type : String,
-        minLength:3,
-        required: true
+        required : true,
+        minLength : 3
        } ,
        avatar :
        {
