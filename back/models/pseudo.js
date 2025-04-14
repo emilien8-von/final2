@@ -30,8 +30,22 @@ const user = mongoose.Schema(
        {
         type : String,
         default : "https://cdn-icons-png.flaticon.com/512/3541/3541871.png"
-       }                    
-    } , {Timestamps : {createdAt : true}}
-)
+       } , 
+       online  : 
+       {
+           type :Boolean,
+           required : true,
+        } ,
+        multijouer :
+        {
+            type : Boolean,
+            required : true
+        },
+        nombre_de_joueur : {
+           type : Number,
+           requiered : true
+        }
+    }    , {Timestamps : {createdAt : true}}
+    )
 
 module.exports = mongoose.model('Users',user)

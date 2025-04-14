@@ -129,7 +129,7 @@ li{
   transform: scale(1.1);
   transition: transform 1s ease-in-out;
 }
-/*2ème Parti*/
+/*2ème Partie (console)*/
 
 .N1:hover{
   color: #C1121F ;
@@ -153,7 +153,7 @@ li{
   justify-content: space-between;
 }
 .footer {
-  background-image: url('/front/public/consitent.svg');
+  background-image: url('/consitent.svg');
   color: snow;
   background-size: cover;
   padding: 50px;
