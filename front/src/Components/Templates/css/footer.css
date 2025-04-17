@@ -1,0 +1,15 @@
+.r-flex{
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer {
+    background-image: url('/consitent.svg');
+    color: snow;
+    background-size: cover;
+    padding: 50px;
+    margin-left: 2%;
+  }
+  .text{
+    text-align: center;
+  }
+  

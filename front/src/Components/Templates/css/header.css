@@ -1,0 +1,74 @@
+.header{
+    background-image: url('/abstrait.jpg');
+    padding: 20px;
+    background-size: cover ;
+    margin-left: 2%;
+  }
+  .c-flex{
+    display: flex;
+    justify-content: space-between;
+  }
+  .d-flex{
+    display: flex;
+     width: 40px;
+     justify-content: space-between;
+  }
+  
+  li{
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Jersey 15';font-size: 22px;
+  }
+  .li{
+    color: white;
+  }
+  .li:hover{
+    color:#ABA41C;
+    text-decoration: underline;
+  }
+  
+  .but1{
+    margin-top: 2%;
+    cursor: pointer;
+    background-color: #0F07AC;
+    border: 1px solid #9747FF;
+    width: 101px;
+    height: 28px;
+    text-align: center;
+    padding: 2px;
+  }
+  .but1:hover{
+    background-color: #4C44E1;
+    border: 1px solid #9747FF;
+    
+  }
+  .but2{
+    color:  snow;
+  }
+  .but2:hover{
+    color:#ABA41C;
+  }
+  #input{
+    margin-top: 2%;
+    width: 50%;
+    color: rgb(246, 246, 246);
+    border: 3px solid snow;
+    background-color: transparent;
+  }
+
+  /*responsive*/
+  @media (min-width:1024px) {
+    .d-flex{
+      display: flex;
+       width: 300px;
+       justify-content: space-between;
+    }
+    .ul{
+      display: block;
+    }
+    .menu{
+      display: none;
+    }
+    /*1ère partie du main*/
+  }
+  

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router'
-import { HEADER_LINKS } from '../../utils/configs/Links'
+import './css/header.css'
 import { Context } from '../../utils/context/Context'
 const Header = () => {
   const {auth,logout} = useContext(Context)
@@ -31,12 +31,17 @@ const Header = () => {
                       <li><Link className='li' >Console</Link></li>
                     </div>
                  </ul>
-                    <button className='but1'><Link to='/formulaire' className='but2'>Inscription</Link></button>
-                    { !auth?
-                    <button className='but1'><Link to='/login' className='but2'>Connexion</Link></button>
+                  {auth?
+                     <button onClick={logout} className='but1'><Link to='/login' className='but2'>Déconnexion</Link></button>
                     :
-                    <button onClick={logout} className='but1'><Link to='/login' className='but2'>Déconnexion</Link></button>}
-                    <div onClick={menu} className='menu'><i id='icon' class="fa-solid fa-bars"></i> </div>
+                    <div>
+                      <button className='but1'><Link to='/formulaire' className='but2'>Inscription</Link></button>
+                    
+                      <button className='but1'><Link to='/login' className='but2'>Connexion</Link></button>
+                   
+                      <div onClick={menu} className='menu'><i id='icon' class="fa-solid fa-bars"></i> </div>
+                    </div>
+                  }
                 </div>
                 <input id='input' type="text" placeholder='Rechercher un jeux:' />
               </nav>

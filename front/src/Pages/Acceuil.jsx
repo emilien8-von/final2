@@ -1,5 +1,8 @@
 import React from 'react'
-
+//CSS
+import './css/Acceuil.css'
+import './css/mobile.css'
+import './css/tablette.css'
 const Acceuil = () => {
   const color =()=>
   { 

@@ -30,22 +30,30 @@ const Login = () => {
       
     }
   return (
-    <div>
-       <h1 className='h1'>Login</h1>
-       <form onSubmit={verification} id='form' className='form'>
+    <div className='color'>
+       <h1>Login</h1>
+      <section>
+           <img src="/cosmos.png" className='img' alt="cosmo"/>
+           <p> Connecte toi pour ta nouvelle adventure!</p>
+          <div className='f-flex'></div>
+         <form onSubmit={verification} id='form' className='form'>
                 {LOGIN.map(field =>(
                           <div key={field.id}>
                 
-                            <label htmlFor={field.id}>{field.label}</label>
+                            <strong> <label htmlFor={field.id}>{field.label}</label> </strong> <br/>
                             <input type={field.type} name={field.name} className={field.className} id = {field.id} placeholder={field.placeholder}
                              onChange={handleChange} 
                             />
                           </div>
                         ))}
                            <span> <img onClick={pass} src="/eye.svg" alt="eye" id='img' className='img'/></span>
-         <button type="submit">Valider</button>
-       </form>
-       <p>Retour a la page d'acceuil <Link className='link' to='/'>acceuil </Link></p>
+                <button className='button'>Valider</button>
+         </form>
+
+        <p>Retour a la page d'acceuil <Link className='link' to='/'>acceuil </Link></p>
+        <div className='line'></div>
+        <p>En vous connectant vous acceptez nos Termes et nos Conditions. </p>
+      </section>
     </div>
   )
 }

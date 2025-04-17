@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import './css/Formulaire.css'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import URLS from '../utils/constants/Api'
 import { REGISITER } from '../utils/configs/Form'
 const Formulaire = () => {
@@ -10,6 +10,7 @@ const Formulaire = () => {
       password : "",
       email : ""
     })
+    const navigate = useNavigate()
     const handleChange = event =>{
        const {name,value} = event.target
        setInscrit(prevUser => ({...prevUser,[name]:value}))
@@ -33,15 +34,18 @@ const Formulaire = () => {
         let pseudo = document.getElementById("pseudo")
         let email = document.getElementById("mail")
         if(pass2.value && pseudo.value && email.value){
-          try{
-            const response = await axios.post(`http://localhost:8000/game/user/add`,inscrit)
-            console.log(response);
-          }
-          catch(error){
+           
+           try{
+            await axios.post(`http://localhost:8000/game/user/add`,inscrit)
+            alert("Votre inscripion a bien été prise en compte un mail vous sera envoyés")
+            navigate(`/`)
+            }
+            catch(error){
             console.log(error.message);
             
             event.preventDefault()
-          }
+           }
+          
         }
         else
         {

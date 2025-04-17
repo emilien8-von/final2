@@ -1,9 +1,5 @@
 import React from 'react'
 import { Route,Routes } from 'react-router'
-/**CSS */
-import './App.css'
-import './App2.css'
-import './App3.css'
 /**Components */
 import Layout from './Components/Layout'
 import Template from './Components/Admin/template/Template'
