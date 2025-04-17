@@ -33,9 +33,10 @@ const Login = () => {
     <div className='color'>
        <h1>Login</h1>
       <section>
+          <div className='f-flex'>
            <img src="/cosmos.png" className='img' alt="cosmo"/>
            <p> Connecte toi pour ta nouvelle adventure!</p>
-          <div className='f-flex'></div>
+          </div>
          <form onSubmit={verification} id='form' className='form'>
                 {LOGIN.map(field =>(
                           <div key={field.id}>
