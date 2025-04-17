@@ -5,6 +5,7 @@ const verify = require('../middlewares/indentite')
 
 router.post("/add",Pcontroller.Puser)
 router.post("/login",Pcontroller.Luser)
+router.put("/verify/:token",Pcontroller.Emailverify)
 router.get("/all",Pcontroller.Guser)
 router.get('/get/:id',Pcontroller.Iduser)
 router.delete('/delete/:id',verify,Pcontroller.Duser)

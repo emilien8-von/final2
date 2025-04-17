@@ -48,7 +48,21 @@ const jeux = mongoose.Schema(
         exclusivite : {
             type : Boolean,
             required :  true
-        }
+        },
+        online  : 
+        {
+            type :Boolean,
+            required : true,
+         } ,
+         multijouer :
+         {
+             type : Boolean,
+             required : true
+         },
+         nombre_de_joueur : {
+            type : Number,
+            requiered : true
+         }
 
     } ,{Timestamp : {createdAt : true} }
 )

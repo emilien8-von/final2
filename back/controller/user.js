@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const jwr = require('jsonwebtoken')
 const ENV  = require('../config/env')
 const erreur = require('../middlewares/erreur')
+const envoi = require('../services/mail')
 const cookieParser = require('cookie-parser')
 const Puser = async(req,res) =>{
     try{
@@ -11,7 +12,13 @@ const Puser = async(req,res) =>{
             ...req.body,
             password : passwordH
         })
-        res.status(201).json({message : 'users created!',reponse})
+        const token = jwr.sign(
+            {id: reponse._id},
+            ENV.TOKEN,
+            {expiresIn: "5m"}
+        )
+        await envoi(reponse,token)
+        res.status(201).json({message : 'users created!, un message vous sera envoyés',reponse})
     }
     catch(error){
         console.log(error.message);
@@ -43,6 +50,7 @@ const Luser = async(req,res,next) =>{
     try{
         const client = await Users.findOne({email: req.body.email})
         if(!client) return res.status(404).json('pas de user')
+      //  if(!client.isVerified) return next(erreur(403,"Veuiller verifer votre mail"))
         const comparaison = await bcrypt.compare(req.body.password,client.password)
       if(!comparaison) return res.status(400).json('mot de passe incorrect!')
         const token  = jwr.sign(
@@ -62,7 +70,6 @@ const Luser = async(req,res,next) =>{
         
     }
 }
-
 const Duser = async(req,res,next) => {
    try{  
     if(!req.user.id || !req.user ){
@@ -82,7 +89,7 @@ const Duser = async(req,res,next) => {
             sameSite : 'strict'
         })
 
-        res.status(200).json('user deconnecter')
+        res.status(200).json('user deconnecter!')
     } catch(error){
         next(erreur(500,error.message))
     }
@@ -92,9 +99,12 @@ const Emailverify = async(req,res,next) => {
     try{
         const token = req.params.token
         const decode = jwr.verify(token,ENV.TOKEN)
+        if(!decode) return next(erreur(403,'token invalide'))
+         await Users.findByIdAndUpdate(decode.id,{isVerified : true}),
+        res.status(200).json('Email verifié avec succès')
     }
     catch(error){
-        res.status(500).json(error.message)
+        next(error(400,'lien invalide',error.message))
         
     }
 }

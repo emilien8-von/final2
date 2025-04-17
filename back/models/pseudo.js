@@ -31,20 +31,10 @@ const user = mongoose.Schema(
         type : String,
         default : "https://cdn-icons-png.flaticon.com/512/3541/3541871.png"
        } , 
-       online  : 
-       {
-           type :Boolean,
-           required : true,
-        } ,
-        multijouer :
-        {
-            type : Boolean,
-            required : true
-        },
-        nombre_de_joueur : {
-           type : Number,
-           requiered : true
-        }
+       isVerified : {
+        type : Boolean,
+        default : false
+       },
     }    , {Timestamps : {createdAt : true}}
     )
 
