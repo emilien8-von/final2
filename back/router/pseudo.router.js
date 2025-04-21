@@ -8,6 +8,7 @@ router.post("/login",Pcontroller.Luser)
 router.put("/verify/:token",Pcontroller.Emailverify)
 router.get("/all",Pcontroller.Guser)
 router.get('/get/:id',Pcontroller.Iduser)
-router.delete('/delete/:id',verify,Pcontroller.Duser)
+router.delete('/logout/:id',verify,Pcontroller.Duser)
+router.delete('/delete/:id',verify ,Pcontroller.EffaceUser)
 router.put('/put/:id',verify,Pcontroller.Cuser)
 module.exports = router

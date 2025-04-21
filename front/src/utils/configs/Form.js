@@ -14,14 +14,14 @@ export const REGISITER = [
         name : 'password',
         id : 'passw',
         className : 'passw',
-        placeholder : '*Azerty*1'
+        placeholder : '*aZeRty1*'
     },
     {
         label : 'Email',
         type : 'email',
         name : 'email',
         id : 'mail',
-        placeholder : 'player1@gmail.com'
+        placeholder : 'joueur1@gmail.com'
     },
 ]
 export const LOGIN = [
@@ -32,7 +32,7 @@ export const LOGIN = [
         name : 'email',
         id : 'mail',
         className : 'email',
-        placeholder : 'Yourname@gmail.com'
+        placeholder : 'joueur1@gmail.com'
     },
     {
         label : 'Entre ton mot de passe',
@@ -40,6 +40,6 @@ export const LOGIN = [
         name : 'password',
         id : 'pass',
         className : 'passw',
-        placeholder : '*Azerty*1'
+        placeholder : '*aZeRty1*'
     }
 ]

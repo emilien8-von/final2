@@ -31,29 +31,41 @@ const Login = () => {
     }
   return (
     <div className='color'>
-       <h1>Login</h1>
+       
       <section>
-          <div className='f-flex'>
-           <img src="/cosmos.png" className='img' alt="cosmo"/>
-           <p> Connecte toi pour ta nouvelle adventure!</p>
+        <div className='y-flex'>
+          <div className='x-flex'>
+           
+             <img src="/cosmic.png" className='image' alt="cosmo"/>
+             <p className='p'> Connecte toi pour ton <span className='span'>adventure !</span> </p>
+
           </div>
+          <div className='l-flex'> 
+           <h1>CONNECTION </h1>
+          
+           
          <form onSubmit={verification} id='form' className='form'>
                 {LOGIN.map(field =>(
                           <div key={field.id}>
-                
-                            <strong> <label htmlFor={field.id}>{field.label}</label> </strong> <br/>
-                            <input type={field.type} name={field.name} className={field.className} id = {field.id} placeholder={field.placeholder}
+                             <br /> 
+                            <strong> <label htmlFor={field.id}>{field.label}</label> </strong> <br/> <br />
+                            <input type={field.type} name={field.name} className={field.className} id = {field.id} placeholder={field.placeholder} 
                              onChange={handleChange} 
-                            />
+                            /> <br />
                           </div>
-                        ))}
-                           <span> <img onClick={pass} src="/eye.svg" alt="eye" id='img' className='img'/></span>
-                <button className='button'>Valider</button>
+                        ))} <br />  <br />
+                     {/**   <div className='courrier'><i class="fa-solid fa-envelope"></i></div>
+                        <div className='lock'> <i id='lock' class="fa-solid fa-lock"></i></div>
+                           <span> <img onClick={pass} src="/eye.svg" alt="eye" id='img' className='img'/></span> */} 
+                <button className='button'> <strong>Valider </strong></button>
+                
          </form>
-
-        <p>Retour a la page d'acceuil <Link className='link' to='/'>acceuil </Link></p>
-        <div className='line'></div>
-        <p>En vous connectant vous acceptez nos Termes et nos Conditions. </p>
+          
+         <p>Retourner a la page d'<Link className='link' to='/'>acceuil </Link></p>
+         <div className='line'></div>
+         <p>En vous connectant vous acceptez nos Termes et nos Conditions. </p>
+        </div>
+        </div>
       </section>
     </div>
   )
