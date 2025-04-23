@@ -5,6 +5,7 @@ const ENV  = require('../config/env')
 const erreur = require('../middlewares/erreur')
 const envoi = require('../services/mail')
 const cookieParser = require('cookie-parser')
+const { useRevalidator } = require('react-router')
 const Puser = async(req,res) =>{
     try{
         const passwordH = await bcrypt.hash(req.body.password,10)
@@ -78,7 +79,7 @@ const Duser = async(req,res,next) => {
 
      const user = await Users.findById(req.params.id)
      if(!user) return next(erreur(404,'user not found'))
-     if(user._id.toString() != req.user.id.toString() && user.role == "admin" && user.role == "gadmin") return  next(403,'Authentifaction interdits')
+     if(user._id.toString() != req.user.id.toString() && user.role == "admin") return  next(403,'Action interdits')
         const token  = jwr.sign(
             {id: user._id},
             ENV.TOKEN,
@@ -94,18 +95,17 @@ const Duser = async(req,res,next) => {
         next(erreur(500,error.message))
     }
 }
-const EffaceUser = async(req,res,next) =>{
+const EffacerUser = async(req,res,next) =>{
     try{
-        if(!req.user || !req.user.id)
-      {
-          return next(erreur(401,'Authentification requise'))
-      }
-        const user = await Users.findById(req.params.id)
-        if(user._id.toString() != req.user.id.toString() && user.role == "admin" && user.role == "gadmin") return  next(403,'Authentifaction interdits')
-        await Users.findByIdAndDelete(user)
-        res.status(200).json("user effecer!")
-    }
-    catch(error){
+        if(!req.user.id || !req.user ){
+            return next(erreur(401,'Authentification necessaire'))
+        }
+       const user = await Users.findById(req.params.id)
+
+        if (user._id.toString()!= req.user.id.toString() && user.role != "admin")  return next(erreur(403 , 'Action interdite'))
+        await Users.findByIdAndDelete(req.params.id)
+        res.status(200).json("user delete!")
+    } catch(error){
         next(erreur(500,error.message))
     }
 }
@@ -131,11 +131,11 @@ const Cuser = async (req,res,next) => {
         }
         const user = await Users.findById(req.params.id)
         if(!user) return next(erreur(404,'user not found'))
-            if(user._id.toString() != req.user.id.toString() && user.role == "admin"|| user.role == "gadmin") return  next(erreur(403,'Authentifaction interdits'))
+            if(user._id.toString() != req.user.id.toString() && user.role == "admin") return  next(erreur(403,'Authentifaction interdits'))
             const reponse = await Users.findByIdAndUpdate(req.params.id, req.body,{new:true})
         res.status(200).json(reponse)
     } catch (error){
        next(erreur(500, error.message))
     }
 }
-module.exports = {Puser,Guser,Iduser,EffaceUser,Duser,Luser,Cuser,Emailverify}
+module.exports = {Puser,Guser,Iduser,Duser,EffacerUser,Luser,Cuser,Emailverify}
