@@ -1,12 +1,12 @@
 
 /*Main*/
 .nain{
-    background-image: linear-gradient(#42106D,#5B0F53,#160430);
+    background-image: linear-gradient(to right ,#42106D,#5B0F53,#160430);
     color: snow !important;
     background-repeat: no-repeat;
     background-size:cover;
     padding: 5px;
-    margin-left: 2%;
+    
   }
   .h1,.h2{
     text-align: center;

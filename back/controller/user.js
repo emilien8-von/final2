@@ -5,7 +5,8 @@ const ENV  = require('../config/env')
 const erreur = require('../middlewares/erreur')
 const envoi = require('../services/mail')
 const cookieParser = require('cookie-parser')
-const { useRevalidator } = require('react-router')
+
+//Partie Post
 const Puser = async(req,res) =>{
     try{
         const passwordH = await bcrypt.hash(req.body.password,10)
@@ -26,6 +27,7 @@ const Puser = async(req,res) =>{
         
     }
 }
+//Partie Get
 const Guser = async (req,res) => {
      try{
         const reponse = await Users.find()
@@ -36,6 +38,7 @@ const Guser = async (req,res) => {
        
      }
 }
+//Partie Get by Id
 const Iduser = async(req,res) =>{
   try
   {
@@ -47,6 +50,7 @@ const Iduser = async(req,res) =>{
     
   }
 }
+// Partie Post login
 const Luser = async(req,res,next) =>{
     try{
         const client = await Users.findOne({email: req.body.email})
@@ -71,6 +75,7 @@ const Luser = async(req,res,next) =>{
         
     }
 }
+//Parie Delete logout
 const Duser = async(req,res,next) => {
    try{  
     if(!req.user.id || !req.user ){
@@ -95,20 +100,25 @@ const Duser = async(req,res,next) => {
         next(erreur(500,error.message))
     }
 }
+//Partie Delete
 const EffacerUser = async(req,res,next) =>{
     try{
         if(!req.user.id || !req.user ){
             return next(erreur(401,'Authentification necessaire'))
         }
        const user = await Users.findById(req.params.id)
-
-        if (user._id.toString()!= req.user.id.toString() && user.role != "admin")  return next(erreur(403 , 'Action interdite'))
+       const client = await Users.findById(req.user.id)
+        if (user._id.toString() !== client.id.toString() && client.role !== "admin") 
+         {  
+            return next(erreur(403 , 'Action interdite'))
+         }  
         await Users.findByIdAndDelete(req.params.id)
         res.status(200).json("user delete!")
     } catch(error){
         next(erreur(500,error.message))
     }
 }
+//Partie Email verify
 const Emailverify = async(req,res,next) => {
     try{
         const token = req.params.token
@@ -122,7 +132,7 @@ const Emailverify = async(req,res,next) => {
         
     }
 }
-
+//Partie  Update
 const Cuser = async (req,res,next) => {
     try{
        if(!req.user.id || !req.user)

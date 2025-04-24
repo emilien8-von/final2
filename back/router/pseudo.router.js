@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Pcontroller = require('../controller/user')
 const verify = require('../middlewares/indentite')
+const admin = require('../middlewares/droitadmin')
 
 router.post("/add",Pcontroller.Puser)
 router.post("/login",Pcontroller.Luser)

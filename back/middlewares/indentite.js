@@ -7,7 +7,7 @@ const verifie = (req,res,next) =>{
     if(!token) return next(erreur(401,'Acces Interdit'))
         jwr.verify(token, ENV.TOKEN,(err,user) =>{
           if(err){
-            return next(erreur(403,'token pas valable',err.message))
+            return next(erreur(403,'token  invalible',err.message))
           } else{
              req.user = user
              next()

@@ -1,6 +1,6 @@
 const Category = require('../models/jeux')
 const erreur = require('../middlewares/erreur')
-const connecte = require('../models/pseudo')
+const Connecte = require('../models/pseudo')
 const pCategory = async(req,res) =>{
     try{ 
        const reponse = await Category.create(req.body)
@@ -37,7 +37,13 @@ const idCategory = async(req,res) =>{
 }
 const deleteCategory = async(req,res,next) =>{
     try{
-               
+        if(!req.user.id || !req.user ){
+            return next(erreur(401,'Authentification necessaire'))
+        }
+        const client = await Connecte.findById(req.user.id)
+        if(client.role !== "admin"){
+            return next(erreur(403,"vous n'êtes pas autorisé à modifier"))
+        }
         await Category.findByIdAndDelete(req.params.id) 
         res.status(200).json('page effacer')
     }
