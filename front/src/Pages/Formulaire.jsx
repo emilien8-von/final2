@@ -34,7 +34,7 @@ const Formulaire = () => {
         let pseudo = document.getElementById("pseudo")
         let email = document.getElementById("mail")
         if(pass2.value && pseudo.value && email.value){
-           
+           if(!pass2 < 3) { 
            try{
             await axios.post(`http://localhost:8000/game/user/add`,inscrit)
             alert("Votre inscripion a bien été prise en compte un mail vous sera envoyés")
@@ -45,7 +45,11 @@ const Formulaire = () => {
             
             event.preventDefault()
            }
-          
+          } else{
+            console.log("le mot de passe doit être supérieur à 3");
+            event.preventDefault()
+            
+          }
         }
         else
         {
