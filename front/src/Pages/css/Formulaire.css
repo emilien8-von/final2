@@ -3,10 +3,8 @@ h1{
     text-align: center;
 }
 .back{
-    background-image: url('/file.png');
+    background-color: #160430;
     color : snow;
-    background-repeat: no-repeat;
-    background-size: cover;
     padding: 4px;
     filter: grayscale(80%)
 }
@@ -22,11 +20,15 @@ h1{
     color: white;
     border: 2px solid snow;
 }
+.passw{
+    width: 150px;
+    height: 30px;
+    margin-left: 2%;
+}
 .img{
     cursor: pointer;
     width: 40px;
-    margin-left: -48px;
-    position: relative;
+    position: absolute;
     z-index: 2;
     filter: grayscale(100%);
 }
@@ -46,4 +48,12 @@ h1{
     background-color: #4C44E1;
     border: 1px solid #9747FF;
     color: #ABA41C;
+}
+
+@media (min-width : 1020px) {
+    .img
+    {
+        top :42%;
+        right : 23%;
+    }
 }
