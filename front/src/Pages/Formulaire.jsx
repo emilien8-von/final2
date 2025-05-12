@@ -3,7 +3,8 @@ import axios from 'axios'
 import './css/Formulaire.css'
 import { Link, useNavigate } from 'react-router'
 import URLS from '../utils/constants/Api'
-import { REGISITER } from '../utils/configs/Form'
+//import { REGISITER } from '../utils/configs/Form'
+//import erreur from '../../../back/middlewares/erreur'
 const Formulaire = () => {
     const [inscrit , setInscrit] = useState({
       pseudo : "",
@@ -34,11 +35,20 @@ const Formulaire = () => {
         let pseudo = document.getElementById("pseudo")
         let email = document.getElementById("mail")
         if(pass2.value && pseudo.value && email.value){
-          console.log(pass2);
-           try{
-            await axios.post(`http://localhost:8000/game/user/add`,inscrit)
-            alert("Votre inscripion a bien été prise en compte un mail vous sera envoyés")
-            navigate(`/`)
+         try{ 
+           if(pass2.value.length < 3)
+            {
+             alert("votre mot de passe doit être superieur où égale à 3")
+             console.log(error.message);
+             
+             event.preventDefault()
+           }
+           else 
+             {
+               await axios.post(`http://localhost:8000/game/user/add`,inscrit)
+               alert("Votre inscripion a bien été prise en compte un mail vous sera envoyés")
+               navigate(`/`)
+             }
             }
             catch(error){
             console.log(error.message);
@@ -55,23 +65,35 @@ const Formulaire = () => {
     }
   return (
     <div className='back'> 
-       <h1>Rejoin Nous ! </h1>
+       <h1 className='titre'>Rejoint Nous ! </h1>
       <form onSubmit={verification}  id='form' className='form' method='post' >
-        
-        {REGISITER.map(field =>(
-          <div key={field.id}>
+        <div className='pseudonyme'>
+          <label htmlFor="pseudo">Pseudo:</label>
+           <span> <img src="/player.svg" alt="play" className='player' /></span>
+          <input type="text" name="pseudo" id="pseudo" className='pseudo' placeholder='pseudo' /> 
+          
+        </div> <br />
+        <div className='password'>
+          <label htmlFor="password">Password:</label>
+          <input type="password" className='passw' id='passw' placeholder='*azerty*1'/>   
+           <span> <img onClick={pass} src="/eye.svg" alt="eye" id='img' className='eye'/></span>
+           <span> <img src="/lock.svg" alt="lock" className='cadenat' /></span>
+         
+        </div> <br />
+        <div className='adresse'>
+          <label htmlFor="email">Email</label>
+          <input type="email" className='email' id='mail' placeholder='joueur1@gmail.com' /> 
+             <span> <img src="/letter.svg" alt="mail" className='letter' /></span>
+       
+        </div>
 
-            <label htmlFor={field.id}>{field.label}</label>
-            <input type={field.type} name={field.name} className={field.className} id = {field.id} placeholder={field.placeholder}
-             onChange={handleChange} 
-            />
-          </div>
-        ))}
-           <span> <img onClick={pass} src="/eye.svg" alt="eye" id='img' className='img'/></span>
-         <button  className='valider'>Valider</button>
+         <button  className='valide'>Valider</button>
       </form>
-      <p> Retour à la page d'<Link className='link' to='/'>acceuil</Link> ?</p>
-      <p>Tu possède déja  un compte  alors <strong> <Link className='link' to = '/login'> clique sur ici </Link></strong></p>
+      <div className='retour'> 
+        <p> Retourner à la page d'<Link className='link' to='/'>acceuil</Link> ?</p>
+        <p>Tu possède déja  un compte  alors <strong> <Link className='link' to = '/login'> clique sur ici </Link></strong></p>
+      </div>
+       
     </div>
   )
 }

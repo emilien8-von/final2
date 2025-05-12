@@ -80,6 +80,12 @@ const Acceuil = () => {
                <img src="/basket.jpg" alt="z" className='img3' />
                
              </div>
+          <p>Quoi de mieux qu'un bon RPG , Pour un site jeu vidéo.</p>
+             <div className='v-flex'>
+           <img className='img1 ' src="/pokemon.jpg" alt="s"   />
+           <img className=' img2 ' src="/dragon.jpg" alt="t" />
+           <img className=' img3 '  src="/fantasy.jpg" alt="r" />
+           </div>
           </section>     
         <div className='ligne'></div>
         <div className='ligne2'></div>
@@ -87,11 +93,7 @@ const Acceuil = () => {
         <h3 className='N1'>Les consoles Nintendo</h3>
         <p>La marque Nintendo est une des marque de jeux le plus poulaire au monde , avec des consoles qui varie du salon familiale jusqu’a la version portable.</p>
         <section>
-           <div className='v-flex'>
-           <img className='img1 ' src="switch.jpg" alt="s"   />
-           <img className=' img1 ' src="wii3.jpg" alt="t" />
-           <img className=' img1 '  src="/DS.jpg" alt="r" />
-           </div>
+           
         </section> 
          <section> 
            <h3 className='P1'>Les consoles Playstations</h3>
