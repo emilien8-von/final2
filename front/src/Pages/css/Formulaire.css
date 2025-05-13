@@ -1,5 +1,5 @@
-h1{
-    color : red !important;
+.titre{
+    color : snow;
     text-align: center;
 }
 .back{
@@ -8,52 +8,157 @@ h1{
     padding: 4px;
     filter: grayscale(80%)
 }
-/*Password*/
-.p-flex{
+/* Input*/
+
+.pseudonyme{
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin-top: 24px;
 }
+.player{
+    width: 40px;
+    position: absolute;
+    top: 24%;
+    right: 62%;
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+
+}
+/*Password*/
+.password{
+    display : flex;
+    margin-top: 2% ;
+    margin-bottom: 2%;
+    justify-content: center;
+    align-items: center;
+}
+
 .form{
-    width: 100%;
     background-color: transparent;
     color: white;
     border: 2px solid snow;
+    text-align: center;
 }
-.passw{
-    width: 150px;
-    height: 30px;
+
+.passw, .email, .pseudo{
+    color: #A4A4A4;
+    background-color: #261046;
+    border-radius: 10px;
+    width: 460px;
+    height: 68px;
+    padding-left: 65px;
     margin-left: 2%;
+    
 }
-.img{
+
+.eye{
     cursor: pointer;
     width: 40px;
     position: absolute;
     z-index: 2;
-    filter: grayscale(100%);
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+    top:39%;
+    right: 30%;
+    margin-top: 2%;
 }
-#mail{
-   margin-top: 1%;
+
+.cadenat{
+    width: 40px;
+    position: absolute;
+    top: 43%;
+    left: 35%;
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+   
 }
-.form{
-    text-align: center;
+
+/*Email*/
+
+.message{
+   display: flex;
+   justify-content: center;
+}
+.letter{
+    width: 40px;
+    position: absolute;
+    top: 63%;
+    left: 34%;
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
 }
 /*Boutton valider*/
-.valider{
-    margin-top:2%;
-    background-color: #0F07AC;;
-    color: snow;
+.valide{
+    border-radius: 18px;
+    background-color : #215b96;
+    color : white;
+    width: 525px;
+    height : 62.2px;
+    margin-top: 2%;
+    
+
 }
-.valider:hover{
-    background-color: #4C44E1;
-    border: 1px solid #9747FF;
+.valide:hover{
     color: #ABA41C;
+    
+}
+/*Retourner*/
+.retour{
+    text-align: center;
 }
 
 @media (min-width : 1020px) {
     .img
     {
-        top :42%;
-        right : 23%;
+        top:42%;
+        right: 28%;
+    }
+    .eye{
+        right: 27%;
+        top : 41%;
+    }
+    .player{
+        left: 34%;
+        top : 25%;
+    }
+    .cadenat{
+        left  : 34%;
+        top: 43%;
+    }
+    .letter{
+        left: 33%;
+    }
+}
+
+@media (min-width : 768px ) and (max-width : 1020px){
+    .cadenat{
+        left : 28%;
+    }
+    .letter{
+        left: 26%;
+    }
+    .player{
+        left: 26%;
+        top : 26%;
+    }
+    .titre{
+        text-align: center;
+    }
+}
+
+@media (max-width : 768px) {
+    .player{
+        left: 16%;
+        top : 26%;
+    }
+    .cadenat{
+        left : 16%;
+    }
+    .letter{
+        left: 14%;
+        top: 62%;
+    }
+    .eye{
+        right: 3%;
+        top: 42%;
+    }
+    .titre{
+        text-align: center;
     }
 }

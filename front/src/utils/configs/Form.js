@@ -6,6 +6,7 @@ export const REGISITER = [
         type : 'text',
         name : 'pseudo',
         id : 'pseudo',
+        className: 'pseudo',
         placeholder : 'pseudo'
     },
     {
@@ -21,6 +22,7 @@ export const REGISITER = [
         type : 'email',
         name : 'email',
         id : 'mail',
+        className : 'email',
         placeholder : 'joueur1@gmail.com'
     },
 ]
