@@ -1,6 +1,7 @@
 const Category = require('../models/jeux')
 const erreur = require('../middlewares/erreur')
 const Connecte = require('../models/pseudo')
+const request = require('../middlewares/requestLogger')
 const pCategory = async(req,res) =>{
     try{ 
        const reponse = await Category.create(req.body)
@@ -12,13 +13,14 @@ const pCategory = async(req,res) =>{
         
     }
 }
-const gCategory = async(req,res) =>{
+const gCategory = async(req,res,next) =>{
     try{
         const reponse = await Category.find()
         res.status(200).json(reponse)
     }
     catch(error){
         console.log(error.message);
+         request()
         
     }
 }
