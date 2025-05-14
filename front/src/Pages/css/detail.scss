@@ -1,0 +1,65 @@
+.body{
+
+ background-image: linear-gradient(#42106D,#5B0F53,#160430) ;
+ color: snow;
+.line{
+    border-bottom: 2px solid snow;
+    padding: 5px;
+}
+.d-image
+{
+    width : 200px;
+    border: 28px solid brown;
+    margin-left : 40%;
+}
+h1{
+    text-align: center ;
+}
+h2{
+    text-align: center;
+}
+table{ 
+    margin-left: 40%;
+    width: 30%;
+ .tab{
+    border: 1px solid black;
+    text-align: center;
+    tr{
+       background-color: black;
+       border: 1px solid snow;
+       color : snow;
+       .tdd{
+         background-color: #1f1f3c;
+         border: 2px solid brown;
+       }
+    }
+ }
+}
+.commentaire{
+    border: 1px solid black;
+    .span{
+        color: black;
+    }
+    .span:hover{
+        color: gold;
+    }
+    .ligne{
+        border: 1px solid black;
+    }
+    .texta{ 
+        margin-left : 5%;
+     textarea{
+        width: 60% ;
+     }
+     button{
+        background-color: mediumblue;
+        color: seashell;
+        position: absolute;
+        left : 51%;
+        margin-top : 14%;
+     }
+    }
+ }
+}
+//<img  className='img2' src={`http://localhost:8000${info.image}`} alt="b" />
+                // <img className='img3' src="/shadow.jpg" alt="d" />

@@ -32,13 +32,13 @@ const jeux = mongoose.Schema(
            type : mongoose.Schema.Types.ObjectId, ref :"Comments"
         },
         status : {
-            type : Boolean,
+            type : String,
+            enum : ["oui", "non"],
             required : true
         },
         image:{
             type: String,
             required : true
-
         },
         rating:{
             type: Number,
@@ -46,23 +46,35 @@ const jeux = mongoose.Schema(
             maxlength : 5
         },
         exclusivite : {
-            type : Boolean,
+            type : String,
+             enum : ["oui", "non"],
             required :  true
         },
         online  : 
         {
-            type :Boolean,
+            type :String,
+             enum : ["oui", "non"],
             required : true,
          } ,
-         multijouer :
+         multijoueur :
          {
-             type : Boolean,
+             type : String,
+              enum : ["oui", "non"],
              required : true
          },
          nombre_de_joueur : {
             type : Number,
             requiered : true
+         },
+         disponible : {
+            type : String,
+            required:true
+         },
+         emulateur : {
+            type : String,
+            requiered : true
          }
+
 
     } ,{Timestamp : {createdAt : true} }
 )

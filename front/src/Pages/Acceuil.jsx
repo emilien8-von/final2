@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 //CSS
 import './css/Acceuil.css'
 import './css/mobile.css'
 import './css/tablette.css'
+import { Link } from 'react-router'
+import axios from 'axios'
+
 const Acceuil = () => {
   const color =()=>
   { 
@@ -15,6 +18,25 @@ const Acceuil = () => {
      let valeur = `rgb(${ray})`
      document.getElementById("h2").style.color = valeur
   }
+  const [detail, setDetail] = useState([])
+  
+  useEffect(() =>{
+    const fetchdetail = async() =>{
+      try{
+          const {data , status} = await axios.get('http://localhost:8000/game/jeux/all')
+
+          if(status === 200) setDetail(data)
+            console.log(data);
+            
+      }
+      catch(error){
+        console.log(error.message);
+        
+      }
+    }
+     fetchdetail()
+     console.log(detail);
+  },[])
   const img = ()=>
     {
      const img5 = document.getElementById("img5")
@@ -41,7 +63,8 @@ const Acceuil = () => {
         <h2 onMouseOver={color} className='h2' id='h2'>Level up!</h2>
         <section>
           <div className='t-flex' >
-             <img className='img5' src="/start.png" alt="m" />
+            <img className='img5' src="/start.png" alt="m" />
+              
              <img onMouseOver={img} src="/easy.png" id='img5' alt="l" width={120} />
             <img src="/level.jpeg" alt="n" className='img5'/> 
          </div>
@@ -49,10 +72,19 @@ const Acceuil = () => {
         <h3>Les differents type de jeux</h3>
         <p>Les jeux de types plateformes sont les plus connues et qui ont permis de donner des jeux comme (Mario , Sonic,Crash bandicoot , ect..)</p>
         <section>
-          <div className='v-flex'> 
-           <img   className='img1'  src="/mario.jpg" alt="v" />
-           <img  className='img2' src="/crash.jpg" alt="b" />
-           <img className='img3' src="/shadow.jpg" alt="d" />
+           <div className='v-flex'> 
+            {
+              detail.map(info =>(
+                <Link
+                 key={info._id} to={{ pathname: `/detail/${info._id}` }}> 
+                 <img className='img1'  src={`${info.image}`} alt="v" />
+                 
+               </Link> 
+               
+             ))}
+             
+             
+             
           </div>
         
         
@@ -86,7 +118,8 @@ const Acceuil = () => {
            <img className=' img2 ' src="/dragon.jpg" alt="t" />
            <img className=' img3 '  src="/fantasy.jpg" alt="r" />
            </div>
-          </section>     
+        </section>     
+
         <div className='ligne'></div>
         <div className='ligne2'></div>
         <h2 className='h2'>Les consoles et leurs emulateurs</h2>
