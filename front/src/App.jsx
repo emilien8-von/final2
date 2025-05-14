@@ -7,6 +7,7 @@ import Template from './Components/Admin/template/Template'
 import Acceuil from './Pages/Acceuil'
 import Formulaire from './Pages/Formulaire'
 import Login from './Pages/Login'
+import Detail from './Pages/Detail'
 //SErvice
 import Private from './utils/helpers/Private'
 import Public from './utils/helpers/Public'
@@ -21,6 +22,7 @@ function App() {
           { /*<Route element = {<Public/>}> */}
             <Route path='/formulaire' element={<Formulaire/>}/>
             <Route path='/login' element={<Login/>}/>
+            <Route path='/detail/:id' element={<Detail/>} />
          { /*</Route>*/}
           {/*Fin de Route Public */}
           <Route path='/dashboard' element={<Template/>}>
