@@ -93,10 +93,6 @@ const jeux = mongoose.Schema(
        }
 )
 
-jeux.virtual('gallerie',{
-    ref :"Gallery",
-    localField : '_id',
-    foreignField : "jeux"
-})
+
 
 module.exports = mongoose.model("Jeux",jeux)

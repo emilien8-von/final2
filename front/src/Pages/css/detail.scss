@@ -35,6 +35,10 @@ table{
     }
  }
 }
+ .gallery{
+    display: flex;
+    justify-content: space-between;
+ }
 .commentaire{
     border: 1px solid black;
     .span{
