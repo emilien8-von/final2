@@ -12,6 +12,7 @@ const comment = require('./router/comment_router')
 const jeux = require('./router/jeux.router')
 const console = require('./router/console.router')
 const emulateur = require('./router/emulateur.router')
+const gallery = require('./router/gallery.router')
 //Middleweare
 app.use(cookie())
 app.use(express.json())
@@ -24,4 +25,5 @@ app.use("/game/comment",comment)
 app.use("/game/jeux",jeux)
 app.use("/game/console",console)
 app.use("/game/emulateur",emulateur)
+app.use("/game/gallery",gallery)
 module.exports = app
