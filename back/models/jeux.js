@@ -74,9 +74,29 @@ const jeux = mongoose.Schema(
             type : String,
             requiered : true
          }
+         ,
+        gallery:{
+        img : {type : String},
+        img2 : {type : String},
+        img3 : {type: String},
+        img4 : {type: String},
+        img5 : {type: String},
+        img6 : {type: String},
+    }
 
 
-    } ,{Timestamp : {createdAt : true} }
+    } ,{
+        timestamps : true,
+        toJSON: {virtuals : true},
+        toObject : {virtuals : true}
+         
+       }
 )
+
+jeux.virtual('gallerie',{
+    ref :"Gallery",
+    localField : '_id',
+    foreignField : "jeux"
+})
 
 module.exports = mongoose.model("Jeux",jeux)
