@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: ./backend
+    networks:
+      - reseau-compose
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "5174:3456"
+    networks:
+      - reseau-compose
+
+networks:
+  reseau-compose:
