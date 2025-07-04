@@ -101,16 +101,12 @@ const Detail = () => {
        </table>
        <div className='line'></div>
        <h2>Gallery</h2>
-       <section >
-         {/* <div className='image'>
-                 get_img_tag(details)
+     
 
-          </div>*/}
         <div className='line'></div>
        <h2>Note et comment</h2>  
-       </section>
        <div className='commentaire'>
-         <p>Mettre une Note : <span className='span'>⯨ </span>  </p>
+         <p>Mettre une Note : <span className='span'>⯨⯩ </span>  </p>
          <div className='ligne'></div>
           <div className='texta'> 
            <textarea name="text" id="text" placeholder='Mettre un commentaire' rows={15} cols={5}></textarea>
