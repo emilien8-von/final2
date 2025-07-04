@@ -6,7 +6,7 @@ const Detail = () => {
     const param = useParams()
     const {id} = param
     //const navigate = useNavigate()
-    const [details , setDetails] = useState([])
+    const [details , setDetails] = useState(undefined)
 
     useEffect(() => {
         console.log(id);
@@ -15,6 +15,7 @@ const Detail = () => {
             
             try{
                 const {data,status} = await axios.get(`http://localhost:8000/game/jeux/get/${id}`)
+                console.log(data);
                 
                 if(status === 200) setDetails(data)
             } 
@@ -24,8 +25,17 @@ const Detail = () => {
          }
          fetchdetail()
     },[])
+    const get_img_tag = () =>{
+       if(details !== undefined){
+          return `<img src="${details.gallery.img5}" alt="${details.titre}"/>`
+          
+       } else {
+        return "echec"
+        
+       }
+    }
   return (
-    
+    details === undefined ? <></> :
     <div className='body'>
         
          { 
@@ -91,20 +101,10 @@ const Detail = () => {
        </table>
        <div className='line'></div>
        <h2>Gallery</h2>
-       <section >
-          <div className='gallery'>
-            
-                   <span><img src={`${details.gallery?.img}`} alt="n" /></span>
-            
-           
+     
 
-           
-              
-              
-          </div>
         <div className='line'></div>
        <h2>Note et comment</h2>  
-       </section>
        <div className='commentaire'>
          <p>Mettre une Note : <span className='span'>⯨⯩ </span>  </p>
          <div className='ligne'></div>

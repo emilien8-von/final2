@@ -16,7 +16,6 @@ const pCategory = async(req,res) =>{
 const gCategory = async(req,res,next) =>{
     try{
         const reponse = await Category.find()
-     //   .populate('Gallery')
         res.status(200).json(reponse)
     }
     catch(error){
@@ -31,7 +30,6 @@ const idCategory = async(req,res) =>{
     try{
         const check = await Category.findById(req.params.id)
         if(!check) return res.status(400).json("user not found")
-        //.populate('gallerie')
         res.status(200).json(check)
 
     }
