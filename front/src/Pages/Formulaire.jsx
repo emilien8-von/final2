@@ -20,7 +20,8 @@ const Formulaire = () => {
     const pass = () =>
       {
        const img = document.getElementById("img")
-       const change =  document.getElementById("passw")
+       const change =  document.getElementById("passwi")
+    
        if(change.type === "password"){
         change.type = "text"
         img.setAttribute("src","/closed-eye.svg")
@@ -28,13 +29,39 @@ const Formulaire = () => {
         change.type = "password"
         img.setAttribute("src","/eye.svg")
        }
+       
+    }
+   
+    const check = ()=> {
+      const cross2 = document.querySelector(".crossx")
+      const cross3 = document
+      const pass = document.getElementById("passwi")
+
+      if(pass.value.length >= 3){
+        cross2.setAttribute("src","/valide.png")
+        
+       }
+       else{
+        cross2.setAttribute("src","/croosing.svg")
+       }
+          console.log(pass.value);
+       const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+       if(pass.matches(regex)) {
+          cross3.setAttribute("src","/valide.png")
+       }
+       else{
+        cross3.setAttribute("src","/croosing.svg")
+       }
+      
     }
     const verification = async event =>
     {
       event.preventDefault()
-        const pass2 = document.getElementById("passw")
+        const cross2 = document.querySelector(".cross")
+        const pass2 = document.getElementById("passwi")
         const  pseudo = document.getElementById("pseudo")
         const email = document.getElementById("mail")
+        
         if(pass2.value && pseudo.value && email.value){
          try{ 
            if(pass2.value.length < 3)
@@ -73,25 +100,32 @@ const Formulaire = () => {
        <h1 className='titre'>Rejoint Nous ! </h1>
       <form onChange={handleChange} onSubmit={verification} id='form' className='form' method='post' >
         <div className='pseudonyme'>
-          <label htmlFor="pseudo">Pseudo:</label>
+       
            <span> <img src="/player.svg" alt="play" className='player' /></span>
-          <input type="text" name="pseudo" id="pseudo" className='pseudo' placeholder='pseudo' /> 
+          <input type="text" name="pseudo" id="pseudo" className='pseudo' placeholder='write your pseudo' /> 
           
         </div> <br />
-        <div className='password'>
-          <label htmlFor="password">Password:</label>
-          <input type="password" className='passw' name="password" id='passw' placeholder='*azerty*1'/>   
-           <span> <img onClick={pass} src="/eye.svg" alt="eye" id='img' className='eye'/></span>
-           <span> <img src="/lock.svg" alt="lock" className='cadenat' /></span>
-         
-        </div> <br />
+
         <div className='adresse'>
-          <label htmlFor="email">Email</label>
-          <input type="email" className='email' name='email' id='mail' placeholder='joueur1@gmail.com' /> 
+         
+          <input type="email" className='mail' name='email' id='mail' placeholder='email adress (ex :joueur1@gmail.com)' /> 
              <span> <img src="/letter.svg" alt="mail" className='letter' /></span>
        
-        </div>
+        </div> <br />
 
+         <div className='password'>
+         
+          <input onInput={check}type="password" className='passwi' name="password" id='passwi' placeholder='password (ex :*azerty*1)'/>   
+           <span> <img onClick={pass}  src="/eye.svg" alt="eye" id='img' className='eye'/></span>
+           <span> <img src="/lock.svg" alt="lock" className='cadenat' /></span> <br />
+
+           
+        </div> 
+                     
+           <p className='pm'>Le mot de passe doit avoir au moyen une majuscule <img className='cross' src="./croosing.svg" alt="cross"  /></p>
+           <p className='p2'>Le mot de passe doit avoir au moins 1 caractères spécial  <img className='cross' src="./croosing.svg" /> </p>
+           <p className='p3'>Le mot de passe doit avoir au moins un chiffre  <img className='cross' src="./croosing.svg" /></p>
+           <p className='p4'>Le mot de passe doit avoir au moins 3 caractères  <img   className='crossx' src="./croosing.svg" /></p>
          <button  className='valide'>Valider</button>
       </form>
       <div className='retour'> 
