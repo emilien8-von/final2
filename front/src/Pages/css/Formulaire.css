@@ -5,8 +5,12 @@
 .back{
     background-color: #160430;
     color : snow;
-    padding: 4px;
-    filter: grayscale(80%)
+    padding: 10px;
+    filter: grayscale(80%);
+    margin: 0;
+     place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
 }
 /* Input*/
 
@@ -18,8 +22,8 @@
 .player{
     width: 40px;
     position: absolute;
-    top: 24%;
-    right: 62%;
+    top: 10%;
+    margin-left: -1%;
     filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
 
 }
@@ -39,14 +43,13 @@
     text-align: center;
 }
 
-.passw, .email, .pseudo{
+.passwi, .mail, .pseudo{
     color: #A4A4A4;
     background-color: #261046;
     border-radius: 10px;
     width: 460px;
     height: 68px;
-    padding-left: 65px;
-    margin-left: 2%;
+    padding-left: 70px;
     
 }
 
@@ -56,7 +59,7 @@
     position: absolute;
     z-index: 2;
     filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
-    top:39%;
+    top:37%;
     right: 30%;
     margin-top: 2%;
 }
@@ -64,23 +67,24 @@
 .cadenat{
     width: 40px;
     position: absolute;
-    top: 43%;
-    left: 35%;
+    top: 35%;
+    margin-left: -1%;
     filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
    
+}
+.cross,.crossx,.cross3,.cross2 {
+    width: 20px;
+    
 }
 
 /*Email*/
 
-.message{
-   display: flex;
-   justify-content: center;
-}
+
 .letter{
     width: 40px;
     position: absolute;
-    top: 63%;
-    left: 34%;
+    top: 29%;
+    left: 12%;
     filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
 }
 /*Boutton valider*/
@@ -90,7 +94,7 @@
     color : white;
     width: 525px;
     height : 62.2px;
-    margin-top: 2%;
+    margin-top: 3%;
     
 
 }
@@ -110,32 +114,34 @@
         right: 28%;
     }
     .eye{
-        right: 27%;
-        top : 41%;
+        right: 33%;
+        top : 42%;
     }
     .player{
         left: 34%;
-        top : 25%;
+        top : 20%;
     }
     .cadenat{
         left  : 34%;
-        top: 43%;
+        top: 45%;
     }
     .letter{
         left: 33%;
+        top : 32%;
     }
 }
 
 @media (min-width : 768px ) and (max-width : 1020px){
     .cadenat{
-        left : 28%;
+        left: 25%;
+        top: 40%;
     }
     .letter{
         left: 26%;
     }
     .player{
         left: 26%;
-        top : 26%;
+        top : 16%;
     }
     .titre{
         text-align: center;
