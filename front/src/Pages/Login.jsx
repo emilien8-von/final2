@@ -13,7 +13,9 @@ const Login = () => {
    const pass = () =>
     {
      const img = document.getElementById("img")
-     const change =  document.getElementById("pass")
+     const change =  document.getElementById(sign.password.id)
+     console.log(sign.password);
+     
      if(change.type === "password"){
       change.type = "text"
       img.setAttribute("src","/closed-eye.svg")
@@ -23,10 +25,19 @@ const Login = () => {
      }
   }
      const verification = (event) =>
-
     {
-      event.preventDefault()
+       if(!sign.email || !sign.password){
+          alert("émail ou mot de passe  vide !")
+          event.preventDefault()
+    } else{
+      alert("tu vas être connecté!")
       login(sign)
+
+    }
+      
+    
+
+      
       
     }
   return (
@@ -45,7 +56,8 @@ const Login = () => {
           
            
          <form onSubmit={verification} id='form' className='form'>
-                {LOGIN.map(field =>(
+          
+                 {LOGIN.map(field =>(
                           <div key={field.id}>
                              <br /> 
                             <strong> <label htmlFor={field.id}>{field.label}</label> </strong> <br/> <br />
@@ -53,17 +65,17 @@ const Login = () => {
                              onChange={handleChange} 
                             /> <br />
                           </div>
-                        ))} <br />  <br />
-                     {/**   <div className='courrier'><i class="fa-solid fa-envelope"></i></div>
+                        ))} <br />  <br />{/***/} 
+                       <div className='courrier'><i class="fa-solid fa-envelope"></i></div>
                         <div className='lock'> <i id='lock' class="fa-solid fa-lock"></i></div>
-                           <span> <img onClick={pass} src="/eye.svg" alt="eye" id='img' className='img'/></span> */} 
+                           <span> <img onClick={pass} src="/eye.svg" alt="eye" id='oeil' className='oeil'/></span> 
                 <button className='button'> <strong>Valider </strong></button>
                 
          </form>
           
          <p>Retourner a la page d'<Link className='link' to='/'>acceuil </Link></p>
          <div className='line'></div>
-         <p>En vous connectant vous acceptez nos Termes et nos Conditions. </p>
+         <p>En vous connectant vous acceptez nos <span className='span' > Termes et nos Conditions</span>. </p>
         </div>
         </div>
       </section>

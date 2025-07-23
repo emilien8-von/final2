@@ -26,8 +26,9 @@ export const Provider = ({children}) =>{
            
         }
         catch(error){
-            console.log(error.message);
+           alert("le mot de passe ou email et inccorect !");
             setLoading(false)
+           
         }
     }
     const logout = () =>{

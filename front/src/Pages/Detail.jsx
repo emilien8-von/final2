@@ -34,6 +34,10 @@ const Detail = () => {
         
        }
     }
+    const popup =()=>{
+      const star = document.getElementById("star")
+      alert("tu as cliqué")
+    }
   return (
     details === undefined ? <></> :
     <div className='body'>
@@ -101,12 +105,20 @@ const Detail = () => {
        </table>
        <div className='line'></div>
        <h2>Gallery</h2>
-     
-
+       <div className='gallery'> 
+         
+            <img className='gal' src= { `${details.gallery.img2}` } alt="img"/>
+            <img className='gal' src= { `${details.gallery.img3}` } alt="img"/>
+            <img className='gal' src= { `${details.gallery.img4}` } alt="img"/>
+            <img className='gal' src= { `${details.gallery.img5}` } alt="img"/>
+            <img className='gal' src= { `${details.gallery.img6}` } alt="img"/>
+       
+       </div>
         <div className='line'></div>
        <h2>Note et comment</h2>  
        <div className='commentaire'>
-         <p>Mettre une Note : <span className='span'>⯨⯩ </span>  </p>
+         <p>Mettre une Note : <i onClick={popup} id='star' class="fa-solid fa-star"></i> </p>
+
          <div className='ligne'></div>
           <div className='texta'> 
            <textarea name="text" id="text" placeholder='Mettre un commentaire' rows={15} cols={5}></textarea>
