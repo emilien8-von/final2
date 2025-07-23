@@ -38,11 +38,23 @@ table{
  .gallery{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+  .gal
+    {
+     width: 40%;
+     margin-top: 2%;
+
+    }
  }
+
+    
 .commentaire{
     border: 1px solid black;
+    i{
+        cursor: pointer;
+    }
     .span{
-        color: black;
+        color: white;
     }
     .span:hover{
         color: gold;
@@ -60,7 +72,7 @@ table{
         color: seashell;
         position: absolute;
         left : 51%;
-        margin-top : 14%;
+        margin-top : 12%;
      }
     }
  }
