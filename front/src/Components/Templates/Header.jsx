@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router'
 import './css/header.css'
 import { Context } from '../../utils/context/Context'
+
 const Header = () => {
   const {auth,logout} = useContext(Context)
 
@@ -29,6 +30,7 @@ const Header = () => {
                       <li><Link className='li'>Concept</Link></li>
                       <li><Link className='li' >Jeux</Link></li>
                       <li><Link className='li' >Console</Link></li>
+                      <li> <Link to='/dashbaord' className='li'>Dashbaord</Link> </li>
                     </div>
                  </ul>
                   {auth?
