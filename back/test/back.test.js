@@ -1,18 +1,17 @@
 
-import {Puser} from 'back/controller/user'
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const httpMocks = require('node-mocks-http');
-
+const { Puser } = require('../controller/user')
 // Mocks
 jest.mock('bcrypt');
 jest.mock('jsonwebtoken');
-jest.mock('../model'); // pour le model
-jest.mock('../service/mail'); // pour l'enovie de mail
+jest.mock('../models/pseudo'); // pour le model
+jest.mock('../services/mail'); // pour l'enovie de mail
 
 const Users = require('../models/pseudo');
-const envoi = require('../service/mail');
+const envoi = require('../services/mail');
 
 describe('Puser controller', () => {
   it('should hash password, create user, send token, and respond with 201', async () => {
