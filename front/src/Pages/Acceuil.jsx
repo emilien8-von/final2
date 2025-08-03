@@ -50,8 +50,10 @@ const Acceuil = () => {
      } else{
       img5.setAttribute("src","/easy.png")
      }
-  
     }
+    module.exports = { img };
+
+
   return (
     <div className='nain'>
         <div className='bord'>
@@ -66,6 +68,7 @@ const Acceuil = () => {
             <img className='img5' src="/start.png" alt="m" />
               
              <img onMouseOver={img} src="/easy.png" id='img5' alt="l" width={120} />
+
             <img src="/level.jpeg" alt="n" className='img5'/> 
          </div>
         </section>
