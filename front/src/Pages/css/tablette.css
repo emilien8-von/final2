@@ -9,12 +9,6 @@
       margin-top: 0%;
       margin-bottom: 5%;
     }
-        .ul{
-          display: none;
-        }
-        .d-flex{
-          width: 263px;
-        }
         .menu{
           display: block;
           cursor: pointer;
@@ -22,7 +16,6 @@
         }
         #icon{
           color: #FFBD00;
-          
         }
         /*1ère partie du main (section t-flex)*/
         .nain{
@@ -34,8 +27,6 @@
           flex-direction: column;
           align-items: center;
           gap: 30px;
-          
-          
         }
         /*2ème parti du main section(v-flex) */
         .v-flex{
@@ -50,5 +41,31 @@
         }
         h3{
           text-align: center;
+        }
+        /*Partie des Consoles*/
+        .nintendo{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 30px;
+        }
+
+        .sony{
+           display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 30px
+        }
+        .xbox{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 30px
+        }
+        .pc{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 30px
         }
   }
