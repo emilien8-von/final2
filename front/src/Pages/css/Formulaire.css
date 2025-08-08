@@ -41,6 +41,10 @@
     color: white;
     border: 2px solid snow;
     text-align: center;
+    width: 525px;
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 15px;
 }
 
 .passwi, .mail, .pseudo{
@@ -72,7 +76,7 @@
     filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
    
 }
-.cross,.crossx,.cross3,.cross2 {
+.maj,.crossx,.chiffre,.carac {
     width: 20px;
     
 }
@@ -95,76 +99,48 @@
     width: 525px;
     height : 62.2px;
     margin-top: 3%;
-    
-
 }
 .valide:hover{
     color: #ABA41C;
     
 }
 /*Retourner*/
-.retour{
-    text-align: center;
+.input-wrapper input {
+  width: 84%; 
+  padding: 12px 50px; 
+  background-color: #221e2b;
+  border: 1px solid #555;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
 }
-
-@media (min-width : 1020px) {
     .img
     {
         top:42%;
         right: 28%;
     }
-    .eye{
-        right: 33%;
-        top : 42%;
+    .eye-icon {
+     right: 15px; 
+     cursor: pointer; 
     }
-    .player{
-        left: 34%;
-        top : 20%;
-    }
-    .cadenat{
-        left  : 34%;
-        top: 45%;
-    }
-    .letter{
-        left: 33%;
-        top : 32%;
-    }
-}
-
-@media (min-width : 768px ) and (max-width : 1020px){
-    .cadenat{
-        left: 25%;
-        top: 40%;
-    }
-    .letter{
-        left: 26%;
-    }
-    .player{
-        left: 26%;
-        top : 16%;
-    }
-    .titre{
-        text-align: center;
-    }
-}
-
-@media (max-width : 768px) {
-    .player{
-        left: 16%;
-        top : 26%;
-    }
-    .cadenat{
-        left : 16%;
-    }
-    .letter{
-        left: 14%;
-        top: 62%;
-    }
-    .eye{
-        right: 3%;
-        top: 42%;
-    }
-    .titre{
-        text-align: center;
-    }
+    .input-wrapper {
+     position: relative; 
+     margin-bottom: 20px; 
+     width:100%;
+   }
+   .input-icon {
+   position: absolute; 
+   top: 50%; 
+   transform: translateY(-50%); 
+   width: 20px; 
+   height: 20px;
+   filter: brightness(0) invert(1); /
+  }  
+  .input-wrapper input:-webkit-autofill,
+.input-wrapper input:-webkit-autofill:hover, 
+.input-wrapper input:-webkit-autofill:focus, 
+.input-wrapper input:-webkit-autofill:active {
+    box-shadow: 0 0 0px 1000px #221e2b inset !important;
+    -webkit-text-fill-color: white !important;
+    border-color: #555 !important;
 }
