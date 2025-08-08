@@ -3,29 +3,36 @@
     padding: 20px;
     background-size: cover ;
   }
-  .c-flex{
+  /*Flex global*/
+  .nav-flex{
     display: flex;
     justify-content: space-between;
   }
-  .d-flex{
-    display: flex;
-     width: 40px;
-     justify-content: space-between;
-  }
   
-  li{
+  /*Logo*/
+  .logo{
+    width: 180px;
+    height: auto;
+  }
+
+
+  .li{
     list-style: none;
     text-decoration: none;
     font-family: 'Jersey 15';font-size: 22px;
-  }
-  .li{
     color: white;
   }
+  
   .li:hover{
     color:#ABA41C;
     text-decoration: underline;
   }
-  
+  /*Bouton*/
+  .link-bouton{
+    display: flex;
+    gap: 10px;
+  }
+  /*Boutton Inscription*/
   .but1{
     margin-top: 2%;
     cursor: pointer;
@@ -41,8 +48,10 @@
     border: 1px solid #9747FF;
     
   }
+  /*Bouton Connexion*/
   .but2{
     color:  snow;
+    margin-left: 2%;
   }
   .but2:hover{
     color:#ABA41C;
@@ -54,20 +63,47 @@
     border: 3px solid snow;
     background-color: transparent;
   }
-
+  .nav-links{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap:15px;
+   } 
+  
   /*responsive*/
-  @media (min-width:1024px) {
-    .d-flex{
-      display: flex;
-       width: 300px;
-       justify-content: space-between;
-    }
-    .ul{
-      display: block;
-    }
-    .menu{
+  @media (min-width:1024px) 
+  {
+   
+    .nav-links{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap:15px;
+   } 
+   
+  .menu
+  {
       display: none;
-    }
+  }
     /*1ère partie du main*/
   }
-  
+  @media(max-width : 1023px){
+   .nav-links{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap:15px;
+    flex-direction: column;
+   } 
+   #ul{
+    display:none;
+   }
+  }

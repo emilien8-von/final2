@@ -22,30 +22,14 @@
     color: snow;
     padding: 50px;
   }
+  /*Partie flex*/
+  /*Image des jeux où il y a pas d'utilisateur */
   .v-flex{
     display: flex;
     justify-content: space-between;
+   
   }
-  
-  .t-flex{
-    display: flex;
-    justify-content: space-around;
-    max-width: 100%;
-  }
-  .ligne,.ligne2{
-    border-bottom: 3px solid snow ;
-    margin-top: 2%;
-  }
-  /*Image*/
-  .img1,.img2,.img3,.img4,.img5{
-    width:150px;
-    filter: grayscale(90%);
-    border: 2px solid black;
-    object-fit: cover;
-  }
-  .img5:hover{
-    filter: none;
-  }
+
   .img1:hover{
     filter: none;
     border:2px solid #C1121F;
@@ -70,6 +54,123 @@
     border: 2px solid #FFBD00;
     transform: scale(1.1);
     transition: transform 1s ease-in-out;
+  }
+  
+  /*3 images (start,easy,carte)*/
+  .t-flex{
+    display: flex;
+    justify-content: space-around;
+    max-width: 100%;
+  }
+ 
+  /*Image des jeux */
+  .img1,.img2,.img3,.img4,.img5{
+    width:150px;
+    filter: grayscale(90%);
+    border: 2px solid black;
+    cursor: pointer;
+    object-fit: cover;
+  }
+  /*Parti Hover des images*/
+  /* 1. Le conteneur pour une rangée d'images */
+.items-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+/* 2. La "carte" de base (styles communs à toutes) */
+.item-card {
+  width: 250px;
+  aspect-ratio: 16 / 9;
+  border: 2px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  
+  /* LA TRANSITION SE MET ICI ! Pour la bordure et le transform. */
+  /* On combine les transitions pour la bordure, le transform et l'ombre */
+  transition: 
+    border-color 0.4s ease-in-out,
+    transform 0.4s ease-in-out,
+    box-shadow 0.4s ease-in-out;
+}
+
+/* 3. L'image à l'intérieur de la carte */
+.item-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(90%);
+  cursor: pointer;
+  
+  /* LA TRANSITION POUR LE FILTRE SE MET ICI ! */
+  transition: filter 0.4s ease-in-out;
+}
+
+/* 4. Effets de survol COMMUNS à toutes les cartes */
+.item-card:hover {
+  transform: scale(1.05); /* J'ai mis 1.05 au lieu de 1.1 qui est souvent trop grand, mais vous pouvez remettre 1.1 */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.item-card:hover img {
+  filter: none; /* Enlève le filtre gris sur toutes au survol */
+}
+
+
+/* 5. Effets de survol SPÉCIFIQUES (vos couleurs !) */
+
+/* Pour les cartes dans la section Nintendo */
+.nintendo-section .item-card:hover {
+  border-color: #C1121F; /* Rouge Nintendo */
+}
+
+/* Pour les cartes dans la section PlayStation */
+.playstation-section .item-card:hover {
+  border-color: #0F07AC; /* Bleu PlayStation */
+}
+
+/* Pour les cartes dans la section Xbox */
+.xbox-section .item-card:hover {
+  border-color: #6A994E; /* Vert Xbox */
+}
+
+/* Pour les cartes dans la section PC */
+.pc-section .item-card:hover {
+  border-color: #FFBD00; /* Jaune/Or PC */
+}
+  /*Partie des jeux API avec map*/
+  .u-flex
+   {
+     display: grid ;
+     grid-template-columns: repeat(3, 1fr);
+     justify-content: space-between;
+     padding: 17px;
+     gap : 30px;
+     max-width: 1400px;
+   }
+  .img7
+  {
+    filter: grayscale(90%);
+    border: 2px solid black;
+    cursor: pointer;
+    object-fit: cover;
+    width: 80%;
+    height: 90%;
+  }
+  .img7:hover{
+    filter: none;
+    border:2px solid skyblue;
+    transform: scale(1.1);
+    transition: transform 1s ease-in-out;
+  }
+  /**Ligne*/
+   .ligne,.ligne2{
+    border-bottom: 3px solid snow ;
+    margin-top: 2%;
   }
   /*2ème Partie (console)*/
   

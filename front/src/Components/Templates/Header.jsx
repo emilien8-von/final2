@@ -23,20 +23,19 @@ const Header = () => {
         <header className='header'>
             <section >
               <nav>
-                <div className='c-flex'>
-                   <img src="/manette2.png" alt="imj" width={80}/>
-                 <ul id='ul' className=' ul'>
-                 <div className=' d-flex'> 
+                <div className='nav-flex'>
+                   <img className='logo' src="/manette2.png" alt="imj" width={80}/>
+                 <ul id='ul' className=' nav-links '>
+
                       <li><Link className='li'>Concept</Link></li>
                       <li><Link className='li' >Jeux</Link></li>
                       <li><Link className='li' >Console</Link></li>
                       <li> <Link to='/dashbaord' className='li'>Dashbaord</Link> </li>
-                    </div>
                  </ul>
                   {auth?
                      <button onClick={logout} className='but1'><Link to='/login' className='but2'>Déconnexion</Link></button>
                     :
-                    <div>
+                    <div className='link-bouton'>
                       <button className='but1'><Link to='/formulaire' className='but2'>Inscription</Link></button>
                     
                       <button className='but1'><Link to='/login' className='but2'>Connexion</Link></button>

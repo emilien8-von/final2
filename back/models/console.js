@@ -15,7 +15,21 @@ const console = mongoose.Schema({
          type : Date,
          require : true
      },
-     emulable : {
+     emulable : 
+     {
+          type : Boolean,
+          require : true
+     },
+     emulateur : {
+          type : String,
+          require : true
+     },
+     image : 
+     {
+          type : String,
+          require : true
+     },
+     vente : {
           type : Boolean,
           require : true
      }
