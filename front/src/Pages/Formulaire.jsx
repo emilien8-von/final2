@@ -6,17 +6,26 @@ import URLS from '../utils/constants/Api'
 //import erreur from '../../../back/middlewares/erreur'
 import React, { useState } from 'react'
 
+
 const Formulaire = () => {
     const [inscrit , setInscrit] = useState({
       pseudo : "",
       password : "",
       email : ""
     })
+    const [password, setPassword] = useState('');
+
+ 
     const navigate = useNavigate()
+   
+
     const handleChange = event =>{
        const {name,value} = event.target
        setInscrit(prevUser => ({...prevUser,[name]:value}))
     }
+
+   
+
     const pass = () =>
       {
        const img = document.getElementById("img")
@@ -33,51 +42,83 @@ const Formulaire = () => {
     }
    
     const check = ()=> {
-      const cross2 = document.querySelector(".crossx")
-      const cross3 = document
+      const cross2 = document.getElementById("crossx")
+      const chiffre = document.getElementById('chiffre')
       const pass = document.getElementById("passwi")
+      const maj = document.getElementById("maj")
+      const carac = document.getElementById("carac")
+      const password= pass.value      
+
+      const aUneMajuscule = /[A-Z]/;
+      const aUnCaractereSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        const aUnChiffre = /[0-9]/;
+        if(aUneMajuscule.test(password)){
+        maj.setAttribute("src","/valide.png")
+        } else{
+          maj.setAttribute("src","/croosing.svg")
+        }
+       
+         if(aUnChiffre.test(password)){
+              chiffre.setAttribute("src", "/valide.png");
+        } else{
+          chiffre.setAttribute("src","/croosing.svg")
+        }
+
+        if(aUnCaractereSpecial.test(password)){
+        carac.setAttribute("src","/valide.png")
+        } else{
+              carac.setAttribute("src","/croosing.svg")
+        }
 
       if(pass.value.length >= 3){
         cross2.setAttribute("src","/valide.png")
-        
        }
        else{
         cross2.setAttribute("src","/croosing.svg")
        }
-          console.log(pass.value);
-       const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-       if(pass.matches(regex)) {
-          cross3.setAttribute("src","/valide.png")
-       }
-       else{
-        cross3.setAttribute("src","/croosing.svg")
-       }
+       
+       
+      
       
     }
     const verification = async event =>
     {
       event.preventDefault()
-        const cross2 = document.querySelector(".cross")
-        const pass2 = document.getElementById("passwi")
+         
+         const pass2 = document.getElementById("passwi")
+         const password= pass2.value     
+         const aUneMajuscule = /[A-Z]/;
+         const aUnCaractereSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+         const aUnChiffre = /[0-9]/;
+        
         const  pseudo = document.getElementById("pseudo")
+        const pvalue = pseudo.value
+        
         const email = document.getElementById("mail")
         
-        if(pass2.value && pseudo.value && email.value){
+        if(password && pvalue && email.value){
          try{ 
-           if(pass2.value.length < 3)
+           if(password.length < 3)
             {
              alert("votre mot de passe doit être superieur où égale à 3")
              console.log(error.message);
              
              event.preventDefault()
            }
-           else 
+           else if(!aUneMajuscule.test(password))
              {
-              console.log(pseudo);
-              console.log(pass2);
-              console.log(email);
-              
-               await axios.post(`http://localhost:8000/game/user/add`,inscrit)
+               alert("Votre mot de passe doit avoir une majuscule!")
+               event.preventDefault()
+             } else if(!aUnCaractereSpecial.test(password)){
+                 alert("Votre mot de passe doit avoir un caractère spéciale!")
+               event.preventDefault()
+             }
+              else if (!aUnChiffre.test(password)){
+                   alert("Votre mot de passe doit avoir un chiffre!")
+               event.preventDefault()
+              }
+              else{ 
+              await axios.post(`http://localhost:8000/game/user/add`,inscrit)
                alert("Votre inscripion a bien été prise en compte un mail vous sera envoyés")
                navigate(`/`)
              }
@@ -99,33 +140,26 @@ const Formulaire = () => {
     <div className='back'> 
        <h1 className='titre'>Rejoint Nous ! </h1>
       <form onChange={handleChange} onSubmit={verification} id='form' className='form' method='post' >
-        <div className='pseudonyme'>
-       
-           <span> <img src="/player.svg" alt="play" className='player' /></span>
-          <input type="text" name="pseudo" id="pseudo" className='pseudo' placeholder='write your pseudo' /> 
-          
-        </div> <br />
 
-        <div className='adresse'>
-         
-          <input type="email" className='mail' name='email' id='mail' placeholder='email adress (ex :joueur1@gmail.com)' /> 
-             <span> <img src="/letter.svg" alt="mail" className='letter' /></span>
-       
-        </div> <br />
+        <div className="input-wrapper">
+  <img src="/player.svg" alt="player icon" className="input-icon" />
+  <input type="text" id='pseudo' name="pseudo" placeholder="Ton pseudo*(ex: joueur1)" /> 
+</div>
 
-         <div className='password'>
-         
-          <input onInput={check}type="password" className='passwi' name="password" id='passwi' placeholder='password (ex :*azerty*1)'/>   
-           <span> <img onClick={pass}  src="/eye.svg" alt="eye" id='img' className='eye'/></span>
-           <span> <img src="/lock.svg" alt="lock" className='cadenat' /></span> <br />
-
-           
-        </div> 
+        <div className="input-wrapper">
+          <img src="/letter.svg" alt="mail icon" className="input-icon" />
+          <input type="email" id='mail' name="email" placeholder=" Adress mail (ex: joueur1@gmail.com)" /> 
+        </div>
+         <div className="input-wrapper">
+           <img src="/lock.svg" alt="lock icon" className="input-icon" />
+           <input onInput={check} type="password" id="passwi" placeholder="Ton mot de passe (ex: *azerty*1)" />   
+           <img onClick={pass} src="/eye.svg" alt="eye icon" id="img" className="input-icon eye-icon" />
+         </div>
                      
-           <p className='pm'>Le mot de passe doit avoir au moyen une majuscule <img className='cross' src="./croosing.svg" alt="cross"  /></p>
-           <p className='p2'>Le mot de passe doit avoir au moins 1 caractères spécial  <img className='cross' src="./croosing.svg" /> </p>
-           <p className='p3'>Le mot de passe doit avoir au moins un chiffre  <img className='cross' src="./croosing.svg" /></p>
-           <p className='p4'>Le mot de passe doit avoir au moins 3 caractères  <img   className='crossx' src="./croosing.svg" /></p>
+           <p className='pm'>Le mot de passe doit avoir au moins une majuscule <img id="maj" className='maj' src= "/croosing.svg" alt="cross"  /></p>
+           <p className='p2'>Le mot de passe doit avoir au moins 1 caractères spécial  <img id='carac' className='carac' src=  "/croosing.svg"/> </p>
+           <p className='p3'>Le mot de passe doit avoir au moins un chiffre  <img id="chiffre" className='chiffre' src=  "/croosing.svg"  /></p>
+           <p className='p4'>Le mot de passe doit avoir au moins 3 caractères  <img id='crossx'  className='crossx' src="./croosing.svg" /></p>
          <button  className='valide'>Valider</button>
       </form>
       <div className='retour'> 
