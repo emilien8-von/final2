@@ -33,14 +33,14 @@ const Header = () => {
                       <li> <Link to='/dashbaord' className='li'>Dashbaord</Link> </li>
                  </ul>
                   {auth?
-                     <button onClick={logout} className='but1'><Link to='/login' className='but2'>Déconnexion</Link></button>
+                     <button onClick={logout} className='but3'><Link to='/login' className='but2'>Déconnexion</Link></button>
                     :
                     <div className='link-bouton'>
                       <button className='but1'><Link to='/formulaire' className='but2'>Inscription</Link></button>
                     
                       <button className='but1'><Link to='/login' className='but2'>Connexion</Link></button>
                    
-                      <div onClick={menu} className='menu'><i id='icon' class="fa-solid fa-bars"></i> </div>
+                      <div onClick={menu} className='menu'> <i id='icon' class="fa-solid fa-bars"></i> </div>
                     </div>
                   }
                 </div>

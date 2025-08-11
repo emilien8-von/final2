@@ -1,55 +1,71 @@
-import React,{createContext, useEffect, useState} from "react";
-import URLS from "../constants/Api";
-import { useNavigate } from "react-router";
-import axios from "axios"
+import React, { createContext, useEffect, useState } from "react";
+// import URLS from "../constants/Api"; // Assurez-vous que ce chemin est correct si vous l'utilisez
+import { useNavigate } from "react-router"; 
+import axios from "axios";
 
-export const Context = createContext()
-export const Provider = ({children}) =>{
-    const [auth,setAuth] = useState(null)
-    const [loading, setLoading] = useState(false)
-    const navigate = useNavigate()
-    useEffect(() =>{
-        logged()
-    },[])
-    const login = async(dbuser) => {
-    
-        try{
-            setLoading(true)
-           const {data,status} = await axios.post(`http://localhost:8000/game/user/login`, dbuser)
-           if(status === 200){
-             setAuth(data)
-             localStorage.setItem('auth', JSON.stringify(auth))
-             navigate(`/`) // Redirige vers la page d'acceuil
-             setLoading(false)
-           }
-           
-           
-        }
-        catch(error){
-           alert("le mot de passe ou email et inccorect !");
-            setLoading(false)
-           
-        }
-    }
-    const logout = () =>{
-        setLoading(true)
-        setAuth(null) //Réinitialise l'etat de l'user à null
-        localStorage.removeItem('auth') // suprimer les infos
+export const Context = createContext();
 
-        navigate(`/`)
-        setLoading(false)
-    }
-    const logged =()=>{
-        setLoading(true)
-        // Recupère le valeur
-        const user = localStorage.getItem("auth")
-        const userparsed = user ? JSON.parse(user) : null
-        setAuth(false)
-    }
-    return(
-       
-        <Context.Provider value={{login ,logout, auth,loading}}>
-            {children}
+export const Provider = ({ children }) => {
+    const [auth, setAuth] = useState(null);
+    const [loading, setLoading] = useState(true); // Mettez loading à true au début
+    const navigate = useNavigate();
+
+    // Cette fonction s'exécute une seule fois au montage du Provider
+    useEffect(() => {
+        const logged = () => {
+            try {
+                // Récupère la valeur du localStorage
+                const user = localStorage.getItem("auth");
+                const userparsed = user ? JSON.parse(user) : null;
+                
+                // CORRECTION N°2 : On met à jour l'état avec l'utilisateur trouvé
+                setAuth(userparsed); 
+            } catch (error) {
+                // En cas d'erreur de parsing, on s'assure que l'état est propre
+                setAuth(null);
+            } finally {
+                // On a fini de vérifier, on arrête le chargement initial
+                setLoading(false);
+            }
+        };
+        
+        logged();
+    }, []); // Le tableau vide [] assure que cela ne s'exécute qu'une fois
+
+    const login = async (dbuser) => {
+        try {
+            setLoading(true);
+            const { data, status } = await axios.post(`http://localhost:8000/game/user/login`, dbuser);
+            
+            if (status === 200) {
+                // CORRECTION N°1 : On utilise "data" directement
+                localStorage.setItem('auth', JSON.stringify(data)); 
+                
+                // On met à jour l'état
+                setAuth(data); 
+                
+                // La navigation se fera après la mise à jour
+                navigate(`/`); 
+            }
+        } catch (error) {
+            alert("Le mot de passe ou l'email est incorrect !");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const logout = () => {
+        setLoading(true);
+        setAuth(null);
+        localStorage.removeItem('auth');
+        navigate(`/`);
+        setLoading(false);
+    };
+
+    return (
+        <Context.Provider value={{ login, logout, auth, loading }}>
+            {/* On n'affiche les enfants que si le chargement initial est terminé */}
+            {!loading && children}
         </Context.Provider>
-    )
-}
+    );
+};

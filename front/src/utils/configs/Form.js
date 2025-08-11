@@ -33,15 +33,18 @@ export const LOGIN = [
         type : 'email',
         name : 'email',
         id : 'mail',
-        className : 'email',
-        placeholder : 'joueur1@gmail.com'
+        className : 'login-input login-email',
+        placeholder : 'joueur1@gmail.com',
+        iconClass: 'fa-solid fa-envelope' 
     },
     {
         label : 'Entre ton mot de passe',
         type : 'password',
         name : 'password',
         id : 'pass',
-        className : 'passw',
-        placeholder : '*aZeRty1*'
+        className : 'login-input  passl',
+        placeholder : '*aZeRty1*',
+        iconClass: 'fa-solid fa-lock'
+
     }
 ]

@@ -32,14 +32,58 @@
           align-items: center;
           gap: 30px;
         }  
-        
-        p{
-          text-align: center;
-        }
-        h3{
-          text-align: center;
-        }
+        .u-flex {
+          display: grid; /* On utilise CSS Grid, parfait pour ça */
+          
+       
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          
+          gap: 20px; 
+          padding: 20px; 
+       }
+         .image-card {
+       width: 80%;
+       padding: 1rem;
+       box-sizing: border-box;
+     }
 
+    
+     
+  .image-card img {
+  width: 100%;
+  height: 100%;
+  
+
+  object-fit: contain; 
+  
+  display: block;
+}
+
+    .img7 {
+      width: 100%;
+      height: 100%;
+    
+      object-fit: cover; 
+      
+      display: block; 
+    }
+     .img8{
+        filter: grayscale(90%);
+     }
+      .img8:hover{
+    filter: none;
+    border:2px solid skyblue;
+    transform: scale(1.1);
+    transition: transform 1s ease-in-out;
+  }
+        h3, p {
+          text-align: center;
+         }
+          .image-grid 
+          {
+            padding: 1rem; /* Moins d'espace sur les petits écrans */
+          }
+  
         .nintendo{
           display: flex;
           flex-direction: column;
@@ -65,5 +109,12 @@
           align-items: center;
           gap: 30px
         }
+
+        .img7 {
+         width: 100%;
+         height: 100%;
+         object-fit: cover; 
+         display: block; 
+       }
 
 }
