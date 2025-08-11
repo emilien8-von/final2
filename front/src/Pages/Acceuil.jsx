@@ -82,7 +82,7 @@ const Acceuil = () => {
 
 
   return (
-    <div className='nain'>
+  <div className='nain'>
         <div className='bord'>
            <h1 className='h1'>On attaque?! Alors ça va chauffer!!</h1>
            <p className='p1'>“Je me suis rendu compte que les jeux ne sont pas qu'une distraction.
@@ -104,17 +104,16 @@ const Acceuil = () => {
         <section>
           {auth?
           
-           <div className='u-flex'> 
-            {
-              detail.map(info =>(
-                <Link
-                 key={info._id} to={{ pathname: `/detail/${info._id}` }}> 
-                 <img className='img7'  src={`${info.image}`} alt="v" />
-                 
-               </Link> 
+             <div className='u-flex image-grid game-grid'> 
+               {detail.map(info => (
+                 <div key={info._id} className='grid-card'>
+                   <Link to={{ pathname: `/detail/${info._id}` }}> 
+                     <img src={`${info.image}`} className='img7' alt="v" />
+                   </Link> 
+                 </div>
+           ))}
+              </div>
 
-             ))}
-          </div>
           : <div>
               <p>Les jeux de types plateformes sont les plus connues et qui ont permis de donner des jeux comme (Mario , Sonic,Crash bandicoot , ect..)</p>
               <div className='v-flex'> 
@@ -160,28 +159,27 @@ const Acceuil = () => {
         </section>     
             
   
-<div>
+     <div>
 
-    <h2 className='h2'>Les consoles et leurs émulateurs</h2>
-        <div className='u-flex'> 
-            {
-              article.map(info =>(
-                <Link
-                 key={info._id} to={{ pathname: `/detail/${info._id}` }}> 
-                 <img className='img7'  src={`${info.image}`} alt="v" />
-                 
-               </Link> 
+          <h2 className='h2'>Les consoles et leurs émulateurs</h2>
+        { auth ?
+              
+<div className='image-grid console-grid'>
+  {article.map(info => (
+    <div key={info._id} className="image-card">
+      <Link to={{ pathname: `/detail/${info._id}` }}> 
+        <img src={`${info.image}`} alt="Console" />
+      </Link> 
+    </div>
+  ))}
+</div>
 
-             ))}
-          </div>
-        
-
-    {/**/ }
-
-    {/* Section Nintendo */}
-    <h3 className='N1'>Les consoles Nintendo</h3>
-    <p>La marque Nintendo est une des marque de jeux le plus poulaire au monde , avec des consoles qui varie du salon familiale jusqu’a la version portable.</p>
-    <div className='items-row nintendo-section nintendo'> 
+    
+          :
+          <div> 
+          <h3 className='N1'>Les consoles Nintendo</h3>
+          <p>La marque Nintendo est une des marque de jeux le plus poulaire au monde , avec des consoles qui varie du salon familiale jusqu’a la version portable.</p>
+          <div className='items-row nintendo-section nintendo'> 
         <div className='item-card'> 
             <img onClick={acces} src="/switch.jpg" alt="Nintendo Switch" />
         </div>
@@ -191,52 +189,53 @@ const Acceuil = () => {
         <div className='item-card'> 
             <img onClick={acces} src="/DS.jpg" alt="Nintendo 3DS" />
         </div>
-    </div>
+          </div>
 
-    {/* Section PlayStation */}
-    <h3 className='P1'>Les consoles Playstations</h3>
-    <p>Les consoles playstations sont les consoles les plus apprecies et c’est normal , avec une super gamme de jeux qui ont marque leur generation de la ps1 jusqu’a aujourd’hui.</p>
-    <div className='items-row playstation-section sony'>
-        <div className='item-card'>
-            <img onClick={acces} src="/play.jpg" alt="PlayStation 4" />
-        </div>
-        <div className='item-card'>
-            <img onClick={acces} src="/ps5.jpg" alt="PlayStation 5" />
-        </div>
-        <div className='item-card'>
-            <img onClick={acces} src="/psp.jpg" alt="PlayStation Portable" />
-        </div>
-    </div>
-
-    {/* Section Xbox */}
-    <h3 className='X1'>Les consoles Xbox</h3>
-    <p>Plongez dans l'univers du gaming avec la Xbox : une puissance de jeu inégalée, des exclusivités captivantes et une expérience immersive à couper le souffle !</p>
-    <div className='items-row xbox-section xbox'>
-        <div className='item-card'>
-            <img onClick={acces} src="/360.jpg" alt="Xbox 360" />
-        </div>
-        <div className='item-card'>
-            <img onClick={acces} src="/one.jpg" alt="Xbox One" />
-        </div>
-        <div className='item-card'>
-            <img onClick={acces} src="/xbox2.avif" alt="Xbox Series X" />
-        </div>
-    </div>
-
-    {/* Section PC */}
-    <h3 className='G1'>Le PC</h3>
-    <p>Comme on peut s’attendre le PC est devenu un outil important dans le monde du gaming ,ce qui va mettre au fur et à mesure remplace les consoles .</p>
-    <div className='items-row pc-section pc'>
+          <h3 className='P1'>Les consoles Playstations</h3>
+          <p>Les consoles playstations sont les consoles les plus apprecies et c’est normal , avec une super gamme de jeux qui ont marque leur generation de la ps1 jusqu’a aujourd’hui.</p>
+          <div className='items-row playstation-section sony'>
+              <div className='item-card'>
+                  <img onClick={acces} src="/play.jpg" alt="PlayStation 4" />
+              </div>
+              <div className='item-card'>
+                  <img onClick={acces} src="/ps5.jpg" alt="PlayStation 5" />
+              </div>
+              <div className='item-card'>
+                  <img onClick={acces} src="/psp.jpg" alt="PlayStation Portable" />
+              </div>
+          </div>
+      
+          <h3 className='X1'>Les consoles Xbox</h3>
+          <p>Plongez dans l'univers du gaming avec la Xbox : une puissance de jeu inégalée, des exclusivités captivantes et une expérience immersive à couper le souffle !</p>
+          <div className='items-row xbox-section xbox'>
+              <div className='item-card'>
+                  <img onClick={acces} src="/360.jpg" alt="Xbox 360" />
+              </div>
+              <div className='item-card'>
+                  <img onClick={acces} src="/one.jpg" alt="Xbox One" />
+              </div>
+              <div className='item-card'>
+                  <img onClick={acces} src="/xbox2.avif" alt="Xbox Series X" />
+              </div>
+          </div>
+      
+  
+          <h3 className='G1'>Le PC</h3>
+          <p>Comme on peut s’attendre le PC est devenu un outil important dans le monde du gaming ,ce qui va mettre au fur et à mesure remplace les consoles .</p>
+          <div className='items-row pc-section pc'>
         <div className='item-card'>
             <img onClick={acces} src="/pc.jpg" alt="PC de bureau gamer" />
         </div>
         <div className='item-card'>
             <img onClick={acces} src="/gamer.jpg" alt="PC portable gamer" />
         </div>
-    </div>
-</div>
-    </div>
-  )
+          </div>
+         </div>
+        }
+
+     </div>
+  </div>
+ )
 }
 
 export default Acceuil

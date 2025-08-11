@@ -56,6 +56,22 @@
   .but2:hover{
     color:#ABA41C;
   }
+  /**/
+   .but3{
+    margin-top: 2%;
+    cursor: pointer;
+    background-color: #0F07AC;
+    border: 1px solid #9747FF;
+    width: 115px;
+    height: 28px;
+    text-align: center;
+    padding: 3px;
+  }
+  .but3:hover{
+    background-color: #4C44E1;
+    border: 1px solid #9747FF;
+    
+  }
   #input{
     margin-top: 2%;
     width: 50%;
