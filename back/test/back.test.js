@@ -7,15 +7,15 @@ const { Puser } = require('../controller/user')
 // Mocks
 jest.mock('bcrypt');
 jest.mock('jsonwebtoken');
-jest.mock('../models/pseudo'); // pour le model
-jest.mock('../services/mail'); // pour l'enovie de mail
+jest.mock('../models/pseudo'); 
+jest.mock('../services/mail'); 
 
 const Users = require('../models/pseudo');
 const envoi = require('../services/mail');
 
 describe('Puser controller', () => {
   it('should hash password, create user, send token, and respond with 201', async () => {
-    // Fake req and res
+   
     const req = httpMocks.createRequest({
       method: 'POST',
       body: {
@@ -28,7 +28,7 @@ describe('Puser controller', () => {
     res.status = jest.fn().mockReturnValue(res);
     res.json = jest.fn();
 
-    // Faux hachage de mot de passe
+
     bcrypt.hash.mockResolvedValue('hashedPassword');
     
     // Faux profile

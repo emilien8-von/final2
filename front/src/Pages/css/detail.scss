@@ -48,34 +48,101 @@ table{
  }
 
     
-.commentaire{
-    border: 1px solid black;
-    i{
-        cursor: pointer;
+   
+
+.comment-section {
+  max-width: 900px; /* On donne une largeur max pour la lisibilité */
+  margin: 2rem auto; /* Centre la section */
+  
+  p {
+    font-size: 1.1rem;
+    i.fa-star {
+      color: gold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      &:hover {
+        transform: scale(1.2);
+      }
     }
-    .span{
-        color: white;
-    }
-    .span:hover{
-        color: gold;
-    }
-    .ligne{
-        border: 1px solid black;
-    }
-    .texta{ 
-        margin-left : 5%;
-     textarea{
-        width: 60% ;
-     }
-     button{
-        background-color: mediumblue;
-        color: seashell;
-        position: absolute;
-        left : 51%;
-        margin-top : 12%;
-     }
-    }
- }
+  }
 }
-//<img  className='img2' src={`http://localhost:8000${info.image}`} alt="b" />
-                // <img className='img3' src="/shadow.jpg" alt="d" />
+
+/* Le conteneur principal pour l'avatar et le formulaire */
+.comment-input-area {
+  display: flex;
+  align-items: flex-start; /* Aligne l'avatar en haut */
+  gap: 16px; /* Espace entre l'avatar et le formulaire */
+  margin-top: 1rem;
+}
+
+/* L'avatar de l'utilisateur */
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Le formulaire qui contient le textarea et les boutons */
+.comment-form {
+  width: 100%; /* Prend tout l'espace restant */
+}
+
+/* Le champ de texte */
+.comment-form textarea {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #777; /* Ligne de séparation subtile */
+  color: snow;
+  font-size: 1rem;
+  font-family: inherit; /* Utilise la même police que le reste du site */
+  padding: 8px 0;
+  resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement */
+  outline: none; /* Enlève le contour bleu au clic */
+  transition: border-color 0.3s ease;
+  
+  /* La ligne devient plus visible quand on clique dessus */
+  &:focus {
+    border-bottom-color: snow;
+  }
+}
+
+/* Le conteneur pour les boutons d'action */
+.comment-actions {
+  display: flex;
+  justify-content: flex-end; /* Aligne les boutons à droite */
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Style commun pour les boutons */
+.comment-actions button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Bouton "Envoyer" (style primaire) */
+.btn-submit {
+  background-color: #3ea6ff; /* Bleu vif comme sur YouTube */
+  color: #0f0f0f;
+  
+  &:hover {
+    background-color: #65baff;
+  }
+}
+
+/* Bouton "Annuler" (style secondaire) */
+.btn-cancel {
+  background-color: transparent;
+  color: snow;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+}
