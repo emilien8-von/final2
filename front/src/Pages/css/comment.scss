@@ -1,0 +1,88 @@
+.comment-section {
+  max-width: 900px;
+  margin: 2rem auto; // Centre la section et ajoute de l'espace
+  padding: 0 1rem;
+}
+
+.comment-form-container {
+  display: flex;
+  align-items: flex-start; // Aligne l'avatar en haut
+  gap: 1rem; // Espace entre l'avatar et le formulaire
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 5px;
+}
+
+.comment-form {
+  width: 100%;
+
+  textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #717171; // Ligne subtile en dessous
+    color: snow;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    resize: none; // Empêche le redimensionnement manuel
+    outline: none;
+    transition: border-color 0.3s ease;
+    min-height: 24px; // Hauteur minimale
+
+    &:focus {
+      border-bottom-color: snow; // La ligne devient blanche quand on clique dessus
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end; // Aligne les boutons à droite
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  button {
+    padding: 0.6rem 1rem;
+    border-radius: 18px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .cancel-button {
+    background-color: transparent;
+    color: #aaa;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .submit-button {
+    background-color: #3ea6ff; // Bleu vif comme sur YouTube
+    color: #0f0f0f; // Texte noir
+
+    &:hover {
+      background-color: #65b8ff;
+    }
+  }
+}
+
+.comment-section-login-prompt {
+  text-align: center;
+  padding: 2rem;
+  color: #aaa;
+  a {
+    color: #3ea6ff;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

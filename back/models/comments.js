@@ -4,11 +4,11 @@ const avis = mongoose.Schema(
         pseudo : {
             type : mongoose.Schema.Types.ObjectId,
             ref : 'Users',
-            required : true
+            //required : true
         },
         rating:{
             type : Number,
-            required : true
+            //required : true
         },
          message : {
             type:String,
@@ -17,15 +17,23 @@ const avis = mongoose.Schema(
          role : {
             type : String,
             enum : ["user","admin","gadmin","consultant","designer"],
-            required : true
+            required : true,
+            default : "user",
          } ,
          date : {
             type: Date,
-            required : true
+            //required : true
          },
-         like : {
-            type : Number,
-         }
+         content: { type: String, required: true },
+         rating: { 
+            type: Number, 
+            min: 0, 
+            max: 5,
+            default: 0 
+         },
+          user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+          game: { type: mongoose.Schema.Types.ObjectId, ref: 'Jeux', required: true }
+
 
 
     },

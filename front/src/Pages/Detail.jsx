@@ -2,6 +2,7 @@ import React, { useEffect , useState} from 'react'
 import './css/detail.scss'
 import { Link, useNavigate, useParams } from 'react-router'
 import axios from 'axios'
+import Comments from './Comments'
 const Detail = () => {
     const param = useParams()
     const {id} = param
@@ -25,15 +26,7 @@ const Detail = () => {
          }
          fetchdetail()
     },[])
-    const get_img_tag = () =>{
-       if(details !== undefined){
-          return `<img src="${details.gallery.img5}" alt="${details.titre}"/>`
-          
-       } else {
-        return "echec"
-        
-       }
-    }
+   
     const popup =()=>{
       const star = document.getElementById("star")
       alert("tu as cliqué")
@@ -116,16 +109,15 @@ const Detail = () => {
        </div>
         <div className='line'></div>
        <h2>Note et comment</h2>  
-       <div className='commentaire'>
-         <p>Mettre une Note : <i onClick={popup} id='star' class="fa-solid fa-star"></i> </p>
-
-         <div className='ligne'></div>
-          <div className='texta'> 
-           <textarea name="text" id="text" placeholder='Mettre un commentaire' rows={15} cols={5}></textarea>
-           <button>Envoyer</button>
-          </div>
-       </div>
-      </>
+        <img 
+  src={ `${details.avatar}`}// Le '?' vérifie si 'auth' existe avant d'essayer de lire 'avatar'
+  alt="Avatar de l'utilisateur" 
+  className="user-avatar" 
+  referrerPolicy="no-referrer" 
+/>
+         
+         
+              </>
          }
     </div>
   )
