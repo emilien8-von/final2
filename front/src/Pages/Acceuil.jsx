@@ -104,7 +104,7 @@ const Acceuil = () => {
         <section>
           {auth?
           
-             <div className='u-flex image-grid game-grid'> 
+             <div className='section-vignette image-grid game-grid'> 
                {detail.map(info => (
                  <div key={info._id} className='grid-card'>
                    <Link to={{ pathname: `/detail/${info._id}` }}> 
@@ -115,7 +115,10 @@ const Acceuil = () => {
               </div>
 
           : <div>
-              <p>Les jeux de types plateformes sont les plus connues et qui ont permis de donner des jeux comme (Mario , Sonic,Crash bandicoot , ect..)</p>
+              <p>
+                 Les jeux de types plateformes sont les plus connues et qui ont permis de donner des jeux comme 
+                 (Mario , Sonic,Crash bandicoot , ect..)
+              </p>
               <div className='v-flex'> 
                   <img onClick={acces}   className='img1'  src="/mario.jpg" alt="v" />
                   <img onClick={acces}  className='img2' src="/crash.jpg" alt="b" />

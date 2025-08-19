@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route,Routes } from 'react-router'
+import { Axios } from 'axios'
 /**Components */
 import Layout from './Components/Layout'
 import Template from './Components/Admin/template/Template'
@@ -8,6 +9,7 @@ import Acceuil from './Pages/Acceuil'
 import Formulaire from './Pages/Formulaire'
 import Login from './Pages/Login'
 import Detail from './Pages/Detail'
+import Profil from './Pages/profil/Profil'
 //SErvice
 import Private from './utils/helpers/Private'
 import Public from './utils/helpers/Public'
@@ -23,10 +25,11 @@ function App() {
             <Route path='/formulaire' element={<Formulaire/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/detail/:id' element={<Detail/>} />
+            <Route path='/parametre' element={<Profil/>}></Route>
          { /*</Route>*/}
           {/*Fin de Route Public */}
           <Route path='/dashboard' element={<Template/>}>
-
+                 { /*<Route path='/parametre' element={<Profil/>}></Route>*/}
           </Route>
       </Route>
     </Routes>

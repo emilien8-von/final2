@@ -40,7 +40,7 @@
  
              grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       
-             gap: 20px; /* Espace entre les images */
+             gap: 20px; 
              padding: 20px;
         }
         p,h3{
@@ -60,41 +60,36 @@
      }
 
     
-      .image-grid {
-   
+  .image-grid {
     grid-template-columns: 1fr;
-    
-   
     max-width: 500px;
     margin: 0 auto; 
   }
-  .image-card img {
-  width: 100%;
-  height: 100%;
-  
-
-  object-fit: contain; 
-  
-  display: block;
-}
+  .image-card img 
+  {
+     width: 100%;
+     height: 100%;
+     object-fit: contain; 
+     display: block;
+  } 
 
     .img7 {
       width: 100%;
       height: 100%;
-    
       object-fit: cover; 
-      
       display: block; 
     }
-     .img8{
-        filter: grayscale(90%);
-     }
-      .img8:hover{
-    filter: none;
-    border:2px solid skyblue;
-    transform: scale(1.1);
-    transition: transform 1s ease-in-out;
-  }
+     .img8
+    {
+      filter: grayscale(90%);
+    }
+      .img8:hover
+    {
+      filter: none;
+      border:2px solid skyblue;
+      transform: scale(1.1);
+      transition: transform 1s ease-in-out;
+    }
 
         .sony{
            display: flex;
