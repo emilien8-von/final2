@@ -50,31 +50,47 @@ const Iduser = async(req,res) =>{
     
   }
 }
-// Partie Post login
-const Luser = async(req,res,next) =>{
-    try{
-        const client = await Users.findOne({email: req.body.email})
-        if(!client) return res.status(404).json('pas de user')
-      //  if(!client.isVerified) return next(erreur(403,"Veuiller verifer votre mail"))
-        const comparaison = await bcrypt.compare(req.body.password,client.password)
-      if(!comparaison) return res.status(400).json('mot de passe incorrect!')
-        const token  = jwr.sign(
-             {id: client._id},
-             ENV.TOKEN,
-             {expiresIn : "24h"}
-        ) 
-        res.cookie('access_token',token,{httpOnly:true, maxAge : 24*60*60*1000,
-            secure : false,
-            sameSite : 'strict'
-        })
-        .status(200).json('connecté')
-        
+
+
+
+const Luser = async (req, res, next) => {
+    try {
+        const { email, password } = req.body;
+
+        // 1. Trouver l'utilisateur
+        const user = await Users.findOne({ email });
+        if (!user) {
+            return next(erreur(404, 'Email ou mot de passe incorrect'));
+        }
+
+        // 2. Vérifier le mot de passe
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return next(erreur(401, 'Email ou mot de passe incorrect'));
+        }
+
+        // 3. Créer le token JWT
+        const token = jwr.sign(
+            { id: user._id, role: user.role }, // Informations à stocker dans le token
+            ENV.TOKEN,
+            { expiresIn: '1d' } // Le token expire dans 1 jour
+        );
+
+        // 4. Séparer le mot de passe du reste des données utilisateur
+        const { password: userPassword, ...userInfo } = user._doc;
+
+        // 5. CRÉER LE COOKIE ET L'ENVOYER AU NAVIGATEUR
+        res.cookie('access_token', token, {
+            httpOnly: true, // Le cookie n'est pas accessible via JavaScript côté client (sécurité)
+            // secure: true, // À activer en production (HTTPS)
+            // sameSite: 'strict' // Autre mesure de sécurité
+        }).status(200).json(userInfo); // On renvoie les infos de l'user (sans le mot de passe)
+
+    } catch (error) {
+        next(erreur(500, error.message));
     }
-    catch(error){
-        res.status(500).json(error.message)
-        
-    }
-}
+};
+
 //Parie Delete logout
 const Duser = async(req,res,next) => {
    try{  
@@ -133,19 +149,73 @@ const Emailverify = async(req,res,next) => {
     }
 }
 //Partie  Update
-const Cuser = async (req,res,next) => {
-    try{
-       if(!req.user.id || !req.user)
-        {
-            return next(erreur(401,'Authentification requise'))
+const Cuser = async (req, res, next) => {
+    try {
+        
+        if (req.user.role !== 'admin' && req.user.id !== req.params.id) {
+            return next(erreur(403, 'Action non autorisée. Vous ne pouvez modifier que votre propre profil.'));
         }
-        const user = await Users.findById(req.params.id)
-        if(!user) return next(erreur(404,'user not found'))
-            if(user._id.toString() != req.user.id.toString() && user.role == "admin") return  next(erreur(403,'Authentifaction interdits'))
-            const reponse = await Users.findByIdAndUpdate(req.params.id, req.body,{new:true})
-        res.status(200).json(reponse)
-    } catch (error){
-       next(erreur(500, error.message))
+
+        // Si on passe cette vérification, l'utilisateur a le droit de continuer
+        const user = await Users.findById(req.params.id);
+        if (!user) return next(erreur(404, 'Utilisateur non trouvé'));
+
+        const reponse = await Users.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.status(200).json(reponse);
+
+    } catch (error) {
+        next(erreur(500, error.message));
     }
 }
-module.exports = {Puser,Guser,Iduser,Duser,EffacerUser,Luser,Cuser,Emailverify}
+
+const updateProfil = async (req, res, next) => {
+    try {
+        const { pseudo, email, avatar } = req.body;
+
+        const updatedUser = await Users.findByIdAndUpdate(
+            req.user.id, // Utilise l'ID du token, c'est parfait !
+            { $set: { pseudo, email, avatar } },
+            { new: true, runValidators: true }
+        ).select('-password');
+
+        if (!updatedUser) {
+            return next(erreur(404, 'Utilisateur non trouvé'));
+        }
+
+        res.status(200).json(updatedUser);
+
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
+};
+const updateUserPassword = async (req, res, next) => {
+    const { currentPassword, newPassword } = req.body;
+
+    try {
+        // 1. Récupérer l'utilisateur depuis la base de données
+        const user = await Users.findById(req.user.id);
+        if (!user) {
+            return next(erreur(404, 'Utilisateur non trouvé'));
+        }
+
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) {
+            return next(erreur(401, 'Mot de passe actuel incorrect'));
+        }
+        const isSamePassword = await bcrypt.compare(newPassword, user.password);
+        if (isSamePassword) {
+            return next(erreur(400, 'Le nouveau mot de passe ne peut pas être identique à l\'ancien.'));
+        }
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+        user.password = hashedPassword;
+        await user.save();
+
+        res.status(200).json({ message: 'Mot de passe mis à jour avec succès' });
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
+};
+
+module.exports = {Puser,Guser,Iduser,Duser,EffacerUser,Luser,Cuser,Emailverify,updateProfil,updateUserPassword}

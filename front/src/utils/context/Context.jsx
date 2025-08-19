@@ -35,7 +35,7 @@ export const Provider = ({ children }) => {
     const login = async (dbuser) => {
         try {
             setLoading(true);
-            const { data, status } = await axios.post(`http://localhost:8000/game/user/login`, dbuser);
+            const { data, status } = await axios.post(`http://localhost:8000/game/user/login`, dbuser,{withCredentials: true});
             
             if (status === 200) {
                 // CORRECTION N°1 : On utilise "data" directement
@@ -55,6 +55,7 @@ export const Provider = ({ children }) => {
     };
 
     const logout = () => {
+    
         setLoading(true);
         setAuth(null);
         localStorage.removeItem('auth');
@@ -63,9 +64,8 @@ export const Provider = ({ children }) => {
     };
 
     return (
-        <Context.Provider value={{ login, logout, auth, loading }}>
-            {/* On n'affiche les enfants que si le chargement initial est terminé */}
-            {!loading && children}
-        </Context.Provider>
+        <Context.Provider value={{ login, logout, auth, loading, setAuth }}>
+        {!loading && children}
+    </Context.Provider>
     );
 };
