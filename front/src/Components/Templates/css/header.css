@@ -1,36 +1,76 @@
-.header{
-    background-image: url('/abstrait.jpg');
-    padding: 20px;
-    background-size: cover ;
-  }
-  /*Flex global*/
-  .nav-flex{
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  /*Logo*/
-  .logo{
-    width: 180px;
-    height: auto;
-  }
+.header {
+  width: 100%;
+  background-image: url('/abstrait.jpg');
+  background-size: cover;
+  padding: 1rem 0;
+  position: relative; /* Pour le menu déroulant */
+}
 
-
-  .li{
-    list-style: none;
-    text-decoration: none;
-    font-family: 'Jersey 15';font-size: 22px;
-    color: white;
-  }
+/* Le conteneur intérieur qui aligne les 3 groupes */
+.nav-container {
+  display: flex;
+  justify-content: space-between; /* Pousse les groupes gauche et droit aux extrémités */
+  align-items: center;
   
-  .li:hover{
-    color:#ABA41C;
-    text-decoration: underline;
-  }
+  width: 100%;
+  max-width: 1400px; /* Largeur max du contenu */
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+/* Groupe de gauche (logo) */
+.nav-left .logo {
+  width: 150px;
+  height: auto;
+  display: block; /* Évite les espaces indésirables */
+}
+
+/* Groupe du centre (navigation) - Styles pour le menu déroulant mobile */
+.nav-center {
+  display: none; /* Caché par défaut sur mobile */
+  
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  
+  position: absolute;
+  top: 100%; /* Se place juste sous le header */
+  left: 0;
+  width: 100%;
+  background-color: #160430;
+  padding: 2rem 0;
+  list-style: none;
+  z-index: 10;
+}
+
+.nav-center.is-open {
+  display: flex; /* Affiche le menu quand on clique sur le burger */
+}
+
+/* Groupe de droite (actions) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Styles des liens et boutons (simplifiés) */
+.li {
+  text-decoration: none;
+  font-family: 'Jersey 15', sans-serif;
+  font-size: 1.5rem;
+  color: white;
+  transition: color 0.2s;
+}
+.li:hover {
+  color: #ABA41C;
+  text-decoration: underline;
+}
   /*Bouton*/
   .link-bouton{
     display: flex;
-    gap: 10px;
+    gap: 14px;
   }
   /*Boutton Inscription*/
   .but1{
@@ -42,10 +82,12 @@
     height: 28px;
     text-align: center;
     padding: 2px;
+     color:  snow;
   }
   .but1:hover{
-    background-color: #4C44E1;
+    color:#ABA41C;
     border: 1px solid #9747FF;
+    
     
   }
   /*Bouton Connexion*/
@@ -66,10 +108,10 @@
     height: 28px;
     text-align: center;
     padding: 3px;
+    color: white;
   }
   .but3:hover{
-    background-color: #4C44E1;
-    border: 1px solid #9747FF;
+        color:#ABA41C;
     
   }
   #input{
@@ -93,33 +135,93 @@
   @media (min-width:1024px) 
   {
    
-    .nav-links{
+   .nav-center {
     display: flex;
-    justify-content: space-between;
-    list-style: none;
-    align-items: center;
-    margin: 0;
+    flex-direction: row; /* On le passe en ligne */
+    position: static; /* On annule le positionnement absolu */
+    width: auto;
+    background-color: transparent;
     padding: 0;
-    gap:15px;
-   } 
-   
-  .menu
-  {
-      display: none;
+    gap: 2.5rem; /* Espace entre les liens de navigation */
   }
+
+  /* On cache le menu burger */
+  .menu {
+    display: none;
+  }
+
     /*1ère partie du main*/
   }
   @media(max-width : 1023px){
-   .nav-links{
-    display: flex;
-    list-style: none;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    gap:15px;
-    flex-direction: column;
-   } 
-   #ul{
-    display:none;
-   }
+   .nav-links {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Aligne verticalement logo, liens et boutons */
+}
+
+/* La liste des liens de navigation */
+.nav-links {
+  display: none; /* Par défaut, le menu est caché sur mobile */
+  
+  /* Styles pour quand le menu est ouvert */
+  position: absolute;
+  top: 100px; /* Se positionne sous le header (ajustez si besoin) */
+  left: 0;
+  width: 100%;
+  background-color: #160430; /* Fond pour la lisibilité */
+  
+  /* Styles pour la disposition en colonne */
+  flex-direction: column;
+  align-items: center; /* CENTRE LES LIENS HORIZONTALEMENT */
+  padding: 20px 0;
+  gap: 20px;
+  
+  list-style: none;
+}
+
+/* La classe qui rend le menu visible quand l'état est "ouvert" */
+.nav-links.is-open {
+  display: flex; 
+}
+
+/* Groupe des boutons et du menu burger */
+.header-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+ }
+
+/* Le menu burger est visible par défaut */
+.menu {
+  display: block;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5rem;
+}
+}
+
+.header-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Pour un avatar rond */
+  object-fit: cover;
+  border: 2px solid #AE69FF; /* Bordure assortie à votre thème */
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.header-avatar:hover {
+  transform: scale(1.1);
+}
+
+/* On s'assure que le bouton Déconnexion est bien un lien */
+.but1, .but3 {
+  /* ... */
+  a {
+    text-decoration: none;
+    color: snow;
   }
+}
