@@ -1,126 +1,100 @@
-import React, { useEffect , useState} from 'react'
-import './css/detail.scss'
-import { Link, useNavigate, useParams } from 'react-router'
-import axios from 'axios'
-import Comments from './Comments'
+// Dans Detail.jsx
+import React, { useEffect, useState, useContext } from 'react';
+import './css/detail.scss';
+import { Link, useParams } from 'react-router';
+import axios from 'axios';
+import Comments from './Comments';
+import { Context } from '../utils/context/Context';
+
 const Detail = () => {
-    const param = useParams()
-    const {id} = param
-    //const navigate = useNavigate()
-    const [details , setDetails] = useState(undefined)
+    const { id } = useParams();
+    const { auth } = useContext(Context); // Récupérer l'utilisateur connecté
+    const [details, setDetails] = useState(null); // Initialiser à null
 
     useEffect(() => {
-        console.log(id);
-         const fetchdetail = async() => {
-            
-            
-            try{
-                const {data,status} = await axios.get(`http://localhost:8000/game/jeux/get/${id}`)
-                console.log(data);
-                
-                if(status === 200) setDetails(data)
-            } 
-        catch(error){
-            console.log(error.message);
-        }
-         }
-         fetchdetail()
-    },[])
-   
-    const popup =()=>{
-      const star = document.getElementById("star")
-      alert("tu as cliqué")
+        const fetchDetail = async () => {
+            try {
+                const { data, status } = await axios.get(`http://localhost:8000/game/jeux/get/${id}`);
+                if (status === 200) {
+                    setDetails(data);
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+        };
+        fetchDetail();
+    }, [id]); // Se redéclenche si l'ID du jeu change
+
+    // Si les détails ne sont pas encore chargés, on affiche un message
+    if (!details) {
+        return <div className="loading-container">Chargement des détails du jeu...</div>;
     }
-  return (
-    details === undefined ? <></> :
-    <div className='body'>
-        
-         { 
-            <> 
-         
-       <h1>{details.titre}</h1>
-       <p> Retourner à la page d'<Link className='link' to='/'>acceuil</Link> ?</p>
-       <div><img className='d-image' src={`${details.image}`}alt="va" /> </div> 
-       <div className='line'></div> 
-        <h2>Description</h2>
-        <p>{details.description}</p>
-       <div className='line'></div>
-       <h2>Caracteristique</h2>
-       <table>
-         <tbody className='tab'> 
-           <tr>
-            <td> Developpeur</td>
-            <td className='tdd'>{details.brand}</td>
-           </tr>
 
-           <tr>
-            <td> Franchise</td>
-            <td className='tdd'>{details.franchise}</td>
-           </tr>
+    // On prépare les données pour la sidebar pour un affichage plus propre
+    const gameCharacteristics = [
+        { label: 'Développeur', value: details.brand },
+        { label: 'Franchise', value: details.franchise },
+        { label: 'Date de sortie', value: details.annee_sortie },
+        { label: 'Genre', value: details.genre },
+        { label: 'Exclusivité', value: details.exclusivite },
+        { label: 'Disponible sur', value: details.disponible },
+        { label: 'Émulateur', value: details.emulateur },
+        { label: 'Multijoueur', value: details.multijoueur },
+        { label: 'Joueurs max', value: details.nombre_de_joueur },
+        { label: 'En ligne', value: details.online },
+        { label: 'En vente ?', value: details.status },
+    ];
 
-            <tr>
-            <td> Date de sortie </td>
-            <td className='tdd'>{details.annee_sortie}</td>
-           </tr>
+    return (
+        <div className='detail-page-body'>
+            <div className="detail-page-layout">
+                
+                {/* --- COLONNE PRINCIPALE (GAUCHE) --- */}
+                <main className="main-content">
+                    <h1>{details.titre}</h1>
+                    <p className="breadcrumb">
+                        <Link to='/'>Accueil</Link> &gt; {details.titre}
+                    </p>
 
-           <tr>
-            <td> Genre </td>
-            <td className='tdd'>{details.genre}</td>
-           </tr>
-           <tr>
-            <td> Exclsivité </td>
-            <td className='tdd'>{details.exclusivite}</td>
-           </tr>
-           <tr>
-            <td> Disponible </td>
-            <td className='tdd'>{details.disponible}</td>
-           </tr>
-           <tr>
-            <td> emulateur </td>
-            <td className='tdd'>{details.emulateur}</td>
-           </tr><tr>
-            <td> Mode multijoueur </td>
-            <td className='tdd'>{details.multijoueur}</td>
-           </tr>
-           <tr>
-            <td> Nombre de joueur max </td>
-            <td className='tdd'>{details.nombre_de_joueur}</td>
-           </tr>
-           <tr>
-            <td> Mode online </td>
-            <td className='tdd'>{details.online}</td>
-           </tr>
-           <tr>
-            <td> En vente ? </td>
-            <td className='tdd'>{details.status}</td>
-           </tr>
-          </tbody>
-       </table>
-       <div className='line'></div>
-       <h2>Gallery</h2>
-       <div className='gallery'> 
-         
-            <img className='gal' src= { `${details.gallery.img2}` } alt="img"/>
-            <img className='gal' src= { `${details.gallery.img3}` } alt="img"/>
-            <img className='gal' src= { `${details.gallery.img4}` } alt="img"/>
-            <img className='gal' src= { `${details.gallery.img5}` } alt="img"/>
-            <img className='gal' src= { `${details.gallery.img6}` } alt="img"/>
-       
-       </div>
-        <div className='line'></div>
-       <h2>Note et comment</h2>  
-        <img 
-  src={ `${details.avatar}`}// Le '?' vérifie si 'auth' existe avant d'essayer de lire 'avatar'
-  alt="Avatar de l'utilisateur" 
-  className="user-avatar" 
-  referrerPolicy="no-referrer" 
-/>
-         
-         
-              </>
-         }
-    </div>
-  )
-}
+                    <hr className="separator" />
 
-export default Detail
+                    <h2>Description</h2>
+                    <p className="description">{details.description}</p>
+
+                    <hr className="separator" />
+
+                    <h2>Galerie</h2>
+                    <div className='gallery-grid'>
+                        {/* On filtre pour n'afficher que les images qui existent */}
+                        {Object.values(details.gallery).filter(img => img).map((imgUrl, index) => (
+                            <div key={index} className="gallery-item">
+                                <img src={imgUrl} alt={`Screenshot ${index + 1}`} />
+                            </div>
+                        ))}
+                    </div>
+
+                    <hr className="separator" />
+
+                    <h2>Note et commentaires</h2>
+                    <Comments gameId={id} />
+                </main>
+
+                {/* --- COLONNE LATÉRALE (DROITE) --- */}
+                <aside className="sidebar">
+                    <img className='sidebar-cover-image' src={details.image} alt={`Couverture de ${details.titre}`} />
+                    <div className="game-info-box">
+                        <h3>Caractéristiques</h3>
+                        {gameCharacteristics.map(item => (
+                            <div key={item.label} className="info-item">
+                                <span className="info-label">{item.label}</span>
+                                <span className="info-value">{item.value}</span>
+                            </div>
+                        ))}
+                    </div>
+                </aside>
+            </div>
+        </div>
+    );
+};
+
+export default Detail;

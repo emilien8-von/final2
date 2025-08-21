@@ -5,6 +5,9 @@
      .footer{
         margin: auto;
     }
+    .h2{
+      text-align: center;
+    }
     .ligne4{
         width: 30px;
         border: 1px solid #FFBD00;

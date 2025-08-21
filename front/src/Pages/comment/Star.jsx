@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 
 const Star = () => {
     const [rating, setRating] = useState(0); // La note cliquée et sauvegardée

@@ -37,7 +37,7 @@ const Login = () => {
 
           </div>
           <div className='login-form-section'> 
-           <h1>CONNECTION </h1>
+           <h1>Se connecter </h1>
           
            
          <form onSubmit={verification} id='form' className='login-form'>

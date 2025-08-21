@@ -1,148 +1,268 @@
-.body{
+.detail-page-body {
+    background-image: linear-gradient(#42106D, #5B0F53, #160430);
+    color: snow;
+    padding: 2rem 0;
+}
 
- background-image: linear-gradient(#42106D,#5B0F53,#160430) ;
- color: snow;
-.line{
-    border-bottom: 2px solid snow;
-    padding: 5px;
+.detail-page-layout {
+    display: flex;
+    flex-direction: column-reverse; // Sidebar en haut sur mobile
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
-.d-image
-{
-    width : 200px;
-    border: 28px solid brown;
-    margin-left : 40%;
-}
-h1{
-    text-align: center ;
-}
-h2{
-    text-align: center;
-}
-table{ 
-    margin-left: 40%;
-    width: 30%;
- .tab{
-    border: 1px solid black;
-    text-align: center;
-    tr{
-       background-color: black;
-       border: 1px solid snow;
-       color : snow;
-       .tdd{
-         background-color: #1f1f3c;
-         border: 2px solid brown;
-       }
+
+// Styles pour les écrans larges (desktop)
+@media (min-width: 992px) {
+    .detail-page-layout {
+        flex-direction: row; // Deux colonnes sur desktop
+        align-items: flex-start;
     }
- }
 }
- .gallery{
+
+/* --- COLONNE PRINCIPALE --- */
+.main-content {
+    flex: 2; // Prend 2/3 de l'espace
+    min-width: 0; // Correction de bug pour flexbox
+
+    h1 {
+        font-size: 3rem;
+        text-align: left;
+    }
+
+    .breadcrumb {
+        color: #ccc;
+        a { color: #AE69FF; text-decoration: none; }
+    }
+
+    h2 {
+        font-size: 2rem;
+        text-align: left;
+        border-left: 4px solid #AE69FF;
+        padding-left: 1rem;
+        margin: 2rem 0 1rem;
+    }
+
+    .description {
+        line-height: 1.7;
+        color: #e0e0e0;
+    }
+}
+
+/* --- GALERIE D'IMAGES --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+     .detail-page-body {
+        padding: 2rem 0; // On remet le padding normal
+    }
+
+    .detail-page-layout {
+        flex-direction: row; // ON REPASSE EN DEUX COLONNES
+        align-items: flex-start;
+        gap: 3rem; // On augmente l'espace entre les colonnes
+        padding: 0 2rem;
+    }
+
+    /* On inverse l'ordre pour que la sidebar soit à droite */
+    .main-content {
+        order: 1;
+        flex: 2;
+        h1, h2 { text-align: left; }
+    }
+
+    .sidebar {
+        order: 2;
+        flex: 1;
+        // ON REACTIVE LE POSITIONNEMENT "COLLANT" UNIQUEMENT SUR DESKTOP
+        position: sticky;
+        top: 2rem;
+    }
+
+    .sidebar-cover-image {
+        max-width: 100%; // L'image peut reprendre toute la largeur de sa colonne
+    }
+}
+
+/* --- COLONNE LATÉRALE (SIDEBAR) --- */
+ .sidebar {
+        order: 2; // La sidebar redevient la deuxième (à droite)
+        position: sticky;
+        top: 2rem;
+    }
+
+.sidebar-cover-image {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.game-info-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+
+    h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        border-bottom: 1px solid #4a2c7a;
+        padding-bottom: 0.5rem;
+    }
+}
+
+.info-item {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-  .gal
-    {
-     width: 40%;
-     margin-top: 2%;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #3a3a52;
 
+    &:last-child {
+        border-bottom: none;
     }
- }
 
-    
-   
-
-.comment-section {
-  max-width: 900px; /* On donne une largeur max pour la lisibilité */
-  margin: 2rem auto; /* Centre la section */
-  
-  p {
-    font-size: 1.1rem;
-    i.fa-star {
-      color: gold;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      &:hover {
-        transform: scale(1.2);
-      }
+    .info-label {
+        color: #ccc;
+        font-weight: bold;
     }
-  }
+
+    .info-value {
+        text-align: right;
+    }
 }
 
-/* Le conteneur principal pour l'avatar et le formulaire */
-.comment-input-area {
-  display: flex;
-  align-items: flex-start; /* Aligne l'avatar en haut */
-  gap: 16px; /* Espace entre l'avatar et le formulaire */
-  margin-top: 1rem;
+/* --- ÉLÉMENTS COMMUNS --- */
+.separator {
+    border: none;
+    height: 1px;
+    background-color: #4a2c7a;
+    margin: 2rem 0;
 }
 
-/* L'avatar de l'utilisateur */
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 2rem;
+    color: snow;
+    background-color: #160430;
 }
 
-/* Le formulaire qui contient le textarea et les boutons */
-.comment-form {
-  width: 100%; /* Prend tout l'espace restant */
-}
-
-/* Le champ de texte */
-.comment-form textarea {
-  width: 100%;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid #777; /* Ligne de séparation subtile */
-  color: snow;
-  font-size: 1rem;
-  font-family: inherit; /* Utilise la même police que le reste du site */
-  padding: 8px 0;
-  resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement */
-  outline: none; /* Enlève le contour bleu au clic */
-  transition: border-color 0.3s ease;
+@media (max-width : 991px) {
   
-  /* La ligne devient plus visible quand on clique dessus */
-  &:focus {
-    border-bottom-color: snow;
-  }
+.detail-page-body {
+    background-image: linear-gradient(#42106D, #5B0F53, #160430);
+    color: snow;
+    padding: 1rem 0; // Moins de padding vertical sur mobile
 }
 
-/* Le conteneur pour les boutons d'action */
-.comment-actions {
-  display: flex;
-  justify-content: flex-end; /* Aligne les boutons à droite */
-  gap: 10px;
-  margin-top: 10px;
+.detail-page-layout {
+    display: flex;
+    flex-direction: column; // LA BASE : une seule colonne sur mobile
+    gap: 2rem;
+    padding: 0 1rem; // Espace sur les côtés
 }
 
-/* Style commun pour les boutons */
-.comment-actions button {
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* --- COLONNE LATÉRALE (SIDEBAR) - Apparaît en premier sur mobile --- */
+.sidebar {
+    // On annule le positionnement "collant" sur mobile
+    position: static; 
+        order: 1; 
 }
 
-/* Bouton "Envoyer" (style primaire) */
-.btn-submit {
-  background-color: #3ea6ff; /* Bleu vif comme sur YouTube */
-  color: #0f0f0f;
-  
-  &:hover {
-    background-color: #65baff;
-  }
+.sidebar-cover-image {
+    width: 100%;
+    // On limite la largeur de l'image pour qu'elle ne soit pas "énorme"
+    max-width: 400px; 
+    margin: 0 auto; // Centre l'image
+    display: block;
+    border-radius: 12px;
 }
 
-/* Bouton "Annuler" (style secondaire) */
-.btn-cancel {
-  background-color: transparent;
-  color: snow;
-  
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+.game-info-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem; // Espace sous l'image de couverture
+
+    h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+    }
 }
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #3a3a52;
+    &:last-child { border-bottom: none; }
+    .info-label { color: #ccc; font-weight: bold; }
+    .info-value { text-align: right; }
+}
+
+/* --- COLONNE PRINCIPALE - Apparaît en deuxième sur mobile --- */
+.main-content {
+       order: 2;
+    h1 {
+        font-size: 2.5rem; // Titre un peu plus petit sur mobile
+        text-align: center;
+    }
+    h2 {
+        font-size: 1.8rem;
+        border-left: 4px solid #AE69FF;
+        padding-left: 1rem;
+        margin: 2rem 0 1rem;
+    }
+    .description {
+        line-height: 1.7;
+    }
+}
+
+/* --- GALERIE D'IMAGES --- */
+.gallery-grid {
+    display: grid;
+    // Une seule colonne sur les très petits écrans, deux sur les plus grands
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* --- ÉLÉMENTS COMMUNS --- */
+.separator {
+    border: none;
+    height: 1px;
+    background-color: #4a2c7a;
+    margin: 2rem 0;
+}
+
+
 }
