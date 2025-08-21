@@ -68,7 +68,7 @@ const Login = () => {
          </form>
           
          <p>Retourner a la page d'<Link className='link' to='/'>acceuil </Link></p>
-         <p>Vous avez oublier votre mot de passe cliquer sur ce <span className='span'>lien</span></p>
+         <p>Vous avez oublier votre mot de passe cliquer sur ce <span className='span'><Link to='/mot-de-passe-oublie'>lien</Link></span></p>
          <hr className='form-separator' />
          <p>En vous connectant vous acceptez nos <span className='span' > Termes et nos Conditions</span>. </p>
         </div>
