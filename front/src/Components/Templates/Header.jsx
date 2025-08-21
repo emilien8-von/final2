@@ -5,24 +5,10 @@ import { Context } from '../../utils/context/Context'
 
 const Header = () => {
   const {auth,logout} = useContext(Context)
-  const [profil,setProfil] = useState([])
-  useEffect(() =>{
-     const fetchdetail = async() =>{
-      try{
-          const {data , status} = await axios.get('http://localhost:8000/game/jeux/get/:id')
-
-          if(status === 200) setProfil(data)
-            console.log(data);
-            
-      }
-      catch(error){
-        console.log(error.message);
-        
-      }
-    }
-     fetchdetail()
-     console.log(profil);
-  },[])
+        const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
   const menu = () =>{
     let list = document.getElementById("ul")
     let icon = document.getElementById("icon")
@@ -36,47 +22,56 @@ const Header = () => {
     }
   }
   return (
-        <header className='header'>
-            <section >
-              <nav>
-                <div className='nav-flex'>
-                   <img className='logo' src="/manette2.png" alt="imj" width={80}/>
-                 <ul id='ul' className=' nav-links '>
-                 {auth?
-                     <div>
-                       <li> <Link to='./parametre' className='li'>Paramètre</Link></li>
-                      <li> <Link to='/dashbaord' className='li'>Dashbaord</Link> </li>
-                     </div>
-                       :
-                    <div> 
-                      <li><Link className='li' >Jeux</Link></li>
-                      <li><Link className='li' >Console</Link></li>
-                      <li><Link className='li'>Emulateur</Link></li>
-                    </div> 
-                       
-                  }
-                      
-                 </ul>
-                  {auth?
-                    <div>
-                      <img src="" alt="src" />
-                      <button onClick={logout} className='but3'><Link to='/login' className='but2'>Déconnexion</Link></button>
-                    </div>
-                     
-                    :
-                    <div className='link-bouton'>
-                      <button className='but1'><Link to='/formulaire' className='but2'>Inscription</Link></button>
-                    
-                      <button className='but1'><Link to='/login' className='but2'>Connexion</Link></button>
-                   
-                      <div onClick={menu} className='menu'> <i id='icon' class="fa-solid fa-bars"></i> </div>
-                    </div>
-                  }
+          <header className='header'>
+        <div className='nav-container'>
+            
+            <div className="nav-left">
+                <Link to="/">
+                    <img className='logo' src="/manette2.png" alt="Logo" />
+                </Link>
+            </div>
+
+            <ul id='ul' className={`nav-center ${isMenuOpen ? 'is-open' : ''}`}>
+
+                <li><Link to='/' className='li'>Accueil</Link></li>
+                <li><Link className='li'>Jeux</Link></li>
+                <li><Link className='li'>Console</Link></li>
+                <li><Link className='li'>Emulateur</Link></li>
+                {auth && (
+                    <>
+                        <li><Link to='/parametre' className='li'>Paramètres</Link></li>
+                        {auth.role === 'admin' && (
+                            <li><Link to='/dashboard' className='li'>Dashboard</Link></li>
+                        )}
+                    </>
+                )}
+                
+            </ul>
+
+            {/* GROUPE 3 : DROITE */}
+            <div className='nav-right'>
+                {auth ? (
+                    <>
+                        <button onClick={logout} className='but3'>Déconnexion</button>
+                        <Link to="/parametre">
+                            <img src={auth.avatar} alt="Profil" className="header-avatar" referrerPolicy="no-referrer" />
+                        </Link>
+                    </>
+                ) : (
+                    <>
+                        <button className='but1'><Link to='/formulaire' className='but2'>Inscription</Link></button>
+                        <button className='but1'><Link to='/login' className='but2'>Connexion</Link></button>
+                    </>
+                )}
+                <div onClick={toggleMenu} className='menu'>
+                    <i id='icon' className="fa-solid fa-bars"></i>
                 </div>
-                <input id='input' type="text" placeholder='Rechercher un jeux:' />
-              </nav>
-            </section>
-        </header>
+            </div>
+
+        </div>
+        {/* La barre de recherche peut être placée ici si elle doit être en dessous */}
+        {/* <input id='input' type="text" placeholder='Rechercher un jeux...' /> */}
+          </header>
     
   )
 }
