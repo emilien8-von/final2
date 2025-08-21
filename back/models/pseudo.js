@@ -31,7 +31,15 @@ const user = mongoose.Schema(
        {
         type : String,
         default : "https://cdn-icons-png.flaticon.com/512/3541/3541871.png"
-       } , 
+       } ,  
+       passwordResetCode: {
+        type: String,
+        default: null
+       },
+       passwordResetExpires: {
+        type: Date,
+        default: null
+      },
        isVerified : {
         type : Boolean,
         default : false

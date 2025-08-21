@@ -6,7 +6,9 @@ const admin = require('../middlewares/droitadmin')
 
 router.post("/add",Pcontroller.Puser)
 router.post("/login",Pcontroller.Luser)
-router.put("/verify/:token",Pcontroller.Emailverify)
+router.post('/forgot-password', Pcontroller.forgotPassword);
+router.post("/reset",Pcontroller.verifyResetCode)
+router.post("/reset-password",Pcontroller.resetPassword)
 router.get("/all",Pcontroller.Guser)
 router.get('/get/:id',Pcontroller.Iduser)
 router.delete('/logout/:id',verify,Pcontroller.Duser)
@@ -14,4 +16,6 @@ router.delete('/delete/:id',verify,Pcontroller.EffacerUser)
 router.put('/put/:id',verify,Pcontroller.Cuser)
 router.put('/profile/update',verify,Pcontroller.updateProfil)
 router.put('/update/:id',verify,Pcontroller.updateUserPassword)
+router.put("/verify/:token",Pcontroller.Emailverify)
+
 module.exports = router

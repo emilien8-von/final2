@@ -3,10 +3,8 @@ const bcrypt = require('bcrypt')
 const jwr = require('jsonwebtoken')
 const ENV  = require('../config/env')
 const erreur = require('../middlewares/erreur')
-const envoi = require('../services/mail')
 const cookieParser = require('cookie-parser')
-
-//Partie Post
+const { sendEmail, createResetCodeEmailHTML } = require('../services/mail')
 const Puser = async(req,res) =>{
     try{
         const passwordH = await bcrypt.hash(req.body.password,10)
@@ -19,7 +17,7 @@ const Puser = async(req,res) =>{
             ENV.TOKEN,
             {expiresIn: "5m"}
         )
-        await envoi(reponse,token)
+        await sendEmail(reponse,token)
         res.status(201).json({message : 'users created!, un message vous sera envoyés',reponse})
     }
     catch(error){
@@ -69,7 +67,6 @@ const Luser = async (req, res, next) => {
             return next(erreur(401, 'Email ou mot de passe incorrect'));
         }
 
-        // 3. Créer le token JWT
         const token = jwr.sign(
             { id: user._id, role: user.role }, // Informations à stocker dans le token
             ENV.TOKEN,
@@ -79,12 +76,11 @@ const Luser = async (req, res, next) => {
         // 4. Séparer le mot de passe du reste des données utilisateur
         const { password: userPassword, ...userInfo } = user._doc;
 
-        // 5. CRÉER LE COOKIE ET L'ENVOYER AU NAVIGATEUR
         res.cookie('access_token', token, {
-            httpOnly: true, // Le cookie n'est pas accessible via JavaScript côté client (sécurité)
-            // secure: true, // À activer en production (HTTPS)
-            // sameSite: 'strict' // Autre mesure de sécurité
-        }).status(200).json(userInfo); // On renvoie les infos de l'user (sans le mot de passe)
+            httpOnly: true, // Le cookie n'est pas accessible via JavaScript côté client (contrer les attaques XSS)
+             secure: true, // À activer quand on est en ligne (HTTPS)
+             sameSite: 'strict' // Autre mesure de sécurité pour évité (CSRF)
+        }).status(200).json(userInfo); // Pour envoiyer les données de l'utilisateur
 
     } catch (error) {
         next(erreur(500, error.message));
@@ -217,5 +213,113 @@ const updateUserPassword = async (req, res, next) => {
         next(erreur(500, error.message));
     }
 };
+const forgotPassword = async (req, res, next) => {
+    const { email } = req.body;
 
-module.exports = {Puser,Guser,Iduser,Duser,EffacerUser,Luser,Cuser,Emailverify,updateProfil,updateUserPassword}
+    try {
+        const user = await Users.findOne({ email });
+
+        if (!user) {
+            return res.status(200).json({ message: "Si un compte est associé à cet email, un code de vérification a été envoyé." });
+        }
+
+        const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+        const resetCodeExpires = Date.now() + 10 * 60 * 1000;
+
+        user.passwordResetCode = resetCode;
+        user.passwordResetExpires = resetCodeExpires;
+        
+        // LA CORRECTION CRITIQUE EST ICI :
+        await user.save(); 
+
+        // Pour vérifier, vous pouvez ajouter ce log :
+        console.log('Code sauvegardé pour l\'utilisateur:', user.pseudo);
+
+        const emailHTML = createResetCodeEmailHTML(user.pseudo, resetCode);
+        await sendEmail(user.email, "Votre code de réinitialisation de mot de passe", emailHTML);
+
+        res.status(200).json({ message: "Si un compte est associé à cet email, un code de vérification a été envoyé." });
+
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
+};
+
+const verifyResetCode = async (req, res, next) => {
+    const { email, code } = req.body;
+
+    // LA CORRECTION : On ajoute une vérification au début
+    if (!email || !code) {
+        return next(erreur(400, "L'email et le code sont requis."));
+    }
+
+    const trimmedCode = code.trim(); 
+
+    try {
+        const user = await Users.findOne({ email });
+
+        if (
+            !user ||
+            !user.passwordResetCode ||
+            user.passwordResetCode !== trimmedCode ||
+            user.passwordResetExpires < Date.now()
+        ) {
+            return next(erreur(400, "Code invalide ou expiré. Veuillez réessayer."));
+        }
+
+        // ... le reste de la fonction
+        user.passwordResetCode = null;
+        user.passwordResetExpires = null;
+        await user.save();
+
+        const resetToken = jwr.sign({ id: user._id }, ENV.TOKEN, { expiresIn: '25m' });
+        res.status(200).json({ resetToken });
+
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
+};
+
+const resetPassword = async (req, res, next) => {
+    const { resetToken, newPassword } = req.body;
+
+    if (!resetToken || !newPassword) {
+        return next(erreur(400, "Informations manquantes."));
+    }
+     if (newPassword.length < 3) { // Utilisez la même valeur que dans votre modèle
+        return next(erreur(400, "Le mot de passe doit contenir au moins 3 caractères."));
+      }
+    try {
+        const decoded = jwr.verify(resetToken, ENV.TOKEN);
+        const user = await Users.findById(decoded.id);
+
+        if (!user) {
+            // Cette erreur est importante si l'utilisateur a été supprimé entre-temps
+            return next(erreur(404, "Le lien est invalide ou l'utilisateur n'existe plus."));
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+        user.password = hashedPassword;
+        // On s'assure que le token ne peut plus être utilisé
+        user.passwordResetCode = undefined;
+        user.passwordResetExpires = undefined;
+        await user.save();
+
+        // LA CORRECTION : On renvoie une réponse JSON claire
+        res.status(200).json({ message: "Votre mot de passe a été réinitialisé avec succès." });
+
+    } catch (error) {
+        console.error("ERREUR DÉTAILLÉE DANS resetPassword:", error);
+
+        if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
+                console.error("ERREUR JWT:", error.name, error.message); 
+            return next(erreur(401, "Le lien de réinitialisation est invalide ou a expiré. Veuillez recommencer."));
+        }
+        // Pour tout autre cas, on renvoie une erreur générique
+        next(erreur(500, "Une erreur interne est survenue."));
+    }
+};
+
+module.exports = {Puser,Guser,Iduser,Duser,EffacerUser,Luser,Cuser,Emailverify,updateProfil,updateUserPassword,forgotPassword,verifyResetCode,resetPassword}
