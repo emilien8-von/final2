@@ -71,7 +71,9 @@
     cursor: pointer;
     object-fit: cover;
   }
-  /*Parti Hover des images*/
+   .img5:hover{
+    filter: none;
+  }
   /* 1. Le conteneur pour une rangée d'images */
 .items-row {
   display: flex;
