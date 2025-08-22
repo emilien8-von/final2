@@ -1,12 +1,14 @@
 import React from 'react'
 import './css/footer.css'
+import { Link } from 'react-router'
+
 const Footer = () => {
   return (
       <footer className='footer'> 
        <section>
              <div >
                   <ul className='r-flex'>
-                     <li>Mention legale</li>
+                     <li><Link to='/mentions-legales' className='mention'>Mention legale</Link></li>
                      <li>FAQ</li>
                      <li> Contact</li>
                      <li>Cookies</li>

@@ -4,6 +4,7 @@ import { Axios } from 'axios'
 /**Components */
 import Layout from './Components/Layout'
 import Template from './Components/Admin/template/Template'
+import Mention from './Components/Templates/Mention'
 /**Pages */
 import Acceuil from './Pages/Acceuil'
 import Formulaire from './Pages/Formulaire'
@@ -31,7 +32,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/mot-de-passe-oublie' element={<Forget/>}/> 
         <Route path='/reset-password/:token' element={<Reset/>}/>  
-
+        <Route path='/mentions-legales' element={<Mention/>}/>
         {/* --- Routes Protégées (nécessitent d'être connecté) --- */}
         <Route element={<Private />}>
           <Route path='/detail/:id' element={<Detail/>} />
