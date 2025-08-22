@@ -1,0 +1,184 @@
+// Dans histoire.scss
+
+.histoire-page-body {
+    background-image: linear-gradient(#42106D, #5B0F53, #160430);
+    color: snow;
+    padding: 2rem 0;
+    min-height: 100vh;
+}
+
+.histoire-layout {
+    display: flex;
+    flex-direction: column; // Mobile first
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+// Styles pour les écrans larges (desktop)
+@media (min-width: 992px) {
+    .histoire-page-body {
+        padding: 2rem 0;
+    }
+
+    .histoire-layout {
+        flex-direction: row; // ON REPASSE EN DEUX COLONNES
+        align-items: flex-start;
+        gap: 3rem;
+        padding: 0 2rem;
+    }
+
+    /* On remet l'ordre normal pour le desktop */
+    .main-content {
+        order: 1; // Le contenu principal redevient le premier (à gauche)
+        flex: 2.5;
+        h1 { text-align: left; }
+    }
+
+    .sidebar {
+        order: 2; // La sidebar redevient la deuxième (à droite)
+        flex: 1;
+        position: sticky;
+        top: 2rem;
+    }
+
+    .sidebar-infobox .console-image {
+        max-width: 100%; // L'image peut reprendre toute la largeur de sa colonne
+    }
+}
+
+/* --- COLONNE PRINCIPALE --- */
+.main-content {
+    order: 2; // S'affiche en deuxième sur mobile
+    flex: 2.5; // Prend plus de place
+    min-width: 0;
+
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2rem; margin-top: 2rem; }
+    .breadcrumb { color: #ccc; a { color: #AE69FF; } }
+    .separator { border: none; height: 1px; background-color: #4a2c7a; margin: 1.5rem 0; }
+}
+
+/* --- COLONNE LATÉRALE (SIDEBAR) --- */
+.sidebar {
+    order: 1; // S'affiche en premier sur mobile
+    flex: 1;
+    position: sticky;
+    top: 2rem;
+}
+
+.sidebar-infobox {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid #4a2c7a;
+    border-radius: 8px;
+    overflow: hidden; // Pour que l'image respecte les coins arrondis
+
+    .console-image {
+        width: 100%;
+        height: auto;
+        background-color: #fff; // Fond blanc pour les images avec transparence
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    .console-name-in-box {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem;
+        margin: 0;
+        border-bottom: 1px solid #4a2c7a;
+    }
+
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #3a3a52;
+
+        &:last-child { border-bottom: none; }
+
+        .info-label { font-weight: bold; color: #ccc; }
+        .info-value { text-align: right; }
+    }
+}
+
+@media (max-width : 991px) {
+     .histoire-page-body {
+    background-image: linear-gradient(#42106D, #5B0F53, #160430);
+    color: snow;
+    padding: 1rem 0;
+    min-height: 100vh;
+}
+
+.histoire-layout {
+    display: flex;
+    flex-direction: column; // LA BASE : une seule colonne sur mobile
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+/* --- COLONNE LATÉRALE (SIDEBAR) - Apparaît en premier sur mobile --- */
+.sidebar {
+    order: 1; // S'affiche en premier
+    position: static; // On annule le positionnement "collant"
+}
+
+.sidebar-infobox {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid #4a2c7a;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .console-image {
+        width: 100%;
+        max-width: 400px; // TAILLE RAISONNABLE pour l'image sur mobile
+        display: block;
+        margin: 0 auto; // Centre l'image si elle est plus petite que le conteneur
+        background-color: #fff;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    .console-name-in-box {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem;
+        margin: 0;
+        border-bottom: 1px solid #4a2c7a;
+    }
+
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #3a3a52;
+        &:last-child { border-bottom: none; }
+        .info-label { font-weight: bold; color: #ccc; }
+        .info-value { text-align: right; }
+    }
+}
+
+/* --- COLONNE PRINCIPALE - Apparaît en deuxième sur mobile --- */
+.main-content {
+    order: 2; // S'affiche en deuxième
+    h1 {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    h2 {
+        font-size: 1.8rem;
+        margin-top: 2rem;
+    }
+}
+
+/* --- ÉLÉMENTS COMMUNS --- */
+.separator {
+    border: none;
+    height: 1px;
+    background-color: #4a2c7a;
+    margin: 1.5rem 0;
+}
+
+
+}

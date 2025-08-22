@@ -1,5 +1,6 @@
 const Console = require('../models/console')
 const  erreur = require('../middlewares/erreur')
+const mongoose = require('mongoose'); 
 
 const Pconsole = async(req,res)=>{
     try
@@ -15,7 +16,7 @@ const Pconsole = async(req,res)=>{
 
 const  Gconsole = async(req,res)=>{
     try{
-        const reponse = await Console.find()
+        const reponse = await Console.find();
         res.status(200).json(reponse)
     }
     catch(error){
@@ -23,17 +24,23 @@ const  Gconsole = async(req,res)=>{
         
     }
 }
-const Idconsole = async(req,res) =>{
-   try
-    { 
-     const check = await Console.findById(req.params.id)
-     if(!check) return res.status(404).json('user not found')
-        res.status(200).json(check)
-    }
+const Idconsole = async(req,res,next) =>{
+     try {
+        const { id } = req.params;
 
-    catch(error){
-        console.log(error);
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return next(erreur(400, 'ID de console invalide'));
+        }
+
+        const console = await Console.findById(id);
         
+        if (!console) {
+            return next(erreur(404, 'Console non trouvée'));
+        }
+        
+        res.status(200).json(console);
+    } catch (error) {
+        next(erreur(500, error.message));
     }
 }
 const Dconsole = async(req,res,next)=>{

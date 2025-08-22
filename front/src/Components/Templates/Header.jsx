@@ -34,9 +34,9 @@ const Header = () => {
             <ul id='ul' className={`nav-center ${isMenuOpen ? 'is-open' : ''}`}>
 
                 <li><Link to='/' className='li'>Accueil</Link></li>
-                <li><Link className='li'>Jeux</Link></li>
-                <li><Link className='li'>Console</Link></li>
-                <li><Link className='li'>Emulateur</Link></li>
+                <li><Link to='/list-game' className='li'>Jeux</Link></li>
+                <li><Link to='/list-console'  className='li'>Console</Link></li>
+                <li><Link to='/list-emulateur' className='li'>Emulateur</Link></li>
                 {auth && (
                     <>
                         <li><Link to='/parametre' className='li'>Paramètres</Link></li>
