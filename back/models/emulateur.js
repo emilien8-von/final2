@@ -5,6 +5,10 @@ const emulateur = mongoose.Schema(
        type : String,
        require : true
     },
+    image:{
+        type :String,
+        require: true
+    },
     emule: {
         type : String,
         require : true

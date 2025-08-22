@@ -1,5 +1,7 @@
 const Emulateur = require('../models/emulateur')
 const erreur = require('../middlewares/erreur')
+const mongoose = require('mongoose'); 
+
 
 const  Pemulateur  = async(req,res,next) =>{
     try{
@@ -22,15 +24,24 @@ const Gemulateur = async(req,res,next) =>{
     }
 }
 const Idemulateur =  async(req,res,next) =>{
-    try 
-  {
-    const check = await Emulateur.findById(req.params.id)
-    if(!check) return next(erreur(404,'emulateur not found'))
-    res.status(200).json(check)
-  }
-  catch (error){
-    next(erreur(500,erreur.message))
-  }
+    try {
+        const { id } = req.params;
+
+        // On vérifie si l'ID est un ObjectId valide
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return next(erreur(400, 'ID d\'émulateur invalide'));
+        }
+
+        const emulateur = await Emulateur.findById(id);
+        
+        if (!emulateur) {
+            return next(erreur(404, 'Émulateur non trouvé'));
+        }
+        
+        res.status(200).json(emulateur);
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
 }
 const Cemulateur =  async(req,res,next) =>{
     try 

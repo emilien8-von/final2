@@ -89,7 +89,7 @@ const Acceuil = () => {
                Les jeux peuvent susciter des émotions.”</p>
                <p className='p'>-Sid Meier</p>
         </div>
-        <h2 onMouseOver={color} className='h2' id='h2'>Level up!</h2>
+        <h2 onMouseOver={color} className='level' id='h2'>Level up!</h2>
         <section>
           <div className='t-flex' >
             <img className='img5' src="/start.png" alt="m" />
@@ -170,7 +170,7 @@ const Acceuil = () => {
 <div className='image-grid console-grid'>
   {article.map(info => (
     <div key={info._id} className="image-card">
-      <Link to={{ pathname: `/detail/${info._id}` }}> 
+      <Link to={{ pathname: `/histoire/${info._id}` }}> 
         <img src={`${info.image}`} alt="Console" />
       </Link> 
     </div>
