@@ -1,0 +1,142 @@
+.dashboard-container {
+  padding: 2rem;
+  color: snow;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+  h1 { font-size: 2.5rem; margin: 0; }
+  p { font-size: 1.2rem; color: #ccc; }
+}
+
+/* Grille pour les cartes de statistiques */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: #2a2a3e;
+  border: 1px solid #4a2c7a;
+
+  .card-icon {
+    font-size: 2.5rem;
+    padding: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-content {
+    h3 { font-size: 1rem; margin: 0 0 0.5rem; color: #ccc; }
+    span { font-size: 2rem; font-weight: bold; }
+  }
+
+  // Couleurs
+  &.card-blue .card-icon { background-color: rgba(62, 186, 255, 0.2); color: #3eabff; }
+  &.card-green .card-icon { background-color: rgba(72, 187, 120, 0.2); color: #48bb78; }
+  &.card-orange .card-icon { background-color: rgba(255, 189, 0, 0.2); color: #ffbd00; }
+  &.card-red .card-icon { background-color: rgba(235, 8, 27, 0.2); color: #c70d0d; }
+
+}
+
+/* Grille pour les panneaux d'activité */
+.dashboard-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.panel {
+  background-color: #2a2a3e;
+  border-radius: 12px;
+  border: 1px solid #4a2c7a;
+
+  .panel-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #4a2c7a;
+    h3 { margin: 0; font-size: 1.2rem; }
+  }
+
+  .panel-body {
+    padding: 1.5rem;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #3a3a52;
+        &:last-child { border-bottom: none; }
+        .game-brand { color: #ccc; }
+      }
+    }
+  }
+}
+
+.management-panel {
+  background-color: #2a2a3e;
+  border-radius: 12px;
+  border: 1px solid #4a2c7a;
+}
+
+.add-button {
+  background-color: #3eabff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.table-responsive {
+  overflow-x: auto; // Pour la responsivité sur petits écrans
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: snow;
+
+  thead tr {
+    border-bottom: 2px solid #4a2c7a;
+  }
+
+  th, td {
+    padding: 1rem;
+    text-align: left;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #3a3a52;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover {
+      background-color: #3a3a52;
+    }
+  }
+}
+
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+  button {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .edit-btn { background-color: #3eabff; color: white; }
+  .delete-btn { background-color: #f56565; color: white; }
+}

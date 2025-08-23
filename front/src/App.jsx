@@ -3,8 +3,8 @@ import { Route,Routes } from 'react-router'
 import { Axios } from 'axios'
 /**Components */
 import Layout from './Components/Layout'
-import Template from './Components/Admin/template/Template'
 import Mention from './Components/Templates/Mention'
+import Dashboard from './Components/Admin/Dashboard/Dashboard'
 /**Pages */
 import Acceuil from './Pages/Acceuil'
 import Formulaire from './Pages/Formulaire'
@@ -44,7 +44,7 @@ function App() {
           <Route path='/list-emulateur' element={<Emulator/>}/>
           
           {/* Le Dashboard est aussi une route privée */}
-          <Route path='/dashboard' element={<Template/>}>
+          <Route path='/dashboard' element={<Dashboard/>}>
             {/* ... */}
           </Route>
         </Route>

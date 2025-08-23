@@ -15,7 +15,7 @@ const pCategory = async(req,res) =>{
 }
 const gCategory = async(req,res,next) =>{
     try{
-        const reponse = await Category.find()
+         const reponse = await Category.find().sort({ createdAt: -1 });
         res.status(200).json(reponse)
     }
     catch(error){
@@ -65,4 +65,18 @@ const Changecategorie = async(req,res,next) =>{
         next(erreur(500,error.message))
     }
 }
-module.exports = {pCategory,gCategory,idCategory,deleteCategory,Changecategorie}
+
+const getRecentGames = async (req, res, next) => {
+    try {
+        // On cherche les 5 derniers jeux, triés par date de création décroissante
+        const recentGames = await Category.find()
+            .sort({ createdAt: -1 })
+            .limit(5)
+            .select('titre brand'); // On ne sélectionne que les champs nécessaires
+
+        res.status(200).json(recentGames);
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
+};
+module.exports = {pCategory,gCategory,idCategory,deleteCategory,Changecategorie,getRecentGames}

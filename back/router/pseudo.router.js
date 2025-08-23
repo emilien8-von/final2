@@ -11,6 +11,7 @@ router.post("/reset",Pcontroller.verifyResetCode)
 router.post("/reset-password",Pcontroller.resetPassword)
 router.get("/all",Pcontroller.Guser)
 router.get('/get/:id',Pcontroller.Iduser)
+router.get('/stats', verify, Pcontroller.getDashboardStats);
 router.delete('/logout/:id',verify,Pcontroller.Duser)
 router.delete('/delete/:id',verify,Pcontroller.EffacerUser)
 router.put('/put/:id',verify,Pcontroller.Cuser)
