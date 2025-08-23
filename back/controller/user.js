@@ -321,5 +321,23 @@ const resetPassword = async (req, res, next) => {
         next(erreur(500, "Une erreur interne est survenue."));
     }
 };
+const getDashboardStats = async (req, res, next) => {
+    try {
+        // On compte le nombre de documents dans chaque collection
+        const gameCount = await Jeux.countDocuments();
+        const userCount = await Users.countDocuments();
+        const consoleCount = await Console.countDocuments();
 
-module.exports = {Puser,Guser,Iduser,Duser,EffacerUser,Luser,Cuser,Emailverify,updateProfil,updateUserPassword,forgotPassword,verifyResetCode,resetPassword}
+        // On renvoie un objet avec toutes les statistiques
+        res.status(200).json({
+            games: gameCount,
+            users: userCount,
+            consoles: consoleCount
+        });
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
+};
+
+
+module.exports = {Puser,Guser,Iduser,Duser,EffacerUser,Luser,Cuser,Emailverify,updateProfil,updateUserPassword,forgotPassword,verifyResetCode,resetPassword,getDashboardStats}

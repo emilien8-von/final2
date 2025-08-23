@@ -1,0 +1,11 @@
+
+.admin-layout {
+  display: flex; /* LA LIGNE LA PLUS IMPORTANTE */
+  min-height: 100vh; /* Prend toute la hauteur de l'écran */
+}
+
+.admin-content {
+  flex-grow: 1; /* Le contenu principal prend tout l'espace restant */
+  background-color: #160430;
+  padding: 2rem;
+}
