@@ -31,19 +31,15 @@ const Profil = () => {
    const handleInfoSubmit = async (e) => {
     e.preventDefault();
     try {
-        // 1. Appel à l'API (ceci fonctionne déjà)
         const response = await axios.put('http://localhost:8000/game/user/profile/update', formData, {
             withCredentials: true 
         });
 
-        // 2. Création du nouvel objet d'authentification
-        // On fusionne l'ancien objet "auth" (qui contient le token) avec les nouvelles données de l'utilisateur
+        
         const updatedAuth = { ...auth, ...response.data };
 
-        // 3. MISE À JOUR DE L'ÉTAT GLOBAL (maintenant, setAuth existe !)
         setAuth(updatedAuth);
 
-        // 4. MISE À JOUR DU STOCKAGE LOCAL pour la persistance
         localStorage.setItem('auth', JSON.stringify(updatedAuth));
         
         // 5. Mettre à jour l'interface utilisateur
@@ -123,7 +119,6 @@ const Profil = () => {
                     <button type="submit" className="save-button">Enregistrer les modifications</button>
                 </form>
             ) : (
-                // --- AFFICHAGE DES DÉTAILS ---
                 <div className="profile-details">
                     <div className="detail-item"><span>Pseudo :</span> {auth.pseudo}</div>
                     <div className="detail-item"><span>Email :</span> {auth.email}</div>

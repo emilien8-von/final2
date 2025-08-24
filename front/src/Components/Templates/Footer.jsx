@@ -15,7 +15,8 @@ const Footer = () => {
                   </ul>
              </div>
        </section> 
-       <p className='text'>«"Si mes précédentes aventures m'ont bien appris  quelques chose c'est que les truc les plus bizarres sont parfois  utile... Même les vers de tequila."»</p>
+       <p className='text'>«"Si mes précédentes aventures m'ont bien appris  quelques chose c'est que les truc les plus 
+        bizarres sont parfois  utile... Même les vers de tequila."»</p>
        <legend className='text'>Les Chevaliers de Baphomet : Les Boucliers de Quetzalcoatl</legend>
        <p className='text'>@ Tous droit réserver</p>
     </footer>
