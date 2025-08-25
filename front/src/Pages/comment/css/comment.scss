@@ -1,0 +1,14 @@
+.comment-form-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* L'avatar de l'utilisateur */
+.user-avatar {
+  width: 40px;   /* Taille fixe */
+  height: 40px;  /* Taille fixe */
+  border-radius: 50%; /* Forme ronde */
+  object-fit: cover;
+} /* S'assure que l'image remplit le cercle sans se déforme
+}
