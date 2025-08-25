@@ -2,7 +2,7 @@ import React from 'react'
 import './css/forgot.scss'
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import INSTANCE from '../../utils/constants/INSTANCE';
+import INSTANCE from "../services/instance";
 import URLS from '../../utils/constants/URLS.JS';
 
 const Forget = () => {

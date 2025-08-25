@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import './css/histoire.scss';
-import INSTANCE from '../utils/constants/INSTANCE';
+import INSTANCE from "../services/instance";
 import URLS from '../utils/constants/URLS.JS';
 const Histoire = () => {
     const { id } = useParams();

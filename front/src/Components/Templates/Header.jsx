@@ -1,4 +1,4 @@
-import React, { useContext, useState,useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router'
 import './css/header.css'
 import { Context } from '../../utils/context/Context'
@@ -9,18 +9,7 @@ const Header = () => {
   const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-  const menu = () =>{
-    let list = document.getElementById("ul")
-    let icon = document.getElementById("icon")
-    icon.getAttribute("i")
-    if(list.style.display === "none")
-     {
-     list.style.display = "block"
-     icon.setAttribute("i","")
-    } else {
-     list.style.display = "none"
-    }
-  }
+
   return (
           <header className='header'>
         <div className='nav-container'>

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import './css/reset.scss';
-import INSTANCE from '../../utils/constants/INSTANCE';
+import INSTANCE from "../services/instance";
 import URLS from '../../utils/constants/URLS.JS';
 const Reset = () => {
     const { token } = useParams();

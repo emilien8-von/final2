@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect,useState } from 'react'
 import './css/game.scss'
 import { Link } from 'react-router'
-import INSTANCE from '../utils/constants/INSTANCE'
+import INSTANCE from "../services/instance";
 import URLS from '../utils/constants/URLS.JS'
 
 const Game = () => {

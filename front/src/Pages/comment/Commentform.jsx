@@ -2,7 +2,7 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../../utils/context/Context';
 import StarRating from './Star'; 
-import INSTANCE from '../../utils/constants/INSTANCE';
+import INSTANCE from "../services/instance";
 import URLS from '../../utils/constants/URLS.JS';
 
 const CommentForm = ({ gameId, onCommentPosted }) => {

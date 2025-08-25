@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
-import INSTANCE from '../../utils/constants/INSTANCE';
+import INSTANCE from "../services/instance";
 import URLS from '../../utils/constants/URLS.JS';
 import './css/emulator.scss'
 import { Link } from 'react-router'
