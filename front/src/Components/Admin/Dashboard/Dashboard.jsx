@@ -1,24 +1,26 @@
-import React from 'react'
-import './css/Dashboard.scss'
-import { useState ,useContext,useEffect} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Context } from '../../../utils/context/Context';
-import URLS from '../../../utils/constants/URLS.js';
+import URLS from '../../../utils/constants/URLS';
+import './css/Dashboard.scss';
 import INSTANCE from '../../../utils/services/instance';
+
 const Dashboard = () => {
-     const { auth } = useContext(Context);
-    const [stats, setStats] = useState({ games: 12, users: 0, consoles: 0 ,emulateurs: 0});
+    const { auth } = useContext(Context);
+    const [stats, setStats] = useState({ games: 0, users: 0, consoles: 0, emulateurs: 0 });
     const [recentGames, setRecentGames] = useState([]);
     const [loading, setLoading] = useState(true);
-     const [currentTime, setCurrentTime] = useState(new Date());
+    
+    // État pour la date et l'heure
+    const [currentTime, setCurrentTime] = useState(new Date());
 
+    // Effet pour récupérer les données du dashboard
     useEffect(() => {
         const fetchDashboardData = async () => {
             try {
-                // On utilise Promise.all pour lancer les requêtes en parallèle
                 const [statsResponse, recentGamesResponse] = await Promise.all([
-                   INSTANCE.get(URLS.GET_USER_STATS),
-                   INSTANCE.get(URLS.GET_RECENT_GAMES)
-            ]);
+                    INSTANCE.get(URLS.GET_USER_STATS),
+                    INSTANCE.get(URLS.GET_RECENT_GAMES)
+                ]);
                 
                 setStats(statsResponse.data);
                 setRecentGames(recentGamesResponse.data);
@@ -32,17 +34,18 @@ const Dashboard = () => {
 
         fetchDashboardData();
     }, []);
-     useEffect(() => {
-        // On démarre l'intervalle
+
+    // Effet pour mettre à jour l'heure chaque seconde
+    useEffect(() => {
         const timerId = setInterval(() => {
             setCurrentTime(new Date());
-        }, 1000)
+        }, 1000);
 
-    setInterval(Time,1000)
-    return () => {
+        // Fonction de nettoyage pour arrêter l'intervalle
+        return () => {
             clearInterval(timerId);
         };
-    }, [])
+    }, []);
 
     if (loading) {
         return <div className="loading-container">Chargement du Dashboard...</div>;
