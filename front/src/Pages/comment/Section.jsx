@@ -44,8 +44,7 @@ const Section = () => {
             )}
             
             {/* Le formulaire est affiché et reçoit la fonction pour se mettre à jour */}
-            <Commentform gameId={gameId} onCommentPosted={handleNewComment} />
-
+<Commentform gameId={gameId} onCommentPosted={handleNewComment} />
             <hr className='form-separator' />
             
             {/* La liste des commentaires est affichée */}
