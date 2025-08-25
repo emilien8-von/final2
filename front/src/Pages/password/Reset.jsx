@@ -54,7 +54,7 @@ const Reset = () => {
             /[A-Z]/.test(password) &&
             /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password) &&
             /[0-9]/.test(password) &&
-            password.length >= 3; // Gardons 3 comme minimum absolu
+            password.length >= 3; 
 
         if (!isPasswordValid) {
             return setError("Le mot de passe ne respecte pas tous les critères de sécurité.");
@@ -62,15 +62,12 @@ const Reset = () => {
         
         
         try {
-            const response = await INSTANCE.get(`${URLS.RESET_PASSWORD}`, {
-                resetToken: token,
-                newPassword: password
-            });
-
-            // LA CORRECTION : On met à jour l'état de succès
+            const response = await INSTANCE.post(URLS.RESET_PASSWORD, {
+            resetToken: token,
+            newPassword: password
+        });
             setSuccess(response.data.message);
 
-            // On redirige vers la page de connexion après 3 secondes
             setTimeout(() => {
                 navigate('/login');
             }, 3000);
