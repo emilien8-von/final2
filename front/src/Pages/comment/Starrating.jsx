@@ -1,5 +1,6 @@
 import React from 'react'
 import './css/star.scss'
+import { useState } from 'react';
 
 const Starrating = () => {
         const [rating, setRating] = useState(0); // La note cliquée et sauvegardée
