@@ -1,6 +1,12 @@
-const URLS = {
-    POST_REGISTER : '/game/user/add',
-    POST_LOGIN : '/game/user/login'
-}
+import axios from 'axios';
 
-export default URLS
+// On récupère l'URL de base depuis les variables d'environnement
+const baseURL = import.meta.env.VITE_API_URL;
+
+// On crée une instance d'axios avec la configuration de base
+const api = axios.create({
+    baseURL: baseURL,
+    withCredentials: true // On applique cette option à TOUTES les requêtes
+});
+
+export default api;

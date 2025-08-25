@@ -1,7 +1,7 @@
 // Dans Histoire.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router';
-import axios from 'axios';
+import api from '../utils/constants/Api';
 import './css/histoire.scss';
 
 const Histoire = () => {
@@ -12,7 +12,7 @@ const Histoire = () => {
     const fetchConsoleDetails = async () => {
         try {
             // ASSUREZ-VOUS QUE CE SONT BIEN DES BACKTICKS ``
-            const response = await axios.get(`http://localhost:8000/game/console/get/${id}`);
+            const response = await api.get(`${URLS.GET_CONSOLE_BY_ID}/${id}`)
             
             if (response.status === 200) {
                 setConsoleDetails(response.data);

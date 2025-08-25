@@ -4,9 +4,8 @@ import './css/Acceuil.css'
 import './css/mobile.css'
 import './css/tablette.css'
 import { Link } from 'react-router'
-import axios from 'axios'
 import { Context } from '../utils/context/Context'  
-
+import api from '../utils/constants/Api'
 const Acceuil = () => {
   const color =()=>
   { 
@@ -24,7 +23,7 @@ const Acceuil = () => {
   useEffect(() =>{
     const fetchdetail = async() =>{
       try{
-          const {data , status} = await axios.get('http://localhost:8000/game/jeux/all')
+          const {data , status} = await api.get(`${URLS.GET_ALL_GAMES}`)
 
           if(status === 200) setDetail(data)
             console.log(data);
@@ -44,7 +43,7 @@ const Acceuil = () => {
   useEffect(() =>{
     const fetcharticle = async() =>{
       try{
-          const {data , status} = await axios.get('http://localhost:8000/game/console/all')
+          const {data , status} = await api.get(`${URLS.GET_ALL_CONSOLE}`)
 
           if(status === 200) setArticle(data)
             console.log(data);

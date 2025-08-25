@@ -2,9 +2,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './css/detail.scss';
 import { Link, useParams } from 'react-router';
-import axios from 'axios';
 import Comments from './Comments';
 import { Context } from '../utils/context/Context';
+import api from '../../../utils/constants/Api';
+import URLS from '../../../utils/constants/URLS.JS';
 
 const Detail = () => {
     const { id } = useParams();
@@ -14,7 +15,7 @@ const Detail = () => {
     useEffect(() => {
         const fetchDetail = async () => {
             try {
-                const { data, status } = await axios.get(`http://localhost:8000/game/jeux/get/${id}`);
+                const { data, status } = await api.get(`${URLS.GET_GAME_BY_ID}/${id}`)
                 if (status === 200) {
                     setDetails(data);
                 }
@@ -25,12 +26,11 @@ const Detail = () => {
         fetchDetail();
     }, [id]); // Se redéclenche si l'ID du jeu change
 
-    // Si les détails ne sont pas encore chargés, on affiche un message
+  
     if (!details) {
         return <div className="loading-container">Chargement des détails du jeu...</div>;
     }
 
-    // On prépare les données pour la sidebar pour un affichage plus propre
     const gameCharacteristics = [
         { label: 'Développeur', value: details.brand },
         { label: 'Franchise', value: details.franchise },

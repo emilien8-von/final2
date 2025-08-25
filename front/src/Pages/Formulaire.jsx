@@ -1,4 +1,4 @@
-import axios from 'axios'
+import api from '../utils/constants/Api'
 import './css/Formulaire.css'
 import { Link, useNavigate } from 'react-router'
 import URLS from '../utils/constants/Api'
@@ -118,7 +118,7 @@ const Formulaire = () => {
                event.preventDefault()
               }
               else{ 
-              await axios.post(`http://localhost:8000/game/user/add`,inscrit)
+              await api.post(`${URLS.POST_REGISTER}`,inscrit)
                alert("Votre inscripion a bien été prise en compte un mail vous sera envoyés")
                navigate(`/`)
              }

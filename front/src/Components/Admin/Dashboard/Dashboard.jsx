@@ -3,6 +3,8 @@ import './css/Dashboard.scss'
 import { useState ,useContext,useEffect} from 'react';
 import { Context } from '../../../utils/context/Context';
 import axios from 'axios';
+import api from '../../../utils/constants/Api';
+import URLS from '../../../utils/constants/URLS.JS';
 
 const Dashboard = () => {
      const { auth } = useContext(Context);
@@ -16,9 +18,8 @@ const Dashboard = () => {
             try {
                 // On utilise Promise.all pour lancer les requêtes en parallèle
                 const [statsResponse, recentGamesResponse] = await Promise.all([
-                   axios.get('http://localhost:8000/game/user/stats', { withCredentials: true }),
-                // ON AJOUTE withCredentials: true
-                axios.get('http://localhost:8000/game/jeux/recent', { withCredentials: true })
+                   api.get(URLS.GET_USER_STATS),
+                   api.get(URLS.GET_RECENT_GAMES)
             ]);
                 
                 setStats(statsResponse.data);
