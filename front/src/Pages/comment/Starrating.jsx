@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
+import './css/star.scss'
 
-
-const Star = () => {
-    const [rating, setRating] = useState(0); // La note cliquée et sauvegardée
+const Starrating = () => {
+        const [rating, setRating] = useState(0); // La note cliquée et sauvegardée
     const [hoverRating, setHoverRating] = useState(0); // La note en cours de survol
 
     const stars = [1, 2, 3, 4, 5];
@@ -28,9 +28,8 @@ const Star = () => {
         setRating(newRating);
         onRatingChange(newRating); // On envoie la note au composant parent
     };
-
   return (
-    <div className="star-rating-container" onMouseLeave={handleMouseLeave}>
+     <div className="star-rating-container" onMouseLeave={handleMouseLeave}>
             {stars.map(starIndex => {
                 const displayRating = hoverRating > 0 ? hoverRating : rating;
                 let iconClass = "fa-regular fa-star"; // Étoile vide par défaut
@@ -54,4 +53,4 @@ const Star = () => {
   )
 }
 
-export default Star
+export default Starrating

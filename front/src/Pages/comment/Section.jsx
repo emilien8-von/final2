@@ -3,7 +3,7 @@ import { Context } from '../../utils/context/Context';
 import INSTANCE from '../../utils/services/instance';
 import URLS from '../../utils/constants/URLS';
 import CommentList from './Commentlist';
-import CommentForm from './CommentForm';
+import Commentform from './Commentform';
 import './css/comment.scss'
 const Section = () => {
     const { auth } = useContext(Context);
@@ -44,7 +44,7 @@ const Section = () => {
             )}
             
             {/* Le formulaire est affiché et reçoit la fonction pour se mettre à jour */}
-            <CommentForm gameId={gameId} onCommentPosted={handleNewComment} />
+            <Commentform gameId={gameId} onCommentPosted={handleNewComment} />
 
             <hr className='form-separator' />
             
