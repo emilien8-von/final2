@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './css/detail.scss';
 import { Link, useParams } from 'react-router';
-import Comments from './Comments';
+import Section from './comment/Section';
 import { Context } from '../utils/context/Context';
 import URLS from '../utils/constants/URLS';
 import INSTANCE from '../utils/services/instance';
@@ -77,7 +77,7 @@ const Detail = () => {
                     <hr className="separator" />
 
                     <h2>Note et commentaires</h2>
-                    <Comments gameId={id} />
+                    <Section gameId={id} />
                 </main>
 
                 {/* --- COLONNE LATÉRALE (DROITE) --- */}

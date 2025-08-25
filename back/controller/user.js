@@ -79,7 +79,7 @@ const Luser = async (req, res, next) => {
         res.cookie('access_token', token, {
             httpOnly: true, // Le cookie n'est pas accessible via JavaScript côté client (contrer les attaques XSS)
              secure: true, // À activer quand on est en ligne (HTTPS)
-             sameSite: 'strict' // Autre mesure de sécurité pour évité (CSRF)
+             sameSite: 'none' // Autre mesure de sécurité pour évité (CSRF)
         }).status(200).json(userInfo); // Pour envoiyer les données de l'utilisateur
 
     } catch (error) {
