@@ -5,7 +5,7 @@ import './css/mobile.css'
 import './css/tablette.css'
 import { Link } from 'react-router'
 import { Context } from '../utils/context/Context'
-import URLS from '../utils/constants/URLS.js'
+import URLS from '../utils/constants/URLS';
 import INSTANCE from '../utils/services/instance'
 const Acceuil = () => {
   const color =()=>

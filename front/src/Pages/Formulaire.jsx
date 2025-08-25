@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router'
-import URLS from '../utils/constants/INSTANCE'
+import URLS from '../utils/constants/URLS';
 //import { REGISITER } from '../utils/configs/Form'
 //import erreur from '../../../back/middlewares/erreur'
 import React, { useState } from 'react'

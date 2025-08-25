@@ -3,7 +3,7 @@ import { useEffect,useState } from 'react'
 import './css/game.scss'
 import { Link } from 'react-router'
 import INSTANCE from '../utils/services/instance'
-import URLS from '../utils/constants/URLS.js'
+import URLS from '../utils/constants/URLS';
 
 const Game = () => {
      const [games, setGames] = useState([]);
