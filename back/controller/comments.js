@@ -1,35 +1,26 @@
 const Comment = require('../models/comments')
 const erreur = require('../middlewares/erreur')
 const pseudo = require("../models/pseudo")
-const { trusted } = require('mongoose')
 
-const Pcomment = async(req,res) =>{
-    try
-    {
-       const reponse = await Comment.create(req.body)
-       res.status(201).json(reponse)
-    } catch(error){
-        console.log(error.message);
-        
-    }
-}
-
-const Gcomment = async(req,res) =>{
-      try {
-        // On récupère l'ID du jeu depuis les paramètres de l'URL
-        const { gameId } = req.params;
-
-        // On cherche uniquement les commentaires qui correspondent à cet ID de jeu
-        const reponse = await Comment.find({ game: gameId })
-                                      .populate('user', 'pseudo avatar') // Peuple avec le pseudo et l'avatar
-                                      .sort({ createdAt: -1 }); // Trie du plus récent au plus ancien
-
-        // Si reponse est vide, `find` renvoie un tableau vide [], ce qui est parfait !
-        res.status(200).json(reponse);
-
+const Pcomment = async (req, res, next) => {
+    try {
+        const newComment = await Comment.create(req.body);
+        const populatedComment = await Comment.findById(newComment._id).populate('user', 'pseudo avatar');
+        res.status(201).json(populatedComment);
     } catch (error) {
-        console.log(error.message);
-        res.status(500).json({ message: "Erreur serveur" });
+        next(erreur(500, error.message));
+    }
+};
+
+const Gcomment = async (req, res, next) => {
+    try {
+        const { gameId } = req.params;
+        const comments = await Comment.find({ game: gameId })
+                                      .populate('user', 'pseudo avatar')
+                                      .sort({ createdAt: -1 });
+        res.status(200).json(comments);
+    } catch (error) {
+        next(erreur(500, error.message));
     }
 };
 

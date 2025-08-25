@@ -5,16 +5,18 @@ import URLS from '../../utils/constants/URLS';
 import CommentList from './Commentlist';
 import Commentform from './Commentform';
 import './css/comment.scss'
-const Section = () => {
+const Section = ({ gameId }) => {
     const { auth } = useContext(Context);
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchComments = async () => {
+            // LA CORRECTION N°2 : On utilise "gameId" au lieu de "id"
             if (!gameId) return;
             try {
                 setLoading(true);
+                // On utilise "gameId" pour l'appel API
                 const response = await INSTANCE.get(`${URLS.GET_COMMENT_BY_GAME_ID}/${gameId}`);
                 if (Array.isArray(response.data)) {
                     setComments(response.data);
@@ -27,12 +29,11 @@ const Section = () => {
         };
 
         fetchComments();
-    }, [gameId]);
+    }, [gameId]); // On utilise "gameId" comme dépendance
 
-    // Cette fonction est passée au formulaire pour mettre à jour la liste en temps réel
     const handleNewComment = (newComment) => {
         setComments(prevComments => [newComment, ...prevComments]);
-    };
+    }
 
   return (
        <div className="comment-section">
@@ -43,10 +44,9 @@ const Section = () => {
                 </div>
             )}
             
-            {/* Le formulaire est affiché et reçoit la fonction pour se mettre à jour */}
-<Commentform gameId={gameId} onCommentPosted={handleNewComment} />
-            <hr className='form-separator' />
+            <Commentform gameId={gameId} onCommentPosted={handleNewComment} />
             
+            <hr className='form-separator' />
             {/* La liste des commentaires est affichée */}
             {loading ? <p>Chargement des commentaires...</p> : <CommentList comments={comments} />}
         </div>
