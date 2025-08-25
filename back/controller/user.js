@@ -4,7 +4,7 @@ const jwr = require('jsonwebtoken')
 const ENV  = require('../config/env')
 const erreur = require('../middlewares/erreur')
 const cookieParser = require('cookie-parser')
-const { sendVerificationEmail, createResetCodeEmailHTML } = require('../services/mail')
+const { sendEmail, sendVerificationEmail, createResetCodeEmailHTML } = require('../services/mail')
 const Puser = async(req,res) =>{
     try{
         const passwordH = await bcrypt.hash(req.body.password,10)
