@@ -4,7 +4,7 @@ import './css/detail.scss';
 import { Link, useParams } from 'react-router';
 import Comments from './Comments';
 import { Context } from '../utils/context/Context';
-import api from '../../../utils/constants/Api';
+import API from '../utils/constants/Api';
 import URLS from '../../../utils/constants/URLS.JS';
 
 const Detail = () => {
@@ -15,7 +15,7 @@ const Detail = () => {
     useEffect(() => {
         const fetchDetail = async () => {
             try {
-                const { data, status } = await api.get(`${URLS.GET_GAME_BY_ID}/${id}`)
+                const { data, status } = await API.get(`${URLS.GET_GAME_BY_ID}/${id}`)
                 if (status === 200) {
                     setDetails(data);
                 }

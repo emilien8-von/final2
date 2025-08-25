@@ -1,10 +1,9 @@
-import api from '../utils/constants/Api'
-import './css/Formulaire.css'
 import { Link, useNavigate } from 'react-router'
 import URLS from '../utils/constants/Api'
 //import { REGISITER } from '../utils/configs/Form'
 //import erreur from '../../../back/middlewares/erreur'
 import React, { useState } from 'react'
+import API from '../utils/constants/Api'
 
 
 const Formulaire = () => {
@@ -118,7 +117,7 @@ const Formulaire = () => {
                event.preventDefault()
               }
               else{ 
-              await api.post(`${URLS.POST_REGISTER}`,inscrit)
+              await API.post(URLS.POST_REGISTER, inscrit)
                alert("Votre inscripion a bien été prise en compte un mail vous sera envoyés")
                navigate(`/`)
              }

@@ -4,9 +4,9 @@ import axios from 'axios';
 const baseURL = import.meta.env.VITE_API_URL;
 
 // On crée une instance d'axios avec la configuration de base
-const api = axios.create({
+const API = axios.create({
     baseURL: baseURL,
     withCredentials: true // On applique cette option à TOUTES les requêtes
 });
 
-export default api;
+export default API;
