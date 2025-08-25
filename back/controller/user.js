@@ -4,7 +4,7 @@ const jwr = require('jsonwebtoken')
 const ENV  = require('../config/env')
 const erreur = require('../middlewares/erreur')
 const cookieParser = require('cookie-parser')
-const { sendEmail, createResetCodeEmailHTML } = require('../services/mail')
+const { sendVerificationEmail, createResetCodeEmailHTML } = require('../services/mail')
 const Puser = async(req,res) =>{
     try{
         const passwordH = await bcrypt.hash(req.body.password,10)
@@ -17,7 +17,7 @@ const Puser = async(req,res) =>{
             ENV.TOKEN,
             {expiresIn: "5m"}
         )
-        await sendEmail(reponse,token)
+        await sendVerificationEmail(reponse.email, reponse.pseudo, token);
         res.status(201).json({message : 'users created!, un message vous sera envoyés',reponse})
     }
     catch(error){

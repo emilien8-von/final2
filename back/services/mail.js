@@ -32,6 +32,18 @@ const sendEmail = async (to, subject, html) => {
         throw new Error("Erreur lors de l'envoi de l'email.");
     }
 };
+const sendVerificationEmail = async (userEmail, userPseudo, verificationToken) => {
+    const verificationLink = `${ENV.PORT_APPLI_FRONT}/verify/${verificationToken}`;
+    
+    const emailHTML = `
+        <h3>Bonjour ${userPseudo},</h3>
+        <p>Merci pour votre inscription ! Veuillez cliquer sur le lien ci-dessous pour vérifier votre adresse email :</p>
+        <a href="${verificationLink}">Vérifier mon compte</a>
+    `;
+
+    // On utilise la fonction générique sendEmail que nous avions créée
+    await sendEmail(userEmail, "Validez votre inscription sur Alpha Gaming", emailHTML);
+};
 
 // Fonction spécifique pour créer le template HTML du code de réinitialisation
 const createResetCodeEmailHTML = (pseudo, resetCode) => {
@@ -51,4 +63,4 @@ const createResetCodeEmailHTML = (pseudo, resetCode) => {
     `;
 };
 
-module.exports = { sendEmail, createResetCodeEmailHTML };
+module.exports = { sendEmail,sendVerificationEmail, createResetCodeEmailHTML };

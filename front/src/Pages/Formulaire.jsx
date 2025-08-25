@@ -142,16 +142,39 @@ const Formulaire = () => {
 
         <div className="input-wrapper">
   <img src="/player.svg" alt="player icon" className="input-icon" />
-  <input type="text" id='pseudo' name="pseudo" placeholder="Ton pseudo*(ex: joueur1)" /> 
-</div>
+   <input 
+                        type="text" 
+                        id='pseudo' 
+                        name="pseudo" 
+                        placeholder="Ton pseudo*(ex: joueur1)"
+                        value={inscrit.pseudo} 
+                        onChange={handleChange} 
+                    /> 
+                </div>
 
-        <div className="input-wrapper">
-          <img src="/letter.svg" alt="mail icon" className="input-icon" />
-          <input type="email" id='mail' name="email" placeholder=" Adress mail (ex: joueur1@gmail.com)" /> 
-        </div>
-         <div className="input-wrapper">
-           <img src="/lock.svg" alt="lock icon" className="input-icon" />
-           <input onInput={check} type="password" id="passwi" placeholder="Ton mot de passe (ex: *azerty*1)" />   
+                <div className="input-wrapper">
+                    <img src="/letter.svg" alt="mail icon" className="input-icon" />
+                    <input 
+                        type="email" 
+                        id='mail' 
+                        name="email" 
+                        placeholder="Adress mail (ex: joueur1@gmail.com)"
+                        value={inscrit.email}
+                        onChange={handleChange}
+                    /> 
+                </div>
+
+                <div className="input-wrapper">
+                    <img src="/lock.svg" alt="lock icon" className="input-icon" />
+                    <input 
+                        onInput={check} // On peut garder ça pour les indicateurs visuels
+                        type="password" 
+                        id="passwi"
+                        name="password" // On ajoute le "name" pour le handleChange
+                        placeholder="Ton mot de passe (ex: *azerty*1)"
+                        value={inscrit.password}
+                        onChange={handleChange}
+                    />   
            <img onClick={pass} src="/eye.svg" alt="eye icon" id="img" className="input-icon eye-icon" />
          </div>
                      
