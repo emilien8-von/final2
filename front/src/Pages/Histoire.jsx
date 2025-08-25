@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import './css/histoire.scss';
 import API from '../utils/constants/Api';
+import URLS from '../utils/constants/URLS.JS';
 const Histoire = () => {
     const { id } = useParams();
     const [consoleDetails, setConsoleDetails] = useState(null);

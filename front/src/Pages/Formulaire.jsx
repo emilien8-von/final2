@@ -5,7 +5,6 @@ import URLS from '../utils/constants/Api'
 import React, { useState } from 'react'
 import API from '../utils/constants/Api'
 
-
 const Formulaire = () => {
     const [inscrit , setInscrit] = useState({
       pseudo : "",

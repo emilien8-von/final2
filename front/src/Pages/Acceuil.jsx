@@ -4,8 +4,9 @@ import './css/Acceuil.css'
 import './css/mobile.css'
 import './css/tablette.css'
 import { Link } from 'react-router'
-import { Context } from '../utils/context/Context'  
-import api from '../utils/constants/Api'
+import { Context } from '../utils/context/Context'
+import API from '../utils/constants/Api'  
+import URLS from '../utils/constants/URLS.JS'
 const Acceuil = () => {
   const color =()=>
   { 
@@ -43,7 +44,7 @@ const Acceuil = () => {
   useEffect(() =>{
     const fetcharticle = async() =>{
       try{
-          const {data , status} = await api.get(`${URLS.GET_ALL_CONSOLE}`)
+          const {data , status} = await API.get(`${URLS.GET_ALL_CONSOLE}`)
 
           if(status === 200) setArticle(data)
             console.log(data);
