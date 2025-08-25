@@ -14,29 +14,31 @@ const Forget = () => {
 
     // Étape 1 : Demander le code
     const handleEmailSubmit = async (e) => {
-        e.preventDefault();
-        setError('');
-        try {
-            await INSTANCE.get(`${URLS.FORGOT_PASSWORD}`, { email });
-            setStep(2); // On passe à l'étape suivante
-            setMessage(`Un code de vérification a été envoyé à ${email}.`);
-        } catch (err) {
-            setError(err.response?.data?.message || 'Une erreur est survenue.');
-        }
-    };
+    e.preventDefault();
+    setError('');
+    try {
+        // LA CORRECTION : On utilise .post() au lieu de .get()
+        // Le deuxième argument de .post() est le corps (body) de la requête.
+        const response = await INSTANCE.post(URLS.FORGOT_PASSWORD, { email });
 
+        setStep(2);
+        setMessage(`Un code de vérification a été envoyé à ${email}.`);
+    } catch (err) {
+        setError(err.response?.data?.message || 'Une erreur est survenue.');
+    }
+};
 const handleCodeSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
-        // LA CORRECTION EST ICI : Assurez-vous que c'est bien axios.post
-        const response = await INSTANCE.get(`${URLS.VERIFY_RESET_CODE}`, { 
+        const response = await INSTANCE.post(URLS.VERIFY_RESET_CODE, { 
             email: email,
             code: code
         });
         
         const { resetToken } = response.data;
         navigate(`/reset-password/${resetToken}`);
+
 
     } catch (err) {
         setError(err.response?.data?.message || 'Code invalide ou expiré. Veuillez réessayer.');
