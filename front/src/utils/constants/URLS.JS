@@ -17,7 +17,11 @@ const URLS = () => {
     GET_RECENT_GAMES: '/game/jeux/recent',
     GET_GAME_BY_ID: '/game/jeux/get',
     GET_ALL_CONSOLE : '/game/console/all',
-    GET_CONSOLE_BY_ID : '/game/console/get'
+    GET_CONSOLE_BY_ID : '/game/console/get',
+    GET_EMULATEUR_BY_ID: "/game/emulateur/get",
+    GET_EMULATEUR_ALL: "/game/emuateur/all",
+    GET_COMMENT_BY_ID: '/game/comment/get',
+    POST_COMMENT: '/game/comment/add'
   }
 }
 

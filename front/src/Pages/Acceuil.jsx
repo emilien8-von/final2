@@ -24,7 +24,7 @@ const Acceuil = () => {
   useEffect(() =>{
     const fetchdetail = async() =>{
       try{
-          const {data , status} = await api.get(`${URLS.GET_ALL_GAMES}`)
+          const {data , status} = await API.get(`${URLS.GET_ALL_GAMES}`)
 
           if(status === 200) setDetail(data)
             console.log(data);

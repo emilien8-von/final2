@@ -1,9 +1,9 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
-import axios from 'axios'
 import './css/console.scss'
 import { Link } from 'react-router'
-
+import API from '../utils/constants/Api'
+import URLS from '../utils/constants/URLS.JS'
 
 const Console = () => {
   const [consoles, setConsoles] = useState([]);
@@ -12,7 +12,7 @@ const Console = () => {
       useEffect(() => {
           const fetchGames = async () => {
               try {
-                  const response = await axios.get('http://localhost:8000/game/console/all');
+                  const response = await API.get(`${URLS.GET_ALL_CONSOLE}`)
                   setConsoles(response.data);
               } catch (error) {
                   console.error("Erreur lors de la récupération des consoles:", error);

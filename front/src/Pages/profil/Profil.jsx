@@ -1,9 +1,11 @@
 import React from 'react'
-import axios from 'axios';
 import { Link } from 'react-router';
 import './profil.scss'
 import { Context } from '../../utils/context/Context';
 import { useContext,useState,useEffect } from 'react';
+import API from '../../utils/constants/Api';
+import URLS from '../../utils/constants/URLS.JS';
+
 const Profil = () => {
    const { auth, setAuth } = useContext(Context); 
     const [formData, setFormData] = useState({ pseudo: '', email: '', avatar: '' });
@@ -31,7 +33,7 @@ const Profil = () => {
    const handleInfoSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.put('http://localhost:8000/game/user/profile/update', formData, {
+        const response = await API.get(`${URLS.UPDATE_PROFILE}` , formData, {
             withCredentials: true 
         });
 
@@ -58,7 +60,7 @@ const Profil = () => {
     }
     try {
         // L'URL que vous appelez est probablement '/game/user/profile/update-password'
-        await axios.put(`http://localhost:8000/game/user/update/${auth._id}`, {
+        await API.get(`${URLS.UPDATE_PASSWORD}/${id}`, {
             currentPassword: passwordData.currentPassword,
             newPassword: passwordData.newPassword
         }, {

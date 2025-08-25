@@ -1,9 +1,9 @@
 // Dans Reset.jsx
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import axios from 'axios';
 import './css/reset.scss';
-
+import API from '../../utils/constants/Api';
+import URLS from '../../utils/constants/URLS.JS';
 const Reset = () => {
     const { token } = useParams();
     const navigate = useNavigate();
@@ -62,7 +62,7 @@ const Reset = () => {
         
         
         try {
-            const response = await axios.post('http://localhost:8000/game/user/reset-password', {
+            const response = await API.get(`${URLS.RESET_PASSWORD}`, {
                 resetToken: token,
                 newPassword: password
             });

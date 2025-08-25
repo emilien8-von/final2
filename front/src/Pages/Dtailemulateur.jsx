@@ -2,7 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router';
-import axios from 'axios';
+import API from '../../utils/constants/Api';
+import URLS from '../../utils/constants/URLS.JS';
 
 const Dtailemulateur = () => {
   const { id } = useParams();
@@ -12,7 +13,7 @@ const Dtailemulateur = () => {
         const fetchEmulatorDetails = async () => {
             try {
                 // On appelle la route que nous avons définie pour les émulateurs
-                const { data, status } = await axios.get(`http://localhost:8000/game/emulateur/get/${id}`);
+                const { data, status } = await API.get(`${URLS.GET_EMULATEUR_BY_ID}/${id}`)
                 if (status === 200) {
                     setEmulatorDetails(data);
                 }

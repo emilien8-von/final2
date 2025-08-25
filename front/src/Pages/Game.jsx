@@ -1,9 +1,9 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
-import axios from 'axios'
 import './css/game.scss'
 import { Link } from 'react-router'
-
+import API from '../utils/constants/Api'
+import URLS from '../utils/constants/URLS.JS'
 
 const Game = () => {
      const [games, setGames] = useState([]);
@@ -13,7 +13,7 @@ const Game = () => {
         const fetchGames = async () => {
             try {
                 // On appelle la route du backend qui renvoie tous les jeux
-                const response = await axios.get('http://localhost:8000/game/jeux/all');
+                const response = await API.get(`${URLS.GET_ALL_GAMES}`)
                 setGames(response.data);
             } catch (error) {
                 console.error("Erreur lors de la récupération des jeux:", error);

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route,Routes } from 'react-router'
-import { Axios } from 'axios'
 /**Components */
 import Layout from './Components/Layout'
 import Mention from './Components/Templates/Mention'

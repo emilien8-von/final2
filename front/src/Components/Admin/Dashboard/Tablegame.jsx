@@ -1,7 +1,8 @@
 import React from 'react'
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './css/tablegame.scss'
+import API from '../../../utils/constants/Api';
+import URLS from '../../../utils/constants/URLS.JS';
 const Tablegame = () => {
   const [games, setGames] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -9,7 +10,7 @@ const Tablegame = () => {
     useEffect(() => {
         const fetchAllGames = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/game/jeux/all', { withCredentials: true });
+                const response = await API.get(`${URLS.GET_ALL_GAMES}`)
                 setGames(response.data);
             } catch (error) {
                 console.error("Erreur lors de la récupération de tous les jeux:", error);

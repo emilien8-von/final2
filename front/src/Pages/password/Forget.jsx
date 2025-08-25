@@ -1,8 +1,9 @@
 import React from 'react'
-import axios from 'axios'
 import './css/forgot.scss'
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import API from '../../utils/constants/Api';
+import URLS from '../../utils/constants/URLS.JS';
 
 const Forget = () => {
     const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ const Forget = () => {
         e.preventDefault();
         setError('');
         try {
-            await axios.post('http://localhost:8000/game/user/forgot-password', { email });
+            await API.get(`${URLS.FORGOT_PASSWORD}`, { email });
             setStep(2); // On passe à l'étape suivante
             setMessage(`Un code de vérification a été envoyé à ${email}.`);
         } catch (err) {
@@ -30,7 +31,7 @@ const handleCodeSubmit = async (e) => {
     setError('');
     try {
         // LA CORRECTION EST ICI : Assurez-vous que c'est bien axios.post
-        const response = await axios.post('http://localhost:8000/game/user/reset', { 
+        const response = await API.get(`${URLS.VERIFY_RESET_CODE}`, { 
             email: email,
             code: code
         });

@@ -1,7 +1,8 @@
 // Dans Comments.jsx
 import React, { useContext, useState, useEffect } from 'react';
 import { Context } from '../utils/context/Context';
-import axios from 'axios';
+import API from '../../utils/constants/Api';
+import URLS from '../../utils/constants/URLS.JS';
 import CommentForm from './comment/Commentform'; 
 import CommentList from './comment/Commentlist'; 
 import Star from './comment/Star';
@@ -18,7 +19,7 @@ const Comments = ({ gameId }) => { // Renommé en gameId pour plus de clarté
             try {
                 setLoading(true);
                 // On utilise la bonne route pour récupérer les commentaires par jeu
-                const response = await axios.get(`http://localhost:8000/game/comment/game/${gameId}`);
+                const response = await API.get(`${URLS.GET_COMMENT_BY_ID}/${id}`);
                 if (Array.isArray(response.data)) {
                     setComments(response.data);
                 }

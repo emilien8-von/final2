@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
-import axios from 'axios'
+import API from '../../utils/constants/Api';
+import URLS from '../../utils/constants/URLS.JS';
 import './css/emulator.scss'
 import { Link } from 'react-router'
 
@@ -12,7 +13,7 @@ const Emulator = () => {
         useEffect(() => {
             const fetchGames = async () => {
                 try {
-                    const response = await axios.get('http://localhost:8000/game/emulateur/all');
+                    const response = await API.get(`${URLS.GET_EMULATEUR_ALL}`)
                     setEmulator(response.data);
                 } catch (error) {
                     console.error("Erreur lors de la récupération des consoles:", error);
@@ -29,7 +30,7 @@ const Emulator = () => {
         }
   return (
      <div className="list-page-container">
-                <h1>Liste des Consoles</h1>
+                <h1>Liste des Emulateur</h1>
                 <div className="image-grid">
                     {emulator.map(emulator => (
                         <Link to={`/emulation/${emulator._id}`} key={emulator._id} className="grid-item-link">

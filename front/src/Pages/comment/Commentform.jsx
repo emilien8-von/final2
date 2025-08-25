@@ -1,8 +1,9 @@
 // Dans CommentForm.jsx
 import React, { useState, useContext } from 'react';
 import { Context } from '../../utils/context/Context';
-import axios from 'axios';
 import StarRating from './Star'; 
+import API from '../../utils/constants/Api';
+import URLS from '../../utils/constants/URLS.JS';
 
 const CommentForm = ({ gameId, onCommentPosted }) => {
     const { auth } = useContext(Context);
@@ -22,7 +23,7 @@ const CommentForm = ({ gameId, onCommentPosted }) => {
         };
 
         try {
-            const response = await axios.post('http://localhost:8000/game/comment/add', newComment);
+            const response = await API.post(`${URLS.POST_COMMENT}`)
             if (response.status === 201) {
                 onCommentPosted(response.data);
                 setCommentText('');
