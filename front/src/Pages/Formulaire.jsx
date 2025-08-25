@@ -1,9 +1,11 @@
-import { Link, useNavigate } from 'react-router'
-import URLS from '../utils/constants/URLS';
+
 //import { REGISITER } from '../utils/configs/Form'
 //import erreur from '../../../back/middlewares/erreur'
 import React, { useState } from 'react'
 import INSTANCE from '../utils/services/instance'
+import { Link, useNavigate } from 'react-router'
+import URLS from '../utils/constants/URLS';
+import './css/Formulaire.css'
 const Formulaire = () => {
     const [inscrit , setInscrit] = useState({
       pseudo : "",

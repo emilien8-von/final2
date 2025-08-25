@@ -7,55 +7,34 @@
 }
 
 .form-separator {
-  width: 100%;          /* Prend toute la largeur du conteneur */
-  border: none;         /* Enlève la bordure par défaut */
-  height: 1px;         
-  background-color: snow; 
-  
-  /* Ajoute de l'espace vertical avant et après la ligne */
-    margin: 25px 0; 
-}
-
-.login-page-container {
-   display: flex;
-  align-items: center;     /* Aligne verticalement les deux colonnes au centre */
-  justify-content: center; /* Centre l'ensemble si l'espace n'est pas rempli */
-  
-  /* LA SOLUTION POUR L'ESPACEMENT : */
-    gap: 15%;
     width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 2px 1rem;
-  box-sizing: border-box;
+    border: none;
+    height: 1px;
+    background-color: #4a2c7a;
+    margin: 25px 0;
 }
-
-.login-image-section {
-  text-align: center; 
-  flex: 1 1 50%; 
+.login-page-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-
+    flex-direction: column; /* Par défaut : une seule colonne sur mobile */
+    gap: 3rem;
+    width: 100%;
+    max-width: 500px;
 }
 
+.login-image-section,
 .login-form-section {
- flex: 1 1 50%; 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-   max-width: 500px; 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
-
 /* Style de l'image */
 .image {
     width: 100%;
+    max-width: 400px;
     height: auto;
-    max-width: 600px;
-    object-fit: cover;
-    border-radius: 15px; 
-
+    border-radius: 15px;
 }
 
 .login-wrapper input:-webkit-autofill,
@@ -69,26 +48,27 @@
 
 
 
-.p{
+.p {
     text-transform: uppercase;
-    font-size: larger;
-    margin-left: 2%;
+    font-size: 1.2rem;
     margin-top: 1.5rem;
 }
-.span{
+
+.span {
     color: #AE69FF;
 }
 
-.button{
-    
-    border-radius: 18px;
-    background-image : linear-gradient( to right ,#501794,#3E70A1);
-    color : white;
-    width: 525px;
-    height : 62.2px;
-    margin-top: 2%;
-    font-size: large;
+.button {
+    width: 100%;
+    height: 60px;
+    border-radius: 12px;
+    background-image: linear-gradient(to right, #501794, #3E70A1);
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
+
 .button:hover{
      color : #FFBD00;
      opacity: 0.9;
@@ -123,46 +103,45 @@
 }
 
 .login-passw {
-  padding-right: 60px; 
+    padding-right: 55px;
 }
 
-
-.login-input-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+.input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #A4A4A4;
 }
+
 
 /* Icônes de gauche */
-.login-input-wrapper i.login-input-icon {
-  left: 20px;
-  font-size: 22px;
-  color: #A4A4A4;
+.login-wrapper i.input-icon {
+    left: 20px;
+    font-size: 1.2rem;
 }
 
-/* Icône de droite (l'œil) */
-.login-input-wrapper .login-eye-icon {
-  right: 20px;
-  width: 24px;
-  cursor: pointer;
+.login-wrapper .eye-icon {
+    right: 20px;
+    width: 24px;
+    cursor: pointer;
 }
 
 
 /*RESPONSIVE*/
 @media (max-width : 1024px) {
-   .login-page-container {
-    flex-direction: column; 
-    gap: 3rem; 
-    padding: 2rem 1rem;
-  }
+    .login-page-container {
+        flex-direction: row; /* ON REPASSE EN DEUX COLONNES */
+        max-width: 1200px; /* On augmente la largeur max */
+        gap: 6rem; /* On augmente l'espace entre les colonnes */
+    }
 
-  /* On s'assure que les sections prennent toute la largeur disponible */
-  .login-image-section,
-  .login-form-section {
-    max-width: 525px;
-    width: 100%;
-  }
+    /* On s'assure que les deux colonnes prennent la même place */
+    .login-image-section,
+    .login-form-section {
+        flex: 1;
+    }
 
+  
   /* On peut réduire la taille de l'image sur mobile si besoin */
   .image {
     max-width: 400px;

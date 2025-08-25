@@ -5,7 +5,7 @@ import axios from "axios";
 // En local, Vite prendra la valeur de .env.local
 // Sur Vercel, Vite prendra la valeur que vous avez configurée dans les settings
 const INSTANCE_URL = import.meta.env.VITE_INSTANCE_URL;
-
+console.log("URL de l'API utilisée :", API_URL); 
 const INSTANCE = axios.create({
     // LA CORRECTION N°2 : On corrige la faute de frappe "baseUrl" -> "baseURL"
     baseURL: INSTANCE_URL, 

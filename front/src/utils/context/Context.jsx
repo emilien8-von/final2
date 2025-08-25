@@ -35,7 +35,7 @@ export const Provider = ({ children }) => {
     const login = async (dbuser) => {
         try {
             setLoading(true);
-            const { data, status } = await INSTANCE.post(`${URLS.POST_LOGIN}`, dbuser)
+            const { data, status } = await INSTANCE.post(URLS.POST_LOGIN, dbuser);
             
             if (status === 200) {
                 // CORRECTION N°1 : On utilise "data" directement
