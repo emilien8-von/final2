@@ -4,7 +4,7 @@ import './css/detail.scss';
 import { Link, useParams } from 'react-router';
 import Comments from './Comments';
 import { Context } from '../utils/context/Context';
-import INSTANCE from "../services/instance";
+import INSTANCE from '../utils/services/instance'
 import URLS from '../../../utils/constants/URLS.JS';
 
 const Detail = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import React, { useState, useEffect } from 'react';
 import './css/tablegame.scss'
-import URLS from '../../../utils/constants/URLS.JS';
+import URLS from '../../../utils/constants/URLS.js';
 import INSTANCE from '../../../utils/services/instance';
 const Tablegame = () => {
   const [games, setGames] = useState([]);

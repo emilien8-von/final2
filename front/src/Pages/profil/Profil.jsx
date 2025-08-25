@@ -4,7 +4,7 @@ import './profil.scss'
 import { Context } from '../../utils/context/Context';
 import { useContext,useState,useEffect } from 'react';
 import INSTANCE from '../../utils/constants/INSTANCE';
-import URLS from '../../utils/constants/URLS.JS';
+import URLS from '../../utils/constants/URLS.js';
 
 const Profil = () => {
    const { auth, setAuth } = useContext(Context); 

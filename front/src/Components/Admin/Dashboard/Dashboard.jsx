@@ -2,7 +2,7 @@ import React from 'react'
 import './css/Dashboard.scss'
 import { useState ,useContext,useEffect} from 'react';
 import { Context } from '../../../utils/context/Context';
-import URLS from '../../../utils/constants/URLS.JS';
+import URLS from '../../../utils/constants/URLS.js';
 import INSTANCE from '../../../utils/services/instance';
 const Dashboard = () => {
      const { auth } = useContext(Context);

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router';
-import INSTANCE from "../services/instance";
+import INSTANCE from '../utils/services/instance'
 import URLS from '../../utils/constants/URLS.JS';
 
 const Dtailemulateur = () => {

@@ -1,7 +1,7 @@
 // Dans Comments.jsx
 import React, { useContext, useState, useEffect } from 'react';
 import { Context } from '../utils/context/Context';
-import INSTANCE from "../services/instance";
+import INSTANCE from '../utils/services/instance'
 import URLS from '../../utils/constants/URLS.JS';
 import CommentForm from './comment/Commentform'; 
 import CommentList from './comment/Commentlist'; 
