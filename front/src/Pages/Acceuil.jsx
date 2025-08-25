@@ -5,8 +5,8 @@ import './css/mobile.css'
 import './css/tablette.css'
 import { Link } from 'react-router'
 import { Context } from '../utils/context/Context'
-import API from '../utils/constants/Api'  
 import URLS from '../utils/constants/URLS.JS'
+import INSTANCE from '../utils/services/instance'
 const Acceuil = () => {
   const color =()=>
   { 
@@ -24,7 +24,7 @@ const Acceuil = () => {
   useEffect(() =>{
     const fetchdetail = async() =>{
       try{
-          const {data , status} = await API.get(`${URLS.GET_ALL_GAMES}`)
+          const {data , status} = await INSTANCE.get(`${URLS.GET_ALL_GAMES}`)
 
           if(status === 200) setDetail(data)
             console.log(data);
@@ -44,7 +44,7 @@ const Acceuil = () => {
   useEffect(() =>{
     const fetcharticle = async() =>{
       try{
-          const {data , status} = await API.get(`${URLS.GET_ALL_CONSOLE}`)
+          const {data , status} = await INSTANCE.get(`${URLS.GET_ALL_CONSOLE}`)
 
           if(status === 200) setArticle(data)
             console.log(data);

@@ -1,10 +1,9 @@
 import { Link, useNavigate } from 'react-router'
-import URLS from '../utils/constants/Api'
+import URLS from '../utils/constants/INSTANCE'
 //import { REGISITER } from '../utils/configs/Form'
 //import erreur from '../../../back/middlewares/erreur'
 import React, { useState } from 'react'
-import API from '../utils/constants/Api'
-
+import INSTANCE from '../utils/services/instance'
 const Formulaire = () => {
     const [inscrit , setInscrit] = useState({
       pseudo : "",
@@ -116,7 +115,7 @@ const Formulaire = () => {
                event.preventDefault()
               }
               else{ 
-              await API.post(URLS.POST_REGISTER, inscrit)
+              await INSTANCE.post(URLS.POST_REGISTER, inscrit)
                alert("Votre inscripion a bien été prise en compte un mail vous sera envoyés")
                navigate(`/`)
              }

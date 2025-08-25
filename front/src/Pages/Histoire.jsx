@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import './css/histoire.scss';
-import API from '../utils/constants/Api';
+import INSTANCE from '../utils/constants/INSTANCE';
 import URLS from '../utils/constants/URLS.JS';
 const Histoire = () => {
     const { id } = useParams();
@@ -12,7 +12,7 @@ const Histoire = () => {
     const fetchConsoleDetails = async () => {
         try {
             // ASSUREZ-VOUS QUE CE SONT BIEN DES BACKTICKS ``
-            const response = await API.get(`${URLS.GET_CONSOLE_BY_ID}/${id}`)
+            const response = await INSTANCE.get(`${URLS.GET_CONSOLE_BY_ID}/${id}`)
             
             if (response.status === 200) {
                 setConsoleDetails(response.data);

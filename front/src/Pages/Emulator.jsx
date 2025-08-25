@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
-import API from '../../utils/constants/Api';
+import INSTANCE from '../../utils/constants/INSTANCE';
 import URLS from '../../utils/constants/URLS.JS';
 import './css/emulator.scss'
 import { Link } from 'react-router'
@@ -13,7 +13,7 @@ const Emulator = () => {
         useEffect(() => {
             const fetchGames = async () => {
                 try {
-                    const response = await API.get(`${URLS.GET_EMULATEUR_ALL}`)
+                    const response = await INSTANCE.get(`${URLS.GET_EMULATEUR_ALL}`)
                     setEmulator(response.data);
                 } catch (error) {
                     console.error("Erreur lors de la récupération des consoles:", error);

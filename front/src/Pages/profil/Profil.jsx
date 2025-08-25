@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import './profil.scss'
 import { Context } from '../../utils/context/Context';
 import { useContext,useState,useEffect } from 'react';
-import API from '../../utils/constants/Api';
+import INSTANCE from '../../utils/constants/INSTANCE';
 import URLS from '../../utils/constants/URLS.JS';
 
 const Profil = () => {
@@ -33,7 +33,7 @@ const Profil = () => {
    const handleInfoSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await API.get(`${URLS.UPDATE_PROFILE}` , formData, {
+        const response = await INSTANCE.get(`${URLS.UPDATE_PROFILE}` , formData, {
             withCredentials: true 
         });
 
@@ -60,7 +60,7 @@ const Profil = () => {
     }
     try {
         // L'URL que vous appelez est probablement '/game/user/profile/update-password'
-        await API.get(`${URLS.UPDATE_PASSWORD}/${id}`, {
+        await INSTANCE.get(`${URLS.UPDATE_PASSWORD}/${id}`, {
             currentPassword: passwordData.currentPassword,
             newPassword: passwordData.newPassword
         }, {

@@ -144,7 +144,7 @@
 .pc-section .item-card:hover {
   border-color: #FFBD00; /* Jaune/Or PC */
 }
-  /*Partie des jeux API avec map*/
+  /*Partie des jeux INSTANCE avec map*/
   .u-flex
    {
      display: grid ;

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import './css/reset.scss';
-import API from '../../utils/constants/Api';
+import INSTANCE from '../../utils/constants/INSTANCE';
 import URLS from '../../utils/constants/URLS.JS';
 const Reset = () => {
     const { token } = useParams();
@@ -62,7 +62,7 @@ const Reset = () => {
         
         
         try {
-            const response = await API.get(`${URLS.RESET_PASSWORD}`, {
+            const response = await INSTANCE.get(`${URLS.RESET_PASSWORD}`, {
                 resetToken: token,
                 newPassword: password
             });

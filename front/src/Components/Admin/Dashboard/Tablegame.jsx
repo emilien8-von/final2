@@ -1,7 +1,7 @@
 import React from 'react'
 import React, { useState, useEffect } from 'react';
 import './css/tablegame.scss'
-import API from '../../../utils/constants/Api';
+import INSTANCE from '../utils/services/instance'
 import URLS from '../../../utils/constants/URLS.JS';
 const Tablegame = () => {
   const [games, setGames] = useState([]);
@@ -10,7 +10,7 @@ const Tablegame = () => {
     useEffect(() => {
         const fetchAllGames = async () => {
             try {
-                const response = await API.get(`${URLS.GET_ALL_GAMES}`)
+                const response = await INSTANCE.get(`${URLS.GET_ALL_GAMES}`)
                 setGames(response.data);
             } catch (error) {
                 console.error("Erreur lors de la récupération de tous les jeux:", error);

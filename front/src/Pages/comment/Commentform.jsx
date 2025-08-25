@@ -2,7 +2,7 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../../utils/context/Context';
 import StarRating from './Star'; 
-import API from '../../utils/constants/Api';
+import INSTANCE from '../../utils/constants/INSTANCE';
 import URLS from '../../utils/constants/URLS.JS';
 
 const CommentForm = ({ gameId, onCommentPosted }) => {
@@ -23,7 +23,7 @@ const CommentForm = ({ gameId, onCommentPosted }) => {
         };
 
         try {
-            const response = await API.post(`${URLS.POST_COMMENT}`)
+            const response = await INSTANCE.post(`${URLS.POST_COMMENT}`)
             if (response.status === 201) {
                 onCommentPosted(response.data);
                 setCommentText('');

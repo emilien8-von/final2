@@ -1,7 +1,7 @@
 // Dans Comments.jsx
 import React, { useContext, useState, useEffect } from 'react';
 import { Context } from '../utils/context/Context';
-import API from '../../utils/constants/Api';
+import INSTANCE from '../../utils/constants/INSTANCE';
 import URLS from '../../utils/constants/URLS.JS';
 import CommentForm from './comment/Commentform'; 
 import CommentList from './comment/Commentlist'; 
@@ -19,7 +19,7 @@ const Comments = ({ gameId }) => { // Renommé en gameId pour plus de clarté
             try {
                 setLoading(true);
                 // On utilise la bonne route pour récupérer les commentaires par jeu
-                const response = await API.get(`${URLS.GET_COMMENT_BY_ID}/${id}`);
+                const response = await INSTANCE.get(`${URLS.GET_COMMENT_BY_ID}/${id}`);
                 if (Array.isArray(response.data)) {
                     setComments(response.data);
                 }

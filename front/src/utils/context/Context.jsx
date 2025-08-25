@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
-// import URLS from "../constants/Api"; // Assurez-vous que ce chemin est correct si vous l'utilisez
+// import URLS from "../constants/INSTANCE"; // Assurez-vous que ce chemin est correct si vous l'utilisez
 import { useNavigate } from "react-router"; 
-import API from "../constants/Api";
+import INSTANCE from "../constants/INSTANCE";
 import URLS from "../constants/URLS.JS";
 
 export const Context = createContext();
@@ -36,7 +36,7 @@ export const Provider = ({ children }) => {
     const login = async (dbuser) => {
         try {
             setLoading(true);
-            const { data, status } = await API.post(`${URLS.POST_LOGIN}`, dbuser)
+            const { data, status } = await INSTANCE.post(`${URLS.POST_LOGIN}`, dbuser)
             
             if (status === 200) {
                 // CORRECTION N°1 : On utilise "data" directement

@@ -2,7 +2,7 @@ import React from 'react'
 import './css/Dashboard.scss'
 import { useState ,useContext,useEffect} from 'react';
 import { Context } from '../../../utils/context/Context';
-import API from '../../../utils/constants/Api';
+import INSTANCE from '../utils/services/instance'
 import URLS from '../../../utils/constants/URLS.JS';
 
 const Dashboard = () => {
@@ -17,8 +17,8 @@ const Dashboard = () => {
             try {
                 // On utilise Promise.all pour lancer les requêtes en parallèle
                 const [statsResponse, recentGamesResponse] = await Promise.all([
-                   API.get(URLS.GET_USER_STATS),
-                   API.get(URLS.GET_RECENT_GAMES)
+                   INSTANCE.get(URLS.GET_USER_STATS),
+                   INSTANCE.get(URLS.GET_RECENT_GAMES)
             ]);
                 
                 setStats(statsResponse.data);
