@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect,useState } from 'react'
 import './css/console.scss'
 import { Link } from 'react-router'
-import URLS from '../utils/constants/URLS.js'
+import URLS from '../utils/constants/URLS'
 import INSTANCE from '../utils/services/instance'
 const Console = () => {
   const [consoles, setConsoles] = useState([]);

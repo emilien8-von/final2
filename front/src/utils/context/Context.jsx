@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 // import URLS from "../constants/INSTANCE"; // Assurez-vous que ce chemin est correct si vous l'utilisez
 import { useNavigate } from "react-router"; 
-import URLS from "../constants/URLS.js";
+import URLS from "../constants/URLS";
 import INSTANCE from "../services/instance";
 export const Context = createContext();
 
