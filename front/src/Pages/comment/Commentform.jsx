@@ -2,9 +2,8 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../../utils/context/Context';
 import StarRating from './Star'; 
-import INSTANCE from "../services/instance";
 import URLS from '../../utils/constants/URLS.JS';
-
+import INSTANCE from '../../utils/services/instance';
 const CommentForm = ({ gameId, onCommentPosted }) => {
     const { auth } = useContext(Context);
     const [commentText, setCommentText] = useState('');

@@ -2,9 +2,8 @@ import React from 'react'
 import './css/Dashboard.scss'
 import { useState ,useContext,useEffect} from 'react';
 import { Context } from '../../../utils/context/Context';
-import INSTANCE from '../utils/services/instance'
 import URLS from '../../../utils/constants/URLS.JS';
-
+import INSTANCE from '../../../utils/services/instance';
 const Dashboard = () => {
      const { auth } = useContext(Context);
     const [stats, setStats] = useState({ games: 12, users: 0, consoles: 0 ,emulateurs: 0});

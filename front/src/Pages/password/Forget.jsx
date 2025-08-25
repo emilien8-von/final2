@@ -2,9 +2,8 @@ import React from 'react'
 import './css/forgot.scss'
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import INSTANCE from "../services/instance";
 import URLS from '../../utils/constants/URLS.JS';
-
+import INSTANCE from '../../utils/services/instance';
 const Forget = () => {
     const [email, setEmail] = useState('');
     const [code, setCode] = useState('');

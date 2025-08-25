@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import './css/reset.scss';
-import INSTANCE from "../services/instance";
 import URLS from '../../utils/constants/URLS.JS';
+import INSTANCE from '../../utils/services/instance';
 const Reset = () => {
     const { token } = useParams();
     const navigate = useNavigate();
