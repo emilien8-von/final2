@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Context } from '../utils/context/Context';
+import { Context } from '../../utils/context/Context';
 import INSTANCE from '../../utils/services/instance';
 import URLS from '../../utils/constants/URLS';
 import CommentList from './Commentlist';
