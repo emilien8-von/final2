@@ -5,6 +5,7 @@ import Layout from './Components/Layout'
 import Mention from './Components/Templates/Mention'
 import Dashboard from './Components/Admin/Dashboard/Dashboard'
 import Tablegame from './Components/Admin/Dashboard/Tablegame'
+import Template from './Components/Admin/template/Template'
 /**Pages */
 import Acceuil from './Pages/Acceuil'
 import Formulaire from './Pages/Formulaire'
