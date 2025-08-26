@@ -64,7 +64,7 @@
   }
  
   /*Image des jeux */
-  .img1,.img2,.img3,.img4,.feature-card{
+  .img1,.img2,.img3,.img4,.img5{
     filter: grayscale(90%);
     border: 2px solid black;
     cursor: pointer;

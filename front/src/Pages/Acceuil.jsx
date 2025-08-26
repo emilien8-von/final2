@@ -94,13 +94,13 @@ const Acceuil = () => {
         <h2 onMouseOver={color} className='level' id='h2'>Level up!</h2>
             <div className="features-grid">
         <div className="feature-card">
-            <img src="/start.jpg" alt="Start New Game" />
+            <img src="/start.jpg" alt="Start New Game" className='img5' />
         </div>
         <div className="feature-card">
-            <img onMouseOver={img} src="/easy.png" alt="Easy Mode" />
+            <img onMouseOver={img} id='img5' src="/easy.png" alt="Easy Mode"  />
         </div>
         <div className="feature-card">
-            <img src="/map.png" alt="Game Map" />
+            <img src="/map.png" alt="Game Map" className='img5' />
         </div>
            </div>
            </div>
@@ -137,9 +137,11 @@ const Acceuil = () => {
                 <p>Les jeux de course sont aussi un type de jeu qui est tout à fait une source de divertissement et de nostalgie. Maintenant en piste !</p>
          
           <div className='genre-card'> 
-           <img onClick={acces} src="/kart.jpg" alt="a" className=' img1 '/>
-           <img onClick={acces} src="/nitro.jpg" alt="c" className='img2' />
-           <img  onClick={acces} src="/turismo.jpg" alt="j" className='img3' />
+            <div className='item-row'>
+               <img onClick={acces} src="/kart.jpg" alt="a" className=' img1 '/>
+               <img onClick={acces} src="/nitro.jpg" alt="c" className='img2' />
+               <img  onClick={acces} src="/turismo.jpg" alt="j" className='img3' />
+            </div>
           </div>
 
 
@@ -147,25 +149,32 @@ const Acceuil = () => {
               <p>Montrer votre adréaline et determination grâce au combat qui vous font repousser vos limites et vos envies , tous sur le ring!</p>
           
              <div>
+              <div className='item-row'> 
                <img onClick={acces} src="/smash.jpg" alt="x" className='img1 '/>
                <img onClick={acces} src="/fighter.jpg" alt="q"  className='img2'/>
                <img onClick={acces} src="/ball.jpg" alt="i" className='img3'/>
+              </div>
              </div>
             </div>
           
           <p>Quoi de mieux pour bon divertissement familiale ou amicale avec le jeux de sport .Bien qu’on peut rencontrer quelque de tension , au final ce qu’on retiendra c’est une super soirée !  </p>
           
              <div className='genre-card'>
-             <img onClick={acces} src="/olympic.jpg" alt="g" className='img1 '/>
+              <div className='item-row'>
+
+              
+               <img onClick={acces} src="/olympic.jpg" alt="g" className='img1 '/>
                <img onClick={acces} src="/fifa.jpg" alt="u" className='img2 ' />
                <img onClick={acces} src="/basket.jpg" alt="z" className='img3' />
-               
+               </div>
              </div>
           <p>Quoi de mieux qu'un bon RPG , Pour un site jeu vidéo.</p>
              <div className='genre-card'>
-           <img onClick={acces} className='img1 ' src="/pokemon.jpg" alt="s"   />
-           <img onClick={acces} className=' img2 ' src="/dragon.jpg" alt="t" />
-           <img onClick={acces} className=' img3 '  src="/fantasy.jpg" alt="r" />
+            <div className='item-row'>    
+              <img onClick={acces} className='img1 ' src="/pokemon.jpg" alt="s"   />
+              <img onClick={acces} className=' img2 ' src="/dragon.jpg" alt="t" />
+              <img onClick={acces} className=' img3 '  src="/fantasy.jpg" alt="r" />
+            </div>
            </div>
           </div>
         } 
