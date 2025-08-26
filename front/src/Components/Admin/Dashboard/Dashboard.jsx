@@ -62,7 +62,7 @@ const Dashboard = () => {
 
             <div className="stats-grid">
 
-                 <Link to="/dashboard/games" className="stat-card-link">
+                 <Link to="/games" className="stat-card-link">
                     <div className="stat-card card-blue">
                         <div className="card-icon"><i className="fa-solid fa-gamepad"></i></div>
                         <div className="card-content">
