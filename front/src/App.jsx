@@ -44,8 +44,13 @@ function App() {
           <Route path='/list-emulateur' element={<Emulator/>}/>
           
           {/* Le Dashboard est aussi une route privée */}
-          <Route path='/dashboard' element={<Dashboard/>}>
-            <Route path='/games' element={<Tablegame />} />            {/* ... */}
+           <Route path='/dashboard' element={<Template />}>
+            
+            <Route index element={<Dashboard />} /> 
+            
+           
+            
+            <Route path='games' element={<Tablegame />} /> {/* ... */}
           </Route>
         </Route>
       </Route>
