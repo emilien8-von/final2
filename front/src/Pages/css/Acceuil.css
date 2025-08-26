@@ -24,7 +24,7 @@
   }
   /*Partie flex*/
   /*Image des jeux où il y a pas d'utilisateur */
-  .genre-card{
+  .v-flex{
     display: flex;
     justify-content: space-between;
    
@@ -65,12 +65,13 @@
  
   /*Image des jeux */
   .img1,.img2,.img3,.img4,.img5{
+    width:150px;
     filter: grayscale(90%);
     border: 2px solid black;
     cursor: pointer;
     object-fit: cover;
   }
-   .feature-card:hover{
+   .img5:hover{
     filter: none;
   }
   /* 1. Le conteneur pour une rangée d'images */
@@ -255,51 +256,5 @@
     color: #FFBD00 ;
     text-decoration: underline;
   }
-
-  @media (min-width: 1024px) {
-
-    /* --- Section "Level up!" --- */
-    .features-grid {
-        display: grid;
-        /* On crée 3 colonnes de taille égale */
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem; /* Espace entre les cartes */
-        align-items: center;
-    }
-
-    .feature-card {
-        padding: 1rem;
-        background-color: rgba(0, 0, 0, 0.2);
-        border-radius: 12px;
-        text-align: center;
-    }
-
-    .feature-card img {
-        max-width: 150px; /* On contrôle la taille des images */
-        height: auto;
-    }
-    
-     .items-row {
-        display: flex;
-        justify-content: center; /* Centre les images dans la carte */
-        gap: 1rem;
-        flex-wrap: wrap;
-        margin-top: 1rem;
-    }
-
-    .items-row img {
-        width: 120px; /* Taille contrôlée pour les jaquettes */
-        height: 160px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    /* On ajoute un séparateur visuel */
-    .separator {
-        border: none;
-        height: 1px;
-        background-color: #4a2c7a;
-        margin: 3rem 0;
-    }
   
-  }
+  
