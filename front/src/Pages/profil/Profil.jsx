@@ -32,8 +32,8 @@ const Profil = () => {
    const handleInfoSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await INSTANCE.get(`${URLS.UPDATE_PROFILE}` , formData, {
-            withCredentials: true 
+        const response = await INSTANCE.put(`${URLS.UPDATE_PROFILE}` , formData, {
+        
         });
 
         
@@ -52,23 +52,21 @@ const Profil = () => {
         alert(error.response?.data?.message || 'Une erreur est survenue.');
     }
 };
- const handlePasswordSubmit = async (e) => {
+const handlePasswordSubmit = async (e) => {
     e.preventDefault();
     if (passwordData.newPassword !== passwordData.confirmPassword) {
         return alert('Les nouveaux mots de passe ne correspondent pas.');
     }
     try {
-        // L'URL que vous appelez est probablement '/game/user/profile/update-password'
-        await INSTANCE.get(`${URLS.UPDATE_PASSWORD}/${id}`, {
+        // LA CORRECTION : On utilise .put() et on enlève l'ID de l'URL
+        await INSTANCE.put(URLS.UPDATE_PASSWORD, {
             currentPassword: passwordData.currentPassword,
             newPassword: passwordData.newPassword
-        }, {
-            withCredentials: true 
         });
         
         setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
         alert('Mot de passe mis à jour avec succès !');
-    } catch (error) {
+    } catch (error)  {
         console.error('Erreur lors de la mise à jour du mot de passe:', error);
         alert(error.response?.data?.message || 'Une erreur est survenue.');
     }
