@@ -89,18 +89,25 @@ const Acceuil = () => {
                Les jeux peuvent susciter des émotions.”</p>
                <p className='p'>-Sid Meier</p>
         </div>
-        <h2 onMouseOver={color} className='level' id='h2'>Level up!</h2>
         <section>
-          <div className='t-flex' >
-            <img className='img5' src="/start.png" alt="m" />
-              
-             <img onMouseOver={img} src="/easy.png" id='img5' alt="l" width={120} />
-
-            <img src="/level.jpeg" alt="n" className='img5'/> 
-         </div>
+           <div className="features-section">
+        <h2 onMouseOver={color} className='level' id='h2'>Level up!</h2>
+            <div className="features-grid">
+        <div className="feature-card">
+            <img src="/start.jpg" alt="Start New Game" />
+        </div>
+        <div className="feature-card">
+            <img onMouseOver={img} src="/easy.png" alt="Easy Mode" />
+        </div>
+        <div className="feature-card">
+            <img src="/map.png" alt="Game Map" />
+        </div>
+           </div>
+           </div>
         </section>
         <h3>Les differents type de jeux</h3>
        
+       <hr className="separator" />
         <section>
           {auth?
           
@@ -119,7 +126,7 @@ const Acceuil = () => {
                  Les jeux de types plateformes sont les plus connues et qui ont permis de donner des jeux comme 
                  (Mario , Sonic,Crash bandicoot , ect..)
               </p>
-              <div className='v-flex'> 
+              <div className='genre-card'> 
                   <img onClick={acces}   className='img1'  src="/mario.jpg" alt="v" />
                   <img onClick={acces}  className='img2' src="/crash.jpg" alt="b" />
                   <img onClick={acces} className='img3' src="/shadow.jpg" alt="d" />
@@ -127,30 +134,33 @@ const Acceuil = () => {
         
                 <p>Les jeux de course sont aussi un type de jeu qui est tout à fait une source de divertissement et de nostalgie. Maintenant en piste !</p>
          
-          <div className='v-flex'> 
+          <div className='genre-card'> 
            <img onClick={acces} src="/kart.jpg" alt="a" className=' img1 '/>
            <img onClick={acces} src="/nitro.jpg" alt="c" className='img2' />
            <img  onClick={acces} src="/turismo.jpg" alt="j" className='img3' />
           </div>
-         
-         <p>Montrer votre adréaline et determination grâce au combat qui vous font repousser vos limites et vos envies , tous sur le ring!</p>
+
+
+            <div className='genre-card'>
+              <p>Montrer votre adréaline et determination grâce au combat qui vous font repousser vos limites et vos envies , tous sur le ring!</p>
           
-            <div className='v-flex'> 
-              <img onClick={acces} src="/smash.jpg" alt="x" className='img1  img13'/>
-              <img onClick={acces} src="/fighter.jpg" alt="q"  className='img2'/>
-              <img onClick={acces} src="/ball.jpg" alt="i" className='img3'/>
+             <div>
+               <img onClick={acces} src="/smash.jpg" alt="x" className='img1 '/>
+               <img onClick={acces} src="/fighter.jpg" alt="q"  className='img2'/>
+               <img onClick={acces} src="/ball.jpg" alt="i" className='img3'/>
+             </div>
             </div>
           
           <p>Quoi de mieux pour bon divertissement familiale ou amicale avec le jeux de sport .Bien qu’on peut rencontrer quelque de tension , au final ce qu’on retiendra c’est une super soirée !  </p>
           
-             <div className='v-flex'>
+             <div className='genre-card'>
              <img onClick={acces} src="/olympic.jpg" alt="g" className='img1 '/>
                <img onClick={acces} src="/fifa.jpg" alt="u" className='img2 ' />
                <img onClick={acces} src="/basket.jpg" alt="z" className='img3' />
                
              </div>
           <p>Quoi de mieux qu'un bon RPG , Pour un site jeu vidéo.</p>
-             <div className='v-flex'>
+             <div className='genre-card'>
            <img onClick={acces} className='img1 ' src="/pokemon.jpg" alt="s"   />
            <img onClick={acces} className=' img2 ' src="/dragon.jpg" alt="t" />
            <img onClick={acces} className=' img3 '  src="/fantasy.jpg" alt="r" />

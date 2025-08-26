@@ -178,3 +178,24 @@
   color: rgb(144, 144, 190);
   cursor: pointer;
 }
+
+
+.password-requirements {
+  text-align: left;
+  margin: -0.5rem 0 1.5rem 0; // Espace après le champ de mot de passe
+  font-size: 0.9rem;
+  color: #ccc;
+  padding-left: 5px; // Petit décalage pour l'alignement
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; // Espace entre l'image et le texte
+    margin: 0.4rem 0;
+  }
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+}

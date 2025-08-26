@@ -52,11 +52,40 @@ const Profil = () => {
         alert(error.response?.data?.message || 'Une erreur est survenue.');
     }
 };
+
+  const checkPasswordStrength = () => {
+        const passwordValue = document.getElementById("newPasswordInput").value;
+        
+        const majCheck = document.getElementById("maj-check");
+        const specialCheck = document.getElementById("special-check");
+        const chiffreCheck = document.getElementById("chiffre-check");
+        const lengthCheck = document.getElementById("length-check");
+
+        const valideImg = "/valide.png";
+        const crossImg = "/croosing.svg";
+
+        majCheck.src = /[A-Z]/.test(passwordValue) ? valideImg : crossImg;
+        specialCheck.src = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(passwordValue) ? valideImg : crossImg;
+        chiffreCheck.src = /[0-9]/.test(passwordValue) ? valideImg : crossImg;
+        lengthCheck.src = passwordValue.length >= 8 ? valideImg : crossImg;
+    }
+
+
 const handlePasswordSubmit = async (e) => {
     e.preventDefault();
     if (passwordData.newPassword !== passwordData.confirmPassword) {
         return alert('Les nouveaux mots de passe ne correspondent pas.');
     }
+     const isPasswordValid = 
+            /[A-Z]/.test(passwordData.newPassword) &&
+            /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(passwordData.newPassword) &&
+            /[0-9]/.test(passwordData.newPassword) &&
+            passwordData.newPassword.length >= 8; // On peut imposer 8 caractères pour plus de sécurité
+
+        if (!isPasswordValid) {
+            return alert("Le nouveau mot de passe ne respecte pas tous les critères de sécurité.");
+        }
+
     try {
         await INSTANCE.put(URLS.UPDATE_PASSWORD, {
             currentPassword: passwordData.currentPassword,
@@ -137,6 +166,7 @@ const handlePasswordSubmit = async (e) => {
                 name="currentPassword"
                 value={passwordData.currentPassword}
                 onChange={handlePasswordChange}
+                onInput={checkPasswordStrength}
             />
             <img 
                 src={passwordVisibility.current ? "/closed-eye.svg" : "/eye.svg"}
@@ -145,6 +175,12 @@ const handlePasswordSubmit = async (e) => {
                 onClick={() => togglePasswordVisibility('current')}
             />
         </div>
+    </div>
+     <div className="password-requirements">
+        <p><img id="maj-check" src="/croosing.svg" alt="check" /> Au moins une majuscule</p>
+        <p><img id="special-check" src="/croosing.svg" alt="check" /> Au moins un caractère spécial</p>
+        <p><img id="chiffre-check" src="/croosing.svg" alt="check" /> Au moins un chiffre</p>
+        <p><img id="length-check" src="/croosing.svg" alt="check" /> Au moins 3 caractères</p>
     </div>
                 <div className="form-group">
                     <label htmlFor="newPassword">Nouveau mot de passe</label>
