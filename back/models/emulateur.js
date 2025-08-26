@@ -3,15 +3,15 @@ const emulateur = mongoose.Schema(
  {
     nom :{
        type : String,
-       require : true
+       required : true
     },
     image:{
         type :String,
-        require: true
+        required: true
     },
     emule: {
         type : String,
-        require : true
+        required : true
     },
     sortie :{
         type: Date,
@@ -19,9 +19,9 @@ const emulateur = mongoose.Schema(
     },
     existe : {
         type : Boolean,
-        require : true
+        required : true
     }
 
- } ,{Timestamp : {createdAt : true} }
+ } ,{timestamps : {createdAt : true} }
 )
 module.exports = mongoose.model('Emulateur',emulateur)
