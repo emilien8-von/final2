@@ -17,7 +17,7 @@ const Side = () => {
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/games">
+                <NavLink to="games">
                     <i className="fa-solid fa-gamepad"></i>
                     <span>Gérer les Jeux</span>
                 </NavLink>
