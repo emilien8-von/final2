@@ -3,6 +3,7 @@ import { Context } from '../../../utils/context/Context';
 import URLS from '../../../utils/constants/URLS';
 import './css/Dashboard.scss';
 import INSTANCE from '../../../utils/services/instance';
+import { Link } from 'react-router';
 
 const Dashboard = () => {
     const { auth } = useContext(Context);
@@ -58,14 +59,19 @@ const Dashboard = () => {
             </div>
 
             {/* Cartes de statistiques */}
+
             <div className="stats-grid">
-                <div className="stat-card card-blue">
-                    <div className="card-icon"><i className="fa-solid fa-gamepad"></i></div>
-                    <div className="card-content">
-                        <h3>Total des Jeux</h3>
-                        <span>{stats.games}</span>
+
+                 <Link to="/dashboard/games" className="stat-card-link">
+                    <div className="stat-card card-blue">
+                        <div className="card-icon"><i className="fa-solid fa-gamepad"></i></div>
+                        <div className="card-content">
+                            <h3>Total des Jeux</h3>
+                            <span>{stats.games}</span>
+                        </div>
                     </div>
-                </div>
+                </Link>
+                
                 <div className="stat-card card-green">
                     <div className="card-icon"><i className="fa-solid fa-users"></i></div>
                     <div className="card-content">

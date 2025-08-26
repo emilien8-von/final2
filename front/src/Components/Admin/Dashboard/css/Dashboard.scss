@@ -9,6 +9,18 @@
   p { font-size: 1.2rem; color: #ccc; }
 }
 
+.stat-card-link {
+  text-decoration: none; /* Enlève le soulignement du lien */
+  color: inherit; /* Fait en sorte que le texte hérite de la couleur parente (snow) */
+  
+  /* On peut ajouter une petite transition pour un effet visuel au survol */
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px); /* Soulève légèrement la carte au survol */
+  }
+}
+
 /* Grille pour les cartes de statistiques */
 .stats-grid {
   display: grid;
