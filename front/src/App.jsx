@@ -45,7 +45,7 @@ function App() {
           
           {/* Le Dashboard est aussi une route privée */}
           <Route path='/dashboard' element={<Dashboard/>}>
-            <Route path='games' element={<Tablegame />} />            {/* ... */}
+            <Route path='/games' element={<Tablegame />} />            {/* ... */}
           </Route>
         </Route>
       </Route>
