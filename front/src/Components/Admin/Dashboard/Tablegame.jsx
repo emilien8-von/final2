@@ -1,4 +1,3 @@
-import React from 'react'
 import React, { useState, useEffect } from 'react';
 import './css/tablegame.scss'
 import URLS from '../../../utils/constants/URLS.js';
