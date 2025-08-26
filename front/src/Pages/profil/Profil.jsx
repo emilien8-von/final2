@@ -58,7 +58,6 @@ const handlePasswordSubmit = async (e) => {
         return alert('Les nouveaux mots de passe ne correspondent pas.');
     }
     try {
-        // LA CORRECTION : On utilise .put() et on enlève l'ID de l'URL
         await INSTANCE.put(URLS.UPDATE_PASSWORD, {
             currentPassword: passwordData.currentPassword,
             newPassword: passwordData.newPassword

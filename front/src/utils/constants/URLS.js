@@ -7,7 +7,7 @@ const URLS = {
     POST_LOGIN: '/game/user/login',
     GET_USER_STATS: '/game/user/stats',
     UPDATE_PROFILE: '/game/user/profile/update',
-    UPDATE_PASSWORD: '/game/user/profile/update-password',
+    UPDATE_PASSWORD: '/game/user/update',
     FORGOT_PASSWORD: '/game/user/forgot-password',
     VERIFY_RESET_CODE: '/game/user/reset', // J'ai corrigé pour correspondre à votre route
     RESET_PASSWORD: '/game/user/reset-password',

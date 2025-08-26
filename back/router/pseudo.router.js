@@ -16,7 +16,7 @@ router.delete('/logout/:id',verify,Pcontroller.Duser)
 router.delete('/delete/:id',verify,Pcontroller.EffacerUser)
 router.put('/put/:id',verify,Pcontroller.Cuser)
 router.put('/profile/update',verify,Pcontroller.updateProfil)
-router.put('/update/:id',verify,Pcontroller.updateUserPassword)
+router.put('/update',verify,Pcontroller.updateUserPassword)
 router.put("/verify/:token",Pcontroller.Emailverify)
 
 module.exports = router

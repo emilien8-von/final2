@@ -6,7 +6,7 @@ const verify = require('../middlewares/indentite')
 
 router.post('/add',Category.pCategory)
 router.get('/all',request,Category.gCategory)
-router.get('/get/:gameId',Category.idCategory)
+router.get('/get/:id',Category.idCategory)
 router.delete('/delete/:id',Category.deleteCategory)
 router.put('/put/:id',Category.Changecategorie)
 router.get('/recent', verify, Category.getRecentGames);
