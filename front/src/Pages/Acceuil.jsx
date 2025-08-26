@@ -127,9 +127,11 @@ const Acceuil = () => {
                  (Mario , Sonic,Crash bandicoot , ect..)
               </p>
               <div className='genre-card'> 
-                  <img onClick={acces}   className='img1'  src="/mario.jpg" alt="v" />
+                 <div className='items-row'>
+                   <img onClick={acces}   className='img1'  src="/mario.jpg" alt="v" />
                   <img onClick={acces}  className='img2' src="/crash.jpg" alt="b" />
                   <img onClick={acces} className='img3' src="/shadow.jpg" alt="d" />
+                 </div>
               </div>
         
                 <p>Les jeux de course sont aussi un type de jeu qui est tout à fait une source de divertissement et de nostalgie. Maintenant en piste !</p>
