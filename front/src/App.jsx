@@ -6,6 +6,7 @@ import Mention from './Components/Templates/Mention'
 import Dashboard from './Components/Admin/Dashboard/Dashboard'
 import Tablegame from './Components/Admin/Dashboard/Tablegame'
 import Template from './Components/Admin/template/Template'
+import Tableuser from './Components/Admin/Dashboard/Tableuser'
 /**Pages */
 import Acceuil from './Pages/Acceuil'
 import Formulaire from './Pages/Formulaire'
@@ -48,10 +49,11 @@ function App() {
            <Route path='/dashboard' element={<Template />}>
             
             <Route index element={<Dashboard />} /> 
+            <Route path='games' element={<Tablegame />} />
             
-           
+            <Route path='users' element={<Tableuser />} /> 
             
-            <Route path='games' element={<Tablegame />} /> {/* ... */}
+             {/* ... */}
           </Route>
         </Route>
       </Route>

@@ -72,13 +72,15 @@ const Dashboard = () => {
                     </div>
                 </Link>
                 
-                <div className="stat-card card-green">
+                <Link to="users" className='stat-card-link'>
+                   <div className="stat-card card-green">
                     <div className="card-icon"><i className="fa-solid fa-users"></i></div>
                     <div className="card-content">
                         <h3>Total des Utilisateurs</h3>
                         <span>{stats.users}</span>
                     </div>
-                </div>
+                   </div>
+               </Link>
                 <div className="stat-card card-orange">
                     <div className="card-icon"><i className="fa-solid fa-ghost"></i></div>
                     <div className="card-content">

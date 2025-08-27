@@ -11,6 +11,9 @@ const URLS = {
     FORGOT_PASSWORD: '/game/user/forgot-password',
     VERIFY_RESET_CODE: '/game/user/reset', 
     RESET_PASSWORD: '/game/user/reset-password',
+    GET_ALL_USERS: '/game/user/all',
+    UPDATE_USER_ROLE: '/game/user/role', // On ajoutera l'ID à la fin
+    DELETE_USER: '/game/user/delete', 
 
     // Jeux
     GET_ALL_GAMES: '/game/jeux/all',

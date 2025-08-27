@@ -26,16 +26,19 @@ const Puser = async(req,res) =>{
     }
 }
 //Partie Get
-const Guser = async (req,res) => {
-     try{
-        const reponse = await Users.find()
-        res.status(200).json(reponse)
-     }
-     catch(error){
-       console.log('erreur', error.message);
-       
-     }
-}
+const Guser = async (req, res, next) => {
+    // On s'assure que seul un admin peut lister tous les utilisateurs
+    if (req.user.role !== 'admin') {
+        return next(erreur(403, "Action non autorisée."));
+    }
+    try {
+        // LA CORRECTION : On utilise .select('-password') pour exclure le champ du mot de passe
+        const reponse = await Users.find().select('-password');
+        res.status(200).json(reponse);
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
+};
 //Partie Get by Id
 const Iduser = async(req,res) =>{
   try
@@ -338,6 +341,41 @@ const getDashboardStats = async (req, res, next) => {
         next(erreur(500, error.message));
     }
 };
+const updateUserRoleByAdmin = async (req, res, next) => {
+    // On vérifie que la personne qui fait la requête est bien un admin
+    if (req.user.role !== 'admin') {
+        return next(erreur(403, "Action non autorisée."));
+    }
 
+    // On récupère le nouveau rôle depuis le corps de la requête
+    const { role } = req.body;
+    
+    // On vérifie que le rôle est valide (correspond à l'enum du modèle)
+    const validRoles = ["user", "admin"];
+    if (!role || !validRoles.includes(role)) {
+        return next(erreur(400, "Le rôle fourni est invalide."));
+    }
 
-module.exports = {Puser,Guser,Iduser,Duser,EffacerUser,Luser,Cuser,Emailverify,updateProfil,updateUserPassword,forgotPassword,verifyResetCode,resetPassword,getDashboardStats}
+    try {
+        const userToUpdate = await Users.findById(req.params.id);
+        if (!userToUpdate) {
+            return next(erreur(404, 'Utilisateur non trouvé'));
+        }
+
+        // On met à jour uniquement le champ "role"
+        userToUpdate.role = role;
+        await userToUpdate.save();
+
+        // On renvoie l'utilisateur mis à jour (sans le mot de passe)
+        const { password, ...userInfo } = userToUpdate._doc;
+        res.status(200).json(userInfo);
+
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
+};
+
+module.exports = {Puser,Guser,Iduser,Duser,EffacerUser,Luser,Cuser
+    ,Emailverify,updateProfil,updateUserPassword,forgotPassword,verifyResetCode,resetPassword,getDashboardStats,
+    updateUserRoleByAdmin
+}
