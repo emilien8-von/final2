@@ -3,7 +3,10 @@ const erreur = require('../middlewares/erreur')
 const Connecte = require('../models/pseudo')
 
 const pCategory = async (req, res, next) => {
-    if (req.user.role !== 'admin') return next(erreur(403, "Action non autorisée"));
+    // On vérifie le rôle directement au début
+    if (req.user.role !== 'admin') {
+        return next(erreur(403, "Action non autorisée."));
+    }
     try { 
         const reponse = await Category.create(req.body);
         res.status(201).json(reponse);
@@ -37,23 +40,19 @@ const idCategory = async(req,res) =>{
         
     }
 }
-const deleteCategory = async(req,res,next) =>{
-    try{
-        if(!req.user.id || !req.user ){
-            return next(erreur(401,'Authentification necessaire'))
-        }
-        const client = await Connecte.findById(req.user.id)
-        if(client.role !== "admin"){
-            return next(erreur(403,"vous n'êtes pas autorisé à modifier"))
-        }
-        await Category.findByIdAndDelete(req.params.id) 
-        res.status(200).json('page effacer')
+const deleteCategory = async (req, res, next) => {
+    if (req.user.role !== "admin") {
+        return next(erreur(403, "Action non autorisée."));
     }
-    catch(error){
-         next(erreur(500,erreur.message))
-        
+    try {
+        const deletedGame = await Category.findByIdAndDelete(req.params.id);
+        if (!deletedGame) return next(erreur(404, 'Jeu non trouvé'));
+        res.status(200).json({ message: 'Jeu supprimé avec succès' });
+    } catch(error) {
+        next(erreur(500, error.message));
     }
-}
+};
+
 const Changecategorie = async(req,res,next) =>{
     if (req.user.role !== 'admin') return next(erreur(403, "Action non autorisée"))
     try{
