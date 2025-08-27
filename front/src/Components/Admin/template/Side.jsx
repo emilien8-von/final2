@@ -34,6 +34,12 @@ const Side = () => {
                     <span>Gérer les Consoles</span>
                 </NavLink>
             </li>
+            <li>
+                <NavLink to="emulateur">
+                   <i class="fa-solid fa-download"></i>
+                    <span>Gérer les Consoles</span>
+                </NavLink>
+            </li>
         </ul>
     </div>
   )

@@ -8,6 +8,7 @@ import Tablegame from './Components/Admin/Dashboard/Tablegame'
 import Template from './Components/Admin/template/Template'
 import Tableuser from './Components/Admin/Dashboard/Tableuser'
 import Tableconsole from './Components/Admin/Dashboard/Tableconsole'
+import Tablemulateur from './Components/Admin/Dashboard/Tablemulateur'
 /**Pages */
 import Acceuil from './Pages/Acceuil'
 import Formulaire from './Pages/Formulaire'
@@ -53,7 +54,8 @@ function App() {
             <Route path='games' element={<Tablegame />} />
             <Route path='users' element={<Tableuser />} /> 
             <Route path='console' element={<Tableconsole />} />
-            
+            <Route path='emulateur' element={<Tablemulateur />} />
+
 
              {/* ... */}
           </Route>
