@@ -25,7 +25,7 @@ const Side = () => {
              <li>
                 <NavLink to="users">
                     <i className="fa-solid fa-users"></i>
-                    <span>Gérer les Jeux</span>
+                    <span>Gérer les Utilisateurs</span>
                 </NavLink>
             </li>
         </ul>
