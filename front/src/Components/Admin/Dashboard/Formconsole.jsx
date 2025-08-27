@@ -1,7 +1,5 @@
-// Dans Formconsole.jsx
 import React, { useState, useEffect } from 'react';
 
-// LA CORRECTION : On accepte une prop "consoleToEdit"
 const Formconsole = ({ consoleToEdit, onSave, onCancel }) => {
     const [formData, setFormData] = useState({
         nom: "",

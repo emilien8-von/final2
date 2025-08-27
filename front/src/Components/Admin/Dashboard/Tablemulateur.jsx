@@ -1,3 +1,4 @@
+import React from 'react'
 import './css/Dashboard.scss'
 import Emulateurform from './Emulateurform'
 import URLS from '../../../utils/constants/URLS'
