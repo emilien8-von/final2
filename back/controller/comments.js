@@ -12,14 +12,43 @@ const Pcomment = async (req, res, next) => {
     }
 };
 
+const getAllComments = async (req, res, next) => {
+    // On s'assure que seul un admin peut voir tous les commentaires
+    if (req.user.role !== 'admin') {
+        return next(erreur(403, "Action non autorisée."));
+    }
+    try {
+        const allComments = await Comment.find()
+            .populate('user', 'pseudo avatar') // On récupère l'auteur
+            .populate('game', 'titre')         // ON RÉCUPÈRE LE JEU ASSOCIÉ !
+            .sort({ createdAt: -1 });
+
+        res.status(200).json(allComments);
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
+};
+
 const Gcomment = async (req, res, next) => {
     try {
+        // 1. On récupère l'ID du jeu depuis les paramètres de l'URL
         const { gameId } = req.params;
+
+        // 2. On vérifie si l'ID est valide (bonne pratique)
+        if (!mongoose.Types.ObjectId.isValid(gameId)) {
+            return next(erreur(400, 'ID de jeu invalide'));
+        }
+
+        // 3. On cherche UNIQUEMENT les commentaires où le champ "game" correspond à cet ID
         const comments = await Comment.find({ game: gameId })
-                                      .populate('user', 'pseudo avatar')
-                                      .sort({ createdAt: -1 });
+                                      .populate('user', 'pseudo avatar') // On inclut les infos de l'auteur
+                                      .sort({ createdAt: -1 }); // On trie du plus récent au plus ancien
+
+        // Si find() ne trouve rien, il renvoie un tableau vide [], ce qui est parfait.
         res.status(200).json(comments);
+
     } catch (error) {
+        console.error("Erreur dans Gcomment:", error);
         next(erreur(500, error.message));
     }
 };
@@ -69,4 +98,4 @@ const GetCommentsForGame = async (req, res,next) => {
     }
 };
 };
-module.exports = {Pcomment,Gcomment,DComment,Ccomment,GetCommentsForGame}
+module.exports = {Pcomment,Gcomment,DComment,Ccomment,GetCommentsForGame,getAllComments}
