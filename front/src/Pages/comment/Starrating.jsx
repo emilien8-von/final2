@@ -2,9 +2,9 @@ import React from 'react'
 import './css/star.scss'
 import { useState } from 'react';
 
-const Starrating = () => {
-        const [rating, setRating] = useState(0); // La note cliquée et sauvegardée
-    const [hoverRating, setHoverRating] = useState(0); // La note en cours de survol
+const Starrating = ({ onRatingChange }) => {
+    const [rating, setRating] = useState(0);
+    const [hoverRating, setHoverRating] = useState(0);
 
     const stars = [1, 2, 3, 4, 5];
 
@@ -23,11 +23,10 @@ const Starrating = () => {
         setHoverRating(0); // On réinitialise le survol quand la souris quitte
     };
 
-    const handleClick = (starIndex) => {
-        // La note finale est celle qui était survolée au moment du clic
+       const handleClick = () => { // On peut simplifier, pas besoin de starIndex
         const newRating = hoverRating;
         setRating(newRating);
-        onRatingChange(newRating); // On envoie la note au composant parent
+        onRatingChange(newRating); // Maintenant, cette fonction existe !
     };
   return (
      <div className="star-rating-container" onMouseLeave={handleMouseLeave}>
@@ -42,11 +41,11 @@ const Starrating = () => {
                 }
 
                 return (
-                    <i
+                   <i
                         key={starIndex}
                         className={`star-icon ${iconClass}`}
                         onMouseMove={(e) => handleMouseMove(starIndex, e)}
-                        onClick={() => handleClick(starIndex)}
+                        onClick={handleClick} // On appelle la fonction de clic
                     />
                 );
             })}

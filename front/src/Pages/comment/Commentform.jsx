@@ -9,29 +9,30 @@ const Commentform = ({ gameId, onCommentPosted }) => {
     const [commentText, setCommentText] = useState('');
     const [userRating, setUserRating] = useState(0);
 
-    const handleCommentSubmit = async (e) => {
-        e.preventDefault();
-        if (!commentText.trim() || !auth) return;
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    if (!commentText.trim() || !auth) return;
 
-        const newComment = { 
-            user: auth._id, 
-            game: gameId, 
-            content: commentText,
-            rating: userRating
-        };
-
-        try {
-            // 2. Assurez-vous que votre appel API est correct
-            const response = await INSTANCE.post(URLS.POST_COMMENT, newComment);
-            if (response.status === 201) {
-                onCommentPosted(response.data);
-                setCommentText('');
-                setUserRating(0);
-            }
-        } catch (error) {
-            console.error("Erreur lors de l'envoi du commentaire:", error);
-        }
+    const newComment = { 
+        user: auth._id, 
+        game: gameId, 
+        content: commentText,
+        rating: userRating
     };
+
+    try {
+        // LA CORRECTION : On envoie l'objet "newComment"
+        const response = await INSTANCE.post(URLS.POST_COMMENT, newComment);
+        
+        if (response.status === 201) {
+            onCommentPosted(response.data);
+            setCommentText('');
+            setUserRating(0);
+        }
+    } catch (error) {
+        console.error("Erreur lors de l'envoi du commentaire:", error);
+    }
+};
 
     if (!auth) return null
   return (
