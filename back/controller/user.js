@@ -69,7 +69,8 @@ const Luser = async (req, res, next) => {
         if (!isMatch) {
             return next(erreur(401, 'Email ou mot de passe incorrect'));
         }
-
+            user.isActif = true;
+            await user.save();
         const token = jwr.sign(
             { id: user._id, role: user.role }, // Informations à stocker dans le token
             ENV.TOKEN,
@@ -105,6 +106,8 @@ const Duser = async(req,res,next) => {
             ENV.TOKEN,
             {expiresIn : "0"}
        ) 
+            user.isActif = false;
+            await user.save();
         res.cookie('access_token',token,{httpOnly:true, maxAge : 0,
             secure : false,
             sameSite : 'strict'
@@ -374,8 +377,30 @@ const updateUserRoleByAdmin = async (req, res, next) => {
         next(erreur(500, error.message));
     }
 };
+const forceLogoutByAdmin = async (req, res, next) => {
+    if (req.user.role !== 'admin') {
+        return next(erreur(403, "Action non autorisée."));
+    }
+    try {
+        const userToLogout = await Users.findById(req.params.id);
+        if (!userToLogout) {
+            return next(erreur(404, 'Utilisateur non trouvé'));
+        }
+
+        userToLogout.isActif = false;
+        await userToLogout.save();
+
+        // La déconnexion réelle se fera la prochaine fois que l'utilisateur essaiera
+        // d'utiliser son token, mais son statut est maintenant "inactif".
+        // Pour une déconnexion immédiate, il faudrait une blacklist de tokens.
+        res.status(200).json({ message: `Le statut de ${userToLogout.pseudo} a été mis sur "inactif".` });
+
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
+};
 
 module.exports = {Puser,Guser,Iduser,Duser,EffacerUser,Luser,Cuser
     ,Emailverify,updateProfil,updateUserPassword,forgotPassword,verifyResetCode,resetPassword,getDashboardStats,
-    updateUserRoleByAdmin
+    updateUserRoleByAdmin,forceLogoutByAdmin
 }

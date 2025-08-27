@@ -55,11 +55,19 @@ const Tableuser = () => {
         }
     };
 
-    // 4. Fonction pour forcer la déconnexion (placeholder pour l'instant)
-    const handleForceLogout = (userId) => {
-        // La logique de déconnexion forcée est complexe (blacklist de tokens).
-        // Pour l'instant, on met une alerte.
-        alert(`Logique de déconnexion forcée pour l'utilisateur ${userId} à implémenter.`);
+    
+
+      const handleForceLogout = async (userId) => {
+        if (window.confirm("Voulez-vous vraiment marquer cet utilisateur comme inactif ?")) {
+            try {
+                // On appelle la nouvelle route
+                await INSTANCE.put(`${URLS.FORCE_LOGOUT}/${userId}`);
+                fetchAllUsers(); // On rafraîchit la liste pour voir le nouveau statut
+            } catch (error) {
+                console.error("Erreur:", error);
+                alert("L'opération a échoué.");
+            }
+        }
     };
 
     const openEditModal = (user) => {
@@ -98,6 +106,11 @@ const Tableuser = () => {
                                     <td>{user.pseudo}</td>
                                     <td>{user.email}</td>
                                     <td>{user.role}</td>
+                                     <td>
+                                          <span className={`status-badge ${user.isActif ? 'status-active' : 'status-inactive'}`}>
+                                            {user.isActif ? 'En ligne' : 'Hors ligne'}
+                                          </span>
+                                     </td>
                                     <td className="actions-cell">
                                        <button onClick={() => openEditModal(user)} className="edit-btn">Modifier Rôle</button>
                                         <button onClick={() => handleDelete(user._id)} className="delete-btn">Supprimer</button>

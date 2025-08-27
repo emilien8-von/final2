@@ -40,6 +40,10 @@ const user = mongoose.Schema(
         type: Date,
         default: null
       },
+      isActif:{
+        type:Boolean,
+        default:false
+      },
        isVerified : {
         type : Boolean,
         default : false

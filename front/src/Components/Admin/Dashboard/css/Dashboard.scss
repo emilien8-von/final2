@@ -159,3 +159,19 @@ table {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.status-badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  
+  &.status-active {
+    background-color: #48bb78; // Vert
+    color: #fff;
+  }
+  &.status-inactive {
+    background-color: #a0aec0; // Gris
+    color: #1a202c;
+  }
+}

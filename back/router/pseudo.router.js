@@ -19,6 +19,6 @@ router.put('/profile/update',verify,Pcontroller.updateProfil)
 router.put('/update',verify,Pcontroller.updateUserPassword)
 router.put("/verify/:token",Pcontroller.Emailverify)
 router.put('/role/:id', verify, Pcontroller.updateUserRoleByAdmin);
-
+router.put('/force-logout/:id', verify, Pcontroller.forceLogoutByAdmin);
 
 module.exports = router
