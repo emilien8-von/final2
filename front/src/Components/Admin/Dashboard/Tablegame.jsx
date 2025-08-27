@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './css/tablegame.scss'
 import URLS from '../../../utils/constants/URLS.js';
 import INSTANCE from '../../../utils/services/instance';
+import Formgame from './Formgame.jsx';
 const Tablegame = () => {
     const [games, setGames] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -13,7 +14,7 @@ const Tablegame = () => {
     const fetchAllGames = async () => {
         try {
             setLoading(true);
-            const response = await api.get(URLS.GET_ALL_GAMES);
+            const response = await INSTANCE.get(URLS.GET_ALL_GAMES);
             setGames(response.data);
         } catch (error) {
             console.error("Erreur lors de la récupération des jeux:", error);
@@ -114,7 +115,7 @@ const Tablegame = () => {
 
             {/* 6. Affichage conditionnel de la modale */}
             {isModalOpen && (
-                <GameForm 
+                <Formgame 
                     game={editingGame} 
                     onSave={handleSave} 
                     onCancel={() => setIsModalOpen(false)} 
