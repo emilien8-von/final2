@@ -81,13 +81,18 @@ const Dashboard = () => {
                     </div>
                    </div>
                </Link>
-                <div className="stat-card card-orange">
+               <Link to="console" className='stat-card-link'>
+                 <div className="stat-card card-orange">
                     <div className="card-icon"><i className="fa-solid fa-ghost"></i></div>
                     <div className="card-content">
                         <h3>Total des Consoles</h3>
                         <span>{stats.consoles}</span>
                     </div>
-                </div>
+                 </div>
+               </Link>
+                
+
+
                 <div className="stat-card card-red">
                     <div className="card-icon"><i className="fa-solid fa-box"></i></div>
                     <div className="card-content">

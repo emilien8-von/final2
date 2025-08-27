@@ -26,11 +26,16 @@ const URLS = {
     // Consoles
     GET_ALL_CONSOLE: '/game/console/all',
     GET_CONSOLE_BY_ID: '/game/console/get',
+    DELETE_CONSOLE: '/game/console/delete',
+    CHANGE_CONSOLE: '/game/console/put',
+    ADD_CONSOLE:'/game/console/add',
 
     // Émulateurs
     GET_EMULATEUR_ALL: "/game/emulateur/all",
     GET_EMULATEUR_BY_ID: "/game/emulateur/get",
-
+     DELETE_EMULATEUR: '/game/emulateur/delete',
+    CHANGE_EMULATEUR: '/game/emulateur/put',
+    ADD_EMULATEUR:'/game/emulateur/add',
     // Commentaires
     GET_COMMENT_BY_GAME_ID: '/game/comment/game', 
     POST_COMMENT: '/game/comment/add'

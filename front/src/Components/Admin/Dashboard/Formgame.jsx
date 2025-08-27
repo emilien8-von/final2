@@ -179,7 +179,7 @@ const Formgame = ({ game, onSave, onCancel }) => {
                     </div>
                 </form>
             </div>
-        </div>
+    </div>
   )
 }
 
