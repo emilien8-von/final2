@@ -30,7 +30,7 @@ const Side = () => {
             </li>
             <li>
                 <NavLink to="console">
-                    <i className="fa-solid fa-game-console-handheld"></i>
+                    <i class="fa-solid fa-keyboard"></i>
                     <span>Gérer les Consoles</span>
                 </NavLink>
             </li>
