@@ -13,7 +13,7 @@ const Tableconsole = () => {
     const fetchAllConsoles = async () => {
         try {
             setLoading(true);
-            const response = await api.get(URLS.GET_ALL_CONSOLE);
+            const response = await INSTANCE.get(URLS.GET_ALL_CONSOLE);
             setConsoles(response.data);
         } catch (error) {
             console.error("Erreur lors de la récupération des consoles:", error);
