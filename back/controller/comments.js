@@ -4,7 +4,13 @@ const pseudo = require("../models/pseudo")
 
 const Pcomment = async (req, res, next) => {
     try {
-        const newComment = await Comment.create(req.body);
+        // On crée le nouveau commentaire en utilisant l'ID de l'utilisateur
+        // qui vient du token (grâce au middleware "verify")
+        const newComment = await Comment.create({
+            ...req.body,
+            user: req.user.id // C'est plus sécurisé que de faire confiance au frontend
+        });
+        
         const populatedComment = await Comment.findById(newComment._id).populate('user', 'pseudo avatar');
         res.status(201).json(populatedComment);
     } catch (error) {
