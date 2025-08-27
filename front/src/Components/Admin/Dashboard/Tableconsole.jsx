@@ -21,7 +21,7 @@ const Tableconsole = () => {
         }
     }
     useEffect(() => {
-        fetchAllGames();
+        setConsoles();
     }, [])
     const handleDelete = async (id) => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer ce jeu ? Cette action est irréversible.")) {
