@@ -25,7 +25,6 @@ const Dashboard = () => {
                 
                 setStats(statsResponse.data);
                 setRecentGames(recentGamesResponse.data);
-
             } catch (error) {
                 console.error("Erreur lors de la récupération des données du dashboard:", error);
             } finally {
@@ -93,13 +92,15 @@ const Dashboard = () => {
                 
 
 
-                <div className="stat-card card-red">
-                    <div className="card-icon"><i className="fa-solid fa-box"></i></div>
-                    <div className="card-content">
-                        <h3>Total des Emulateur</h3>
-                        <span>{stats.emulateurs}</span>
+                <Link to="/dashboard/emulators" className="stat-card-link">
+                    <div className="stat-card card-red">
+                        <div className="card-icon"><i className="fa-solid fa-box"></i></div>
+                        <div className="card-content">
+                            <h3>Total des Emulateurs</h3>
+                            <span>{stats.emulateurs}</span>
+                        </div>
                     </div>
-                </div>
+                </Link>
             </div>
 
             {/* Panneaux d'activité récente */}

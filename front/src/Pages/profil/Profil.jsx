@@ -166,7 +166,6 @@ const handlePasswordSubmit = async (e) => {
                 name="currentPassword"
                 value={passwordData.currentPassword}
                 onChange={handlePasswordChange}
-                onInput={checkPasswordStrength}
             />
             <img 
                 src={passwordVisibility.current ? "/closed-eye.svg" : "/eye.svg"}
@@ -175,13 +174,8 @@ const handlePasswordSubmit = async (e) => {
                 onClick={() => togglePasswordVisibility('current')}
             />
         </div>
-    </div>
-     <div className="password-requirements">
-        <p><img id="maj-check" src="/croosing.svg" alt="check" /> Au moins une majuscule</p>
-        <p><img id="special-check" src="/croosing.svg" alt="check" /> Au moins un caractère spécial</p>
-        <p><img id="chiffre-check" src="/croosing.svg" alt="check" /> Au moins un chiffre</p>
-        <p><img id="length-check" src="/croosing.svg" alt="check" /> Au moins 3 caractères</p>
-    </div>
+                </div>
+     
                 <div className="form-group">
                     <label htmlFor="newPassword">Nouveau mot de passe</label>
                         <div className="password-input-wrapper">
@@ -190,6 +184,7 @@ const handlePasswordSubmit = async (e) => {
                 name="newPassword"
                 value={passwordData.newPassword}
                 onChange={handlePasswordChange}
+                onInput={checkPasswordStrength}
             />
             <img
                 src={passwordVisibility.new ? "/closed-eye.svg" : "/eye.svg"}
@@ -198,7 +193,14 @@ const handlePasswordSubmit = async (e) => {
                 onClick={() => togglePasswordVisibility('new')}
             />
         </div>
-    </div>
+                </div>
+                <div className="password-requirements">
+        <p><img id="maj-check" src="/croosing.svg" alt="check" /> Au moins une majuscule</p>
+        <p><img id="special-check" src="/croosing.svg" alt="check" /> Au moins un caractère spécial</p>
+        <p><img id="chiffre-check" src="/croosing.svg" alt="check" /> Au moins un chiffre</p>
+        <p><img id="length-check" src="/croosing.svg" alt="check" /> Au moins 3 caractères</p>
+                </div>
+
                 <div className="form-group">
                     <label htmlFor="confirmPassword">Confirmer le nouveau mot de passe</label>
                     <div className="password-input-wrapper">
@@ -215,7 +217,7 @@ const handlePasswordSubmit = async (e) => {
                 onClick={() => togglePasswordVisibility('confirm')}
               />
            </div>
-            </div>
+                </div>
                 <button type="submit" className="save-button">Changer le mot de passe</button>
 
                 <p>Retourner a la page d'acceuil <Link className='link' to='/'>cliquer ici </Link>.</p>
