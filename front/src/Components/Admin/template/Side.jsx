@@ -37,7 +37,7 @@ const Side = () => {
             <li>
                 <NavLink to="emulateur">
                    <i class="fa-solid fa-download"></i>
-                    <span>Gérer les Consoles</span>
+                    <span>Gérer les Émulateurs</span>
                 </NavLink>
             </li>
         </ul>
