@@ -1,30 +1,8 @@
-const mongoose = require('mongoose')
-const avis = mongoose.Schema( 
-    {
-        pseudo : {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'Users',
-            //required : true
-        },
-        rating:{
-            type : Number,
-            //required : true
-        },
-         message : {
-            type:String,
-            required: true
-         },
-         role : {
-            type : String,
-            enum : ["user","admin","gadmin","consultant","designer"],
-            required : true,
-            default : "user",
-         } ,
-         date : {
-            type: Date,
-            //required : true
-         },
-         content: { 
+// Dans models/comments.js
+const mongoose = require('mongoose');
+
+const commentSchema = new mongoose.Schema({
+    content: { 
         type: String, 
         required: true 
     },
@@ -34,7 +12,7 @@ const avis = mongoose.Schema(
         max: 5,
         default: 0 
     },
-    // LA CORRECTION : La référence doit être "Users", comme le nom de votre modèle utilisateur
+    // LA CORRECTION : La référence doit être "Users", comme le nom du modèle
     user: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Users', 
@@ -45,10 +23,6 @@ const avis = mongoose.Schema(
         ref: 'Jeux', 
         required: true 
     }
+}, { timestamps: true });
 
-
-    },
-    {timestamps: { createdAt: true } }
-)
-
-module.exports = mongoose.model('Avis',avis)
+module.exports = mongoose.model('Comment', commentSchema);
