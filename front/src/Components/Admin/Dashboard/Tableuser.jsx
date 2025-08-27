@@ -3,10 +3,15 @@ import './css/tableusers.scss'
 import INSTANCE from '../../../utils/services/instance'
 import URLS from '../../../utils/constants/URLS'
 import { useEffect,useState } from 'react'
-
+import Userform from './Userform'
 const Tableuser = () => {
-      const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
+       const [users, setUsers] = useState([]);
+       const [loading, setLoading] = useState(true);
+    
+    // 2. Nouveaux états pour gérer la modale
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingUser, setEditingUser] = useState(null);
+
 
     // Fonction pour récupérer tous les utilisateurs
     const fetchAllUsers = async () => {
@@ -38,7 +43,31 @@ const Tableuser = () => {
             }
         }
     };
+     const handleRoleSave = async (userId, newRole) => {
+        try {
+            await INSTANCE.put(`${URLS.UPDATE_USER_ROLE}/${userId}`, { role: newRole });
+            setIsModalOpen(false);
+            setEditingUser(null);
+            fetchAllUsers(); // Rafraîchir la liste
+        } catch (error) {
+            console.error("Erreur lors de la mise à jour du rôle:", error);
+            alert("La mise à jour a échoué.");
+        }
+    };
 
+    // 4. Fonction pour forcer la déconnexion (placeholder pour l'instant)
+    const handleForceLogout = (userId) => {
+        // La logique de déconnexion forcée est complexe (blacklist de tokens).
+        // Pour l'instant, on met une alerte.
+        alert(`Logique de déconnexion forcée pour l'utilisateur ${userId} à implémenter.`);
+    };
+
+    const openEditModal = (user) => {
+        setEditingUser(user);
+        setIsModalOpen(true);
+    };
+
+ 
     if (loading) {
         return <div className="loading-container">Chargement de la liste des utilisateurs...</div>;
     }
@@ -70,8 +99,9 @@ const Tableuser = () => {
                                     <td>{user.email}</td>
                                     <td>{user.role}</td>
                                     <td className="actions-cell">
-                                        <button className="edit-btn">Modifier Rôle</button>
+                                       <button onClick={() => openEditModal(user)} className="edit-btn">Modifier Rôle</button>
                                         <button onClick={() => handleDelete(user._id)} className="delete-btn">Supprimer</button>
+                                         <button onClick={() => handleForceLogout(user._id)} className="logout-btn">Déconnecter</button>
                                     </td>
                                 </tr>
                             ))}
@@ -79,6 +109,13 @@ const Tableuser = () => {
                     </table>
                 </div>
             </div>
+             {isModalOpen && (
+                <Userform 
+                    user={editingUser} 
+                    onSave={handleRoleSave} 
+                    onCancel={() => setIsModalOpen(false)} 
+                />
+            )}
         </div>
   )
 }
