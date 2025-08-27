@@ -54,6 +54,10 @@ const Profil = () => {
 };
 
   const checkPasswordStrength = () => {
+       const passwordInput = document.getElementById("newPasswordInput");
+    if (!passwordInput) {
+        return; 
+    }
         const passwordValue = document.getElementById("newPasswordInput").value;
         
         const majCheck = document.getElementById("maj-check");
@@ -162,10 +166,10 @@ const handlePasswordSubmit = async (e) => {
                     <label htmlFor="currentPassword">Mot de passe actuel</label>
                      <div className="password-input-wrapper"> {/* Conteneur pour l'ancre */}
             <input
-                type={passwordVisibility.current ? 'text' : 'password'}
-                name="currentPassword"
-                value={passwordData.currentPassword}
-                onChange={handlePasswordChange}
+               type={passwordVisibility.current ? 'text' : 'password'}
+               name="currentPassword"
+               value={passwordData.currentPassword}
+               onChange={handlePasswordChange}
             />
             <img 
                 src={passwordVisibility.current ? "/closed-eye.svg" : "/eye.svg"}
@@ -180,11 +184,12 @@ const handlePasswordSubmit = async (e) => {
                     <label htmlFor="newPassword">Nouveau mot de passe</label>
                         <div className="password-input-wrapper">
             <input
-                type={passwordVisibility.new ? 'text' : 'password'} // Type dynamique
-                name="newPassword"
-                value={passwordData.newPassword}
-                onChange={handlePasswordChange}
-                onInput={checkPasswordStrength}
+                type={passwordVisibility.new ? 'text' : 'password'}
+              name="newPassword"
+            id="newPasswordInput" 
+            value={passwordData.newPassword}
+            onChange={handlePasswordChange}
+            onInput={checkPasswordStrength}
             />
             <img
                 src={passwordVisibility.new ? "/closed-eye.svg" : "/eye.svg"}
