@@ -31,7 +31,7 @@ const Tablegame = () => {
     const handleDelete = async (gameId) => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer ce jeu ? Cette action est irréversible.")) {
             try {
-                await api.delete(`${URLS.DELETE_GAME}/${gameId}`);
+                await INSTANCE.delete(`${URLS.DELETE_GAME}/${gameId}`);
                 fetchAllGames(); // Rafraîchir la liste après suppression
             } catch (error) {
                 console.error("Erreur lors de la suppression du jeu:", error);
@@ -45,10 +45,10 @@ const Tablegame = () => {
         try {
             if (editingGame) {
                 // Mode Modification (PUT)
-                await api.put(`${URLS.UPDATE_GAME}/${editingGame._id}`, gameData);
+                await INSTANCE.put(`${URLS.UPDATE_GAME}/${editingGame._id}`, gameData);
             } else {
                 // Mode Ajout (POST)
-                await api.post(URLS.CREATE_GAME, gameData);
+                await INSTANCE.post(URLS.CREATE_GAME, gameData);
             }
             setIsModalOpen(false); // Fermer la modale
             setEditingGame(null); // Réinitialiser l'état d'édition
