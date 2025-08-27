@@ -1,42 +1,47 @@
-// Dans CommentList.jsx (notez le 'L' majuscule)
+// Dans CommentList.jsx
 import React from 'react';
 
-// On accepte la liste des commentaires comme une prop
 const CommentList = ({ comments }) => {
+    // LA CORRECTION : Si pas de commentaires, on n'affiche rien du tout.
     if (!comments || comments.length === 0) {
-        return <p className="no-comments-message">Soyez le premier à commenter !</p>;
+        return null; // N'affiche rien, pas même le message "Soyez le premier..."
     }
 
     return (
         <div className="comments-list">
-            {comments.map(comment => (
-                <div key={comment._id} className="comment-item">
-                    {comment.user && comment.user.avatar && (
+            {comments.map(comment => {
+                // Si pour une raison quelconque l'utilisateur a été supprimé, on n'affiche pas le commentaire
+                if (!comment.user) {
+                    return null;
+                }
+
+                return (
+                    <div key={comment._id} className="comment-item">
                         <img 
                             src={comment.user.avatar} 
                             alt={`Avatar de ${comment.user.pseudo}`} 
                             className="user-avatar" 
                             referrerPolicy="no-referrer" 
                         />
-                    )}
-                    <div className="comment-content">
-                        <p className="comment-author">{comment.user ? comment.user.pseudo : "Utilisateur Anonyme"}</p>
-                        
-                        {comment.rating > 0 && (
-                            <div className="comment-rating-display">
-                                {[...Array(5)].map((star, index) => (
-                                    <i 
-                                      key={index} 
-                                      className="fa-solid fa-star" 
-                                      style={{ color: index < comment.rating ? '#ffc107' : '#e4e5e9', fontSize: '0.8rem' }}
-                                    ></i>
-                                ))}
-                            </div>
-                        )}
-                        <p className="comment-text">{comment.content}</p>
+                        <div className="comment-content">
+                            <p className="comment-author">{comment.user.pseudo}</p>
+                            
+                            {comment.rating > 0 && (
+                                <div className="comment-rating-display">
+                                    {[...Array(5)].map((star, index) => (
+                                        <i 
+                                          key={index} 
+                                          className="fa-solid fa-star" 
+                                          style={{ color: index < comment.rating ? '#ffc107' : '#e4e5e9', fontSize: '0.8rem' }}
+                                        ></i>
+                                    ))}
+                                </div>
+                            )}
+                            <p className="comment-text">{comment.content}</p>
+                        </div>
                     </div>
-                </div>
-            ))}
+                );
+            })}
         </div>
     );
 };

@@ -4,13 +4,10 @@ const pseudo = require("../models/pseudo")
 
 const Pcomment = async (req, res, next) => {
     try {
-        // On crée le nouveau commentaire en utilisant l'ID de l'utilisateur
-        // qui vient du token (grâce au middleware "verify")
         const newComment = await Comment.create({
             ...req.body,
-            user: req.user.id // C'est plus sécurisé que de faire confiance au frontend
+            user: req.user.id
         });
-        
         const populatedComment = await Comment.findById(newComment._id).populate('user', 'pseudo avatar');
         res.status(201).json(populatedComment);
     } catch (error) {
@@ -18,6 +15,21 @@ const Pcomment = async (req, res, next) => {
     }
 };
 
+// GET /game/:gameId
+const Gcomment = async (req, res, next) => {
+    try {
+        const { gameId } = req.params;
+        if (!mongoose.Types.ObjectId.isValid(gameId)) {
+            return next(erreur(400, 'ID de jeu invalide'));
+        }
+        const comments = await Comment.find({ game: gameId })
+                                      .populate('user', 'pseudo avatar')
+                                      .sort({ createdAt: -1 });
+        res.status(200).json(comments);
+    } catch (error) {
+        next(erreur(500, error.message));
+    }
+};
 const getAllComments = async (req, res, next) => {
     // On s'assure que seul un admin peut voir tous les commentaires
     if (req.user.role !== 'admin') {
@@ -35,29 +47,7 @@ const getAllComments = async (req, res, next) => {
     }
 };
 
-const Gcomment = async (req, res, next) => {
-    try {
-        // 1. On récupère l'ID du jeu depuis les paramètres de l'URL
-        const { gameId } = req.params;
 
-        // 2. On vérifie si l'ID est valide (bonne pratique)
-        if (!mongoose.Types.ObjectId.isValid(gameId)) {
-            return next(erreur(400, 'ID de jeu invalide'));
-        }
-
-        // 3. On cherche UNIQUEMENT les commentaires où le champ "game" correspond à cet ID
-        const comments = await Comment.find({ game: gameId })
-                                      .populate('user', 'pseudo avatar') // On inclut les infos de l'auteur
-                                      .sort({ createdAt: -1 }); // On trie du plus récent au plus ancien
-
-        // Si find() ne trouve rien, il renvoie un tableau vide [], ce qui est parfait.
-        res.status(200).json(comments);
-
-    } catch (error) {
-        console.error("Erreur dans Gcomment:", error);
-        next(erreur(500, error.message));
-    }
-};
 
 const DComment = async(req,res) =>{
     try{
