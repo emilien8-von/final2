@@ -9,24 +9,27 @@ const URLS = {
     UPDATE_PROFILE: '/game/user/profile/update',
     UPDATE_PASSWORD: '/game/user/update',
     FORGOT_PASSWORD: '/game/user/forgot-password',
-    VERIFY_RESET_CODE: '/game/user/reset', // J'ai corrigé pour correspondre à votre route
+    VERIFY_RESET_CODE: '/game/user/reset', 
     RESET_PASSWORD: '/game/user/reset-password',
 
     // Jeux
     GET_ALL_GAMES: '/game/jeux/all',
     GET_RECENT_GAMES: '/game/jeux/recent',
-    GET_GAME_BY_ID: '/game/jeux/get', // On ajoutera l'ID à la fin
+    GET_GAME_BY_ID: '/game/jeux/get', 
+    CREATE_GAME: '/game/jeux/add',
+    UPDATE_GAME: '/game/jeux/put', 
+    DELETE_GAME: '/game/jeux/delete',
 
     // Consoles
     GET_ALL_CONSOLE: '/game/console/all',
     GET_CONSOLE_BY_ID: '/game/console/get',
 
     // Émulateurs
-    GET_EMULATEUR_ALL: "/game/emulateur/all", // J'ai corrigé une faute de frappe "emuateur"
+    GET_EMULATEUR_ALL: "/game/emulateur/all",
     GET_EMULATEUR_BY_ID: "/game/emulateur/get",
 
     // Commentaires
-    GET_COMMENT_BY_GAME_ID: '/game/comment/game', // Route plus descriptive
+    GET_COMMENT_BY_GAME_ID: '/game/comment/game', 
     POST_COMMENT: '/game/comment/add'
 };
 

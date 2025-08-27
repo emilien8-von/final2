@@ -1,18 +1,17 @@
 const Category = require('../models/jeux')
 const erreur = require('../middlewares/erreur')
 const Connecte = require('../models/pseudo')
-const request = require('../middlewares/requestLogger')
-const pCategory = async(req,res) =>{
-    try{ 
-       const reponse = await Category.create(req.body)
-        res.status(201).json(reponse)
-      
+
+const pCategory = async (req, res, next) => {
+    if (req.user.role !== 'admin') return next(erreur(403, "Action non autorisée"));
+    try { 
+        const reponse = await Category.create(req.body);
+        res.status(201).json(reponse);
+    } catch(error) {
+        next(erreur(500, error.message));
     }
-    catch(error){
-        console.log(error.message);
-        
-    }
-}
+};
+
 const gCategory = async(req,res,next) =>{
     try{
          const reponse = await Category.find().sort({ createdAt: -1 });
@@ -56,6 +55,7 @@ const deleteCategory = async(req,res,next) =>{
     }
 }
 const Changecategorie = async(req,res,next) =>{
+    if (req.user.role !== 'admin') return next(erreur(403, "Action non autorisée"))
     try{
           const check = await Category.findById(req.params.id)
           if(!check) return next(erreur(404,'user not found'))
