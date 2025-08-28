@@ -32,6 +32,7 @@ const Gcomment = async (req, res, next) => {
         next(erreur(500, error.message));
     }
 };
+
 const getAllComments = async (req, res, next) => {
     // On s'assure que seul un admin peut voir tous les commentaires
     if (req.user.role !== 'admin') {
@@ -76,24 +77,5 @@ const Ccomment = async(req,res,next) =>{
       }
 }
 
-const GetCommentsForGame = async (req, res,next) => {
-    const GetCommentsForGame = async (req, res, next) => {
-    try {
-        // On récupère l'ID du jeu depuis les paramètres de l'URL
-        const gameId = req.params.id;
 
-        // LA CORRECTION : On utilise find() pour chercher tous les commentaires
-        // où le champ "game" est égal à gameId.
-        const comments = await Comment.find({ game: gameId })
-            .populate('user', 'pseudo avatar') // "populate" est parfait ici !
-            .sort({ createdAt: -1 });         // Trie du plus récent au plus ancien
-
-        // Si `find` ne trouve rien, il renvoie un tableau vide [], ce qui est idéal pour le frontend.
-        res.status(200).json(comments);
-
-    } catch (error) {
-        next(erreur(500, error.message));
-    }
-};
-};
-module.exports = {Pcomment,Gcomment,DComment,Ccomment,GetCommentsForGame,getAllComments}
+module.exports = {Pcomment,Gcomment,DComment,Ccomment,getAllComments}

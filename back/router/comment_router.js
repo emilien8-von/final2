@@ -7,5 +7,4 @@ router.delete('delete/:id',Commenter.DComment)
 router.put('change/:id',Commenter.Ccomment)
 router.get('/all', verify, Commenter.getAllComments);
 router.get('/game/:gameId', Commenter.Gcomment);
-
 module.exports = router
