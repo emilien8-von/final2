@@ -11,25 +11,39 @@ const Section = ({ gameId }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchComments = async () => {
-            // LA CORRECTION N°2 : On utilise "gameId" au lieu de "id"
-            if (!gameId) return;
-            try {
-                setLoading(true);
-                // On utilise "gameId" pour l'appel API
-                const response = await INSTANCE.get(`${URLS.GET_COMMENT_BY_GAME_ID}/${gameId}`);
-                if (Array.isArray(response.data)) {
-                    setComments(response.data);
-                }
-            } catch (error) {
-                console.error("Erreur lors de la récupération des commentaires:", error);
-            } finally {
+        let isMounted = true;
+
+    const fetchComments = async () => {
+        if (!gameId) {
+            setLoading(false);
+            return;
+        }
+        
+        try {
+            setLoading(true);
+            const response = await INSTANCE.get(`${URLS.GET_COMMENT_BY_GAME_ID}/${gameId}`);
+            
+            // On ne met à jour l'état que si le composant est toujours "monté"
+            if (isMounted && Array.isArray(response.data)) {
+                setComments(response.data);
+            }
+        } catch (error) {
+            console.error("Erreur lors de la récupération des commentaires:", error);
+        } finally {
+            if (isMounted) {
                 setLoading(false);
             }
-        };
+        }
+    };
 
-        fetchComments();
-    }, [gameId]); // On utilise "gameId" comme dépendance
+    fetchComments();
+
+    // Fonction de nettoyage : s'exécute quand le composant est sur le point d'être démonté
+    return () => {
+        isMounted = false;
+    };
+}, [gameId]);
+
 
     const handleNewComment = (newComment) => {
         setComments(prevComments => [newComment, ...prevComments]);

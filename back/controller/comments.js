@@ -1,6 +1,6 @@
 const Comment = require('../models/comments')
 const erreur = require('../middlewares/erreur')
-const pseudo = require("../models/pseudo")
+const mongoose = require('mongoose')
 
 const Pcomment = async (req, res, next) => {
     try {
