@@ -30,11 +30,11 @@ const Contact = () => {
                 <p>Une question, une suggestion ? N'hésitez pas à nous laisser un message.</p>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="name">Nom / Name *</label>
+                        <label htmlFor="name">Nom *</label>
                         <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="email">Email Address *</label>
+                        <label htmlFor="email">Adresse Mail *</label>
                         <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
                     </div>
                     <div className="form-group">

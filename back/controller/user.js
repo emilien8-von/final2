@@ -427,7 +427,6 @@ const handleContactForm = async (req, res, next) => {
         
         // On envoie l'email À VOUS-MÊME (l'admin du site)
         await sendEmail(ENV.EMAIL_USER, `Nouveau message de ${name}`, emailHTML);
-
         res.status(200).json({ message: "Votre message a bien été envoyé. Merci !" });
 
     } catch (error) {
