@@ -115,7 +115,7 @@ const Formulaire = () => {
         if (error.response && error.response.data && error.response.data.message) {
         return setFormError(error.response.data.message);
     } else {
-        setFormError("Une erreur est survenue.");
+        setFormError("Une erreur est survenue.verifier votre mail");
     }
     }
 };
