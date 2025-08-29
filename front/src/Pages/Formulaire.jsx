@@ -12,7 +12,6 @@ const Formulaire = () => {
       password : "",
       email : ""
     })
-    const [password, setPassword] = useState('');
 
  
     const navigate = useNavigate()
@@ -69,7 +68,7 @@ const Formulaire = () => {
               carac.setAttribute("src","/croosing.svg")
         }
 
-      if(pass.value.length >= 3){
+      if(pass.value.length >= 8){
         cross2.setAttribute("src","/valide.png")
        }
        else{
