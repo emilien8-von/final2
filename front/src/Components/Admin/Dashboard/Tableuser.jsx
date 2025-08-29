@@ -1,5 +1,4 @@
 import React from 'react'
-import './css/tableusers.scss'
 import INSTANCE from '../../../utils/services/instance'
 import URLS from '../../../utils/constants/URLS'
 import { useEffect,useState } from 'react'

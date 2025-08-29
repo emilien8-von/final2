@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './css/tablegame.scss'
 import URLS from '../../../utils/constants/URLS.js';
 import INSTANCE from '../../../utils/services/instance';
 import Formgame from './Formgame.jsx';
