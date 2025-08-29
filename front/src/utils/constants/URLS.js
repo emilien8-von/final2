@@ -14,7 +14,7 @@ const URLS = {
     GET_ALL_USERS: '/game/user/all',
     UPDATE_USER_ROLE: '/game/user/role', // On ajoutera l'ID à la fin
     DELETE_USER: '/game/user/delete', 
-
+    LOGOUT_USER:'/game/user/logout',
     // Jeux
     GET_ALL_GAMES: '/game/jeux/all',
     GET_RECENT_GAMES: '/game/jeux/recent',
@@ -40,7 +40,7 @@ const URLS = {
     GET_COMMENT_BY_GAME_ID: '/game/comment/game', 
     POST_COMMENT: '/game/comment/add',
     //Formulaire
-    SEND_CONTACT_FORM: '/game/user/send'
+    SEND_CONTACT_FORM: '/game/user/forced'
 }
 
 export default URLS;

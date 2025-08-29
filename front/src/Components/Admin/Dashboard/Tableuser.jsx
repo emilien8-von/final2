@@ -61,7 +61,7 @@ const Tableuser = () => {
         if (window.confirm("Voulez-vous vraiment marquer cet utilisateur comme inactif ?")) {
             try {
                 // On appelle la nouvelle route
-                await INSTANCE.put(`${URLS.FORCE_LOGOUT}/${userId}`);
+                await INSTANCE.put(`${URLS.LOGOUT_USER}/${userId}`);
                 fetchAllUsers(); // On rafraîchit la liste pour voir le nouveau statut
             } catch (error) {
                 console.error("Erreur:", error);

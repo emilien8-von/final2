@@ -14,6 +14,7 @@ router.get('/get/:id',Pcontroller.Iduser)
 router.get('/stats', verify, Pcontroller.getDashboardStats);
 router.delete('/logout/:id',verify,Pcontroller.Duser)
 router.delete('/delete/:id',verify,Pcontroller.EffacerUser)
+router.delete('/forced',verify,Pcontroller.forceLogoutByAdmin)
 router.put('/put/:id',verify,Pcontroller.Cuser)
 router.put('/profile/update',verify,Pcontroller.updateProfil)
 router.put('/update',verify,Pcontroller.updateUserPassword)
