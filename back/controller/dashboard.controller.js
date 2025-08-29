@@ -6,10 +6,12 @@ const Emulateur = require('../models/emulateur');
 const getDashboardStats = async (req, res, next) => {
     try {
         // On compte le nombre de documents dans chaque collection
-        const gameCount = await Jeux.countDocuments();
-        const userCount = await Users.countDocuments();
-        const consoleCount = await Console.countDocuments();
-        const emulateurCount = await Emulateur.countDocuments();
+      const [gameCount, userCount, consoleCount, emulateurCount] = await Promise.all([
+            Jeux.countDocuments(),
+            Users.countDocuments(),
+            Console.countDocuments(),
+            Emulateur.countDocuments() // 2. On ajoute le comptage des émulateurs
+        ]);
 
         // On renvoie un objet avec toutes les statistiques
         res.status(200).json({
@@ -19,6 +21,7 @@ const getDashboardStats = async (req, res, next) => {
             emulateur: emulateurCount
         });
     } catch (error) {
+                console.error("Erreur détaillée dans getDashboardStats:", error);
         next(erreur(500, error.message));
     }
 };

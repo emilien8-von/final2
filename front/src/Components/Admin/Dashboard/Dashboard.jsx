@@ -93,13 +93,13 @@ const Dashboard = () => {
 
 
                 <Link to="/dashboard/emulators" className="stat-card-link">
-                    <div className="stat-card card-red">
-                        <div className="card-icon"><i className="fa-solid fa-box"></i></div>
-                        <div className="card-content">
-                            <h3>Total des Emulateurs</h3>
-                            <span>{stats.emulateurs}</span>
-                        </div>
+                 <div className="stat-card card-red">
+                    <div className="card-icon"><i className="fa-solid fa-box"></i></div>
+                    <div className="card-content">
+                        <h3>Total des Emulateurs</h3>
+                        <span>{stats.emulateurs}</span>
                     </div>
+                 </div>
                 </Link>
             </div>
 
