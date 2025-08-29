@@ -10,7 +10,7 @@ const Footer = () => {
                   <ul className='r-flex'>
                      <li><Link to='/mentions-legales' className='mention'>Mention legale</Link></li>
                      <li>FAQ</li>
-                     <li> Contact</li>
+                     <li><Link to='/contact' className='contact'>Contact</Link> </li>
                      <li>Cookies</li>
                   </ul>
              </div>

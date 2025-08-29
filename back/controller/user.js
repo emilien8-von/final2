@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt')
 const jwr = require('jsonwebtoken')
 const ENV  = require('../config/env')
 const erreur = require('../middlewares/erreur')
-const cookieParser = require('cookie-parser')
 const { sendEmail, sendVerificationEmail, createResetCodeEmailHTML } = require('../services/mail')
 const Puser = async(req,res) =>{
     try{
@@ -399,8 +398,45 @@ const forceLogoutByAdmin = async (req, res, next) => {
         next(erreur(500, error.message));
     }
 };
+const createContactEmailHTML = (senderName, senderEmail, message) => {
+    return `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px;">
+            <h2 style="color: #501794;">Nouveau Message depuis Alpha Gaming</h2>
+            <p>Vous avez reçu un nouveau message via le formulaire de contact de votre site.</p>
+            <hr>
+            <p><strong>Nom :</strong> ${senderName}</p>
+            <p><strong>Email de l'expéditeur :</strong> <a href="mailto:${senderEmail}">${senderEmail}</a></p>
+            <p><strong>Message :</strong></p>
+            <p style="background-color: #f2f2f2; padding: 15px; border-radius: 5px;">
+                ${message.replace(/\n/g, '<br>')}
+            </p>
+        </div>
+    `;
+};
+
+const handleContactForm = async (req, res, next) => {
+    const { name, email, message } = req.body;
+
+    // Validation simple
+    if (!name || !email || !message) {
+        return next(erreur(400, "Tous les champs sont requis."));
+    }
+
+    try {
+        const emailHTML = createContactEmailHTML(name, email, message);
+        
+        // On envoie l'email À VOUS-MÊME (l'admin du site)
+        await sendEmail(ENV.EMAIL_USER, `Nouveau message de ${name}`, emailHTML);
+
+        res.status(200).json({ message: "Votre message a bien été envoyé. Merci !" });
+
+    } catch (error) {
+        console.error("Erreur lors de l'envoi de l'email de contact:", error);
+        next(erreur(500, "Le service de messagerie est actuellement indisponible."));
+    }
+};
 
 module.exports = {Puser,Guser,Iduser,Duser,EffacerUser,Luser,Cuser
     ,Emailverify,updateProfil,updateUserPassword,forgotPassword,verifyResetCode,resetPassword,getDashboardStats,
-    updateUserRoleByAdmin,forceLogoutByAdmin
+    updateUserRoleByAdmin,forceLogoutByAdmin,handleContactForm
 }

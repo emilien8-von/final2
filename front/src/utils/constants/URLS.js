@@ -38,8 +38,9 @@ const URLS = {
     ADD_EMULATEUR:'/game/emulateur/add',
     // Commentaires
     GET_COMMENT_BY_GAME_ID: '/game/comment/game', 
-    POST_COMMENT: '/game/comment/add'
-};
+    POST_COMMENT: '/game/comment/add',
+    //Formulaire
+    SEND_CONTACT_FORM: '/game/contact/send'
+}
 
-// On exporte directement l'objet
 export default URLS;

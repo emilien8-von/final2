@@ -3,6 +3,7 @@ import { Route,Routes } from 'react-router'
 /**Components */
 import Layout from './Components/Layout'
 import Mention from './Components/Templates/Mention'
+import Contact from './Components/Templates/Contact'
 import Dashboard from './Components/Admin/Dashboard/Dashboard'
 import Tablegame from './Components/Admin/Dashboard/Tablegame'
 import Template from './Components/Admin/template/Template'
@@ -37,6 +38,7 @@ function App() {
         <Route path='/mot-de-passe-oublie' element={<Forget/>}/> 
         <Route path='/reset-password/:token' element={<Reset/>}/>  
         <Route path='/mentions-legales' element={<Mention/>}/>
+        <Route path='/contact' element={<Contact/>}/>
         {/* --- Routes Protégées (nécessitent d'être connecté) --- */}
         <Route element={<Private />}>
           <Route path='/detail/:id' element={<Detail/>} />

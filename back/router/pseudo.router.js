@@ -2,13 +2,13 @@ const express = require('express')
 const router = express.Router()
 const Pcontroller = require('../controller/user')
 const verify = require('../middlewares/indentite')
-const admin = require('../middlewares/droitadmin')
 
 router.post("/add",Pcontroller.Puser)
 router.post("/login",Pcontroller.Luser)
 router.post('/forgot-password', Pcontroller.forgotPassword);
 router.post("/reset",Pcontroller.verifyResetCode)
 router.post("/reset-password",Pcontroller.resetPassword)
+router.post('/send', Pcontroller.handleContactForm);
 router.get("/all",verify,Pcontroller.Guser)
 router.get('/get/:id',Pcontroller.Iduser)
 router.get('/stats', verify, Pcontroller.getDashboardStats);

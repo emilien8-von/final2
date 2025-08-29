@@ -23,9 +23,9 @@ const Mention = () => {
                 <section>
                     <h2>Hébergement</h2>
                     <p>
-                        <strong>Hébergeur :</strong> rendu <br />
+                        <strong>Hébergeur :</strong> vercel <br />
                         <strong>Adresse :</strong> localhost:3000 <br />
-                        <strong>Site Web :</strong> http/
+                        <strong>Site Web :</strong> https://final3-eta.vercel.app/
                     </p>
                 </section>
 

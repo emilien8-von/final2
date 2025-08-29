@@ -11,8 +11,6 @@ const Pcomment = async (req, res, next) => {
         const populatedComment = await Comment.findById(newComment._id).populate('user', 'pseudo avatar');
         res.status(201).json(populatedComment);
     } catch (error) {
-        // AJOUTEZ CE LOG POUR VOIR L'ERREUR DÉTAILLÉE SUR RENDER
-        console.error("ERREUR DANS Pcomment:", error); 
         next(erreur(500, error.message));
     }
 };

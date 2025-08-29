@@ -1,4 +1,3 @@
-// Dans models/comments.js
 const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({
@@ -12,7 +11,6 @@ const commentSchema = new mongoose.Schema({
         max: 5,
         default: 0 
     },
-    // LA CORRECTION : La référence doit être "Users", comme le nom du modèle
     user: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Users', 
