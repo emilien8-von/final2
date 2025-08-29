@@ -1,9 +1,8 @@
 
 import React, { useState } from 'react';
-import URLS from '../utils/constants/URLS';
 import './css/Contact.scss'; 
 import INSTANCE from '../../utils/services/instance';
-
+import URLS from '../../utils/constants/URLS';
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [statusMessage, setStatusMessage] = useState({ type: '', text: '' });
