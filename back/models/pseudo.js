@@ -5,7 +5,7 @@ const user = mongoose.Schema(
        pseudo : {
         type : String,
         required : true,
-        minLength : 8,
+        minLength : 3,
         maxLength: 23
        },
        email : {
@@ -23,7 +23,7 @@ const user = mongoose.Schema(
        password : 
        {
         type : String,
-        minLength : 3,
+        minLength : 8,
         required : true
         
        } ,
