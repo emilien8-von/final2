@@ -38,7 +38,6 @@ const Dashboard = () => {
             setCurrentTime(new Date());
         }, 1000);
 
-        // Fonction de nettoyage pour arrêter l'intervalle
         return () => {
             clearInterval(timerId);
         };

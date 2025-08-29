@@ -10,8 +10,8 @@ import INSTANCE from '../utils/services/instance';
 
 const Detail = () => {
     const { id } = useParams();
-    const { auth } = useContext(Context); // Récupérer l'utilisateur connecté
-    const [details, setDetails] = useState(null); // Initialiser à null
+    const { auth } = useContext(Context); 
+    const [details, setDetails] = useState(null);
 
     useEffect(() => {
         const fetchDetail = async () => {
@@ -25,7 +25,7 @@ const Detail = () => {
             }
         };
         fetchDetail();
-    }, [id]); // Se redéclenche si l'ID du jeu change
+    }, [id]); 
 
   
     if (!details) {

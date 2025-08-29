@@ -12,7 +12,6 @@ const Dtailemulateur = () => {
     useEffect(() => {
         const fetchEmulatorDetails = async () => {
             try {
-                // On appelle la route que nous avons définie pour les émulateurs
                 const { data, status } = await INSTANCE.get(`${URLS.GET_EMULATEUR_BY_ID}/${id}`)
                 if (status === 200) {
                     setEmulatorDetails(data);

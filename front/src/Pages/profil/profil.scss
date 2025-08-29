@@ -115,15 +115,15 @@
 }
 
 .profile-page-background {
-  background-color: #160430; /* Votre couleur de fond principale */
+  background-color: #160430; 
   color: snow;
-  min-height: 100vh; /* Assure que le fond prend au moins toute la hauteur de l'écran */
-  padding: 2rem 0; /* Ajoute de l'espace en haut et en bas */
+  min-height: 100vh; 
+  padding: 2rem 0; 
 }
 
 .profile-container {
   max-width: 800px;
-  margin: 0 auto; /* Centré horizontalement */
+  margin: 0 auto; 
   padding: 2rem;
   background-color: #2a2a3e;
   border-radius: 15px;
@@ -142,30 +142,24 @@
   position: relative;
 }
 
-// Style pour les champs de saisie dans le formulaire de profil
 .profile-form .form-group input {
-  // On s'assure que le padding est appliqué à tous les inputs
   padding: 0.8rem;
   width: 100%;
-  box-sizing: border-box; // Très important !
+  box-sizing: border-box; 
   
-  // ON AJOUTE DE L'ESPACE À DROITE pour que le texte ne passe pas sous l'icône
   padding-right: 50px; 
 }
 
-// Style pour l'icône de l'œil
 .password-eye-icon {
   position: absolute;
   top: 50%;
-  right: 15px; // Position à droite
-  transform: translateY(-50%); // Centrage vertical parfait
+  right: 15px; 
+  transform: translateY(-50%);
   
-  // Pour la rendre "grande et visible"
   width: 25px;
   height: 24px;
   cursor: pointer;
   
-  // Assure que l'icône est blanche si c'est un SVG noir
   filter: invert(1); 
   opacity: 0.7;
   transition: opacity 0.2s;
@@ -182,15 +176,15 @@
 
 .password-requirements {
   text-align: left;
-  margin: -0.5rem 0 1.5rem 0; // Espace après le champ de mot de passe
+  margin: -0.5rem 0 1.5rem 0; 
   font-size: 0.9rem;
   color: #ccc;
-  padding-left: 5px; // Petit décalage pour l'alignement
+  padding-left: 5px;
 
   p {
     display: flex;
     align-items: center;
-    gap: 0.5rem; // Espace entre l'image et le texte
+    gap: 0.5rem; 
     margin: 0.4rem 0;
   }
 

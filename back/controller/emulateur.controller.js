@@ -27,7 +27,6 @@ const Idemulateur =  async(req,res,next) =>{
     try {
         const { id } = req.params;
 
-        // On vérifie si l'ID est un ObjectId valide
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return next(erreur(400, 'ID d\'émulateur invalide'));
         }

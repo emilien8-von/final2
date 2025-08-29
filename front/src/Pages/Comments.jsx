@@ -18,7 +18,6 @@ const Comments = ({ gameId }) => { // Renommé en gameId pour plus de clarté
             if (!gameId) return;
             try {
                 setLoading(true);
-                // On utilise la bonne route pour récupérer les commentaires par jeu
                 const response = await INSTANCE.get(`${URLS.GET_COMMENT_BY_ID}/${id}`);
                 if (Array.isArray(response.data)) {
                     setComments(response.data);
@@ -33,9 +32,7 @@ const Comments = ({ gameId }) => { // Renommé en gameId pour plus de clarté
         fetchComments();
     }, [gameId]);
 
-    // Cette fonction sera passée au formulaire pour mettre à jour la liste
     const handleNewComment = (newComment) => {
-        // On ajoute le nouveau commentaire en haut de la liste existante
         setComments(prevComments => [newComment, ...prevComments]);
     };
 

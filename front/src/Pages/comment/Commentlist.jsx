@@ -1,16 +1,13 @@
-// Dans CommentList.jsx
 import React from 'react';
 
 const CommentList = ({ comments }) => {
-    // LA CORRECTION : Si pas de commentaires, on n'affiche rien du tout.
     if (!comments || comments.length === 0) {
-        return null; // N'affiche rien, pas même le message "Soyez le premier..."
+        return null; 
     }
 
     return (
         <div className="comments-list">
             {comments.map(comment => {
-                // Si pour une raison quelconque l'utilisateur a été supprimé, on n'affiche pas le commentaire
                 if (!comment.user) {
                     return null;
                 }

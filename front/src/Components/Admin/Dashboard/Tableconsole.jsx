@@ -7,7 +7,6 @@ const Tableconsole = () => {
    const [consoles, setConsoles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    // LA CORRECTION : On utilise des noms de variables clairs
     const [editingConsole, setEditingConsole] = useState(null);
 
     const fetchAllConsoles = async () => {
@@ -23,7 +22,7 @@ const Tableconsole = () => {
     };
 
     useEffect(() => {
-        fetchAllConsoles(); // On appelle la bonne fonction
+        fetchAllConsoles(); 
     }, []);
 
     const handleDelete = async (consoleId) => {

@@ -23,7 +23,6 @@ const Section = ({ gameId }) => {
             setLoading(true);
             const response = await INSTANCE.get(`${URLS.GET_COMMENT_BY_GAME_ID}/${gameId}`);
             
-            // On ne met à jour l'état que si le composant est toujours "monté"
             if (isMounted && Array.isArray(response.data)) {
                 setComments(response.data);
             }
@@ -38,7 +37,6 @@ const Section = ({ gameId }) => {
 
     fetchComments();
 
-    // Fonction de nettoyage : s'exécute quand le composant est sur le point d'être démonté
     return () => {
         isMounted = false;
     };
@@ -51,7 +49,6 @@ const Section = ({ gameId }) => {
 
   return (
        <div className="comment-section">
-            {/* Si l'utilisateur n'est pas connecté, on affiche un message */}
             {!auth && (
                 <div className="comment-section-login-prompt">
                     <p>Veuillez vous <a href="/login">connecter</a> pour laisser un commentaire.</p>

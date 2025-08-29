@@ -1,20 +1,19 @@
 .star-rating-container {
-  display: inline-flex; // Aligne les étoiles sur une ligne
-  gap: 4px; // Petit espace entre les étoiles
+  display: inline-flex; 
+  gap: 4px; 
 }
 
 .star-icon {
-  font-size: 1.5rem; // Taille des étoiles
-  color: #a7a7a7; // Couleur des étoiles vides
+  font-size: 1.5rem; 
+  color: #a7a7a7; 
   cursor: pointer;
   transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
 
-  // Quand une étoile est pleine ou à moitié pleine, elle devient jaune
   &.fa-solid {
-    color: #FFBD00; // Jaune doré
+    color: #FFBD00;
   }
 
   &:hover {
-    transform: scale(1.2); // Effet de grossissement au survol
+    transform: scale(1.2); 
   }
 }

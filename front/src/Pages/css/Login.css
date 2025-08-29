@@ -7,21 +7,19 @@
 }
 
 .form-separator {
-  width: 100%;          /* Prend toute la largeur du conteneur */
-  border: none;         /* Enlève la bordure par défaut */
+  width: 100%;    
+  border: none;      
   height: 1px;         
   background-color: snow; 
   
-  /* Ajoute de l'espace vertical avant et après la ligne */
+ 
     margin: 25px 0; 
 }
 
 .login-page-container {
    display: flex;
-  align-items: center;     /* Aligne verticalement les deux colonnes au centre */
-  justify-content: center; /* Centre l'ensemble si l'espace n'est pas rempli */
-  
-  /* LA SOLUTION POUR L'ESPACEMENT : */
+  align-items: center;     
+  justify-content: center; 
     gap: 15%;
     width: 100%;
     max-width: 1200px;
@@ -96,7 +94,7 @@
 
 .login-form {
     width: 100%;
-  max-width: 520px; /* Même largeur max que l'image pour la symétrie */
+  max-width: 520px; 
   background-color: transparent;
   color: white;
   border: 2px solid snow;
@@ -156,21 +154,18 @@
     padding: 2rem 1rem;
   }
 
-  /* On s'assure que les sections prennent toute la largeur disponible */
   .login-image-section,
   .login-form-section {
     max-width: 525px;
     width: 100%;
   }
 
-  /* On peut réduire la taille de l'image sur mobile si besoin */
   .image {
     max-width: 400px;
 
     margin-top: 0; 
   }
 
-  /* On s'assure que le formulaire et le bouton prennent la bonne largeur */
   .login-form, .button {
     width: 100%;
   }

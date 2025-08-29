@@ -32,14 +32,13 @@ const Gcomment = async (req, res, next) => {
 };
 
 const getAllComments = async (req, res, next) => {
-    // On s'assure que seul un admin peut voir tous les commentaires
     if (req.user.role !== 'admin') {
         return next(erreur(403, "Action non autorisée."));
     }
     try {
         const allComments = await Comment.find()
-            .populate('user', 'pseudo avatar') // On récupère l'auteur
-            .populate('game', 'titre')         // ON RÉCUPÈRE LE JEU ASSOCIÉ !
+            .populate('user', 'pseudo avatar') 
+            .populate('game', 'titre')        
             .sort({ createdAt: -1 });
 
         res.status(200).json(allComments);

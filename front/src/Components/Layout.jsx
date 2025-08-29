@@ -7,7 +7,7 @@ const Layout = () => {
      <>
       <Header />
       <main className="main-content">
-        <Outlet /> {/* C'est ici que vos pages (Accueil, etc.) s'afficheront */}
+        <Outlet /> 
       </main>
       <Footer />
     </>

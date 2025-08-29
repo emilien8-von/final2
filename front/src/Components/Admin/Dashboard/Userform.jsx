@@ -5,7 +5,7 @@ const Userform = ({ user, onSave, onCancel }) => {
      const [selectedRole, setSelectedRole] = useState(user.role);
       const handleSubmit = (e) => {
         e.preventDefault();
-        onSave(user._id, selectedRole); // On passe l'ID et le nouveau rôle au parent
+        onSave(user._id, selectedRole); 
     };
   return (
         <div className="modal-overlay">
@@ -24,7 +24,6 @@ const Userform = ({ user, onSave, onCancel }) => {
                             <option value="moderateur">Modérateur</option>
                             <option value="consultant">Consultant</option>
                             <option value="designer">Designer</option>
-                            {/* Ajoutez d'autres rôles de votre enum ici */}
                         </select>
                     </div>
                     <div className="form-actions">

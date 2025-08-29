@@ -84,7 +84,7 @@ const handlePasswordSubmit = async (e) => {
             /[A-Z]/.test(passwordData.newPassword) &&
             /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(passwordData.newPassword) &&
             /[0-9]/.test(passwordData.newPassword) &&
-            passwordData.newPassword.length >= 8; // On peut imposer 8 caractères pour plus de sécurité
+            passwordData.newPassword.length >= 8; 
 
         if (!isPasswordValid) {
             return alert("Le nouveau mot de passe ne respecte pas tous les critères de sécurité.");
@@ -112,7 +112,7 @@ const handlePasswordSubmit = async (e) => {
    const togglePasswordVisibility = (field) => {
     setPasswordVisibility(prevState => ({
         ...prevState,
-        [field]: !prevState[field] // On bascule uniquement la valeur du champ concerné
+        [field]: !prevState[field] 
     }));
 };
 

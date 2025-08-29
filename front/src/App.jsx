@@ -25,13 +25,12 @@ import Emulator from './Pages/Emulator'
 import Dtailemulateur from './Pages/Dtailemulateur'
 //SErvice
 import Private from './utils/helpers/Private'
-import Public from './utils/helpers/Public'
 
 function App() {
   return (
     <Routes>
       <Route path='/' element={<Layout/>}>
-        {/* --- Routes Publiques (accessibles à tous) --- */}
+        {/* --- Routes Publiques --- */}
         <Route index element={<Acceuil/>}/>
         <Route path='/formulaire' element={<Formulaire/>}/>
         <Route path='/login' element={<Login/>}/>
@@ -39,7 +38,7 @@ function App() {
         <Route path='/reset-password/:token' element={<Reset/>}/>  
         <Route path='/mentions-legales' element={<Mention/>}/>
         <Route path='/contact' element={<Contact/>}/>
-        {/* --- Routes Protégées (nécessitent d'être connecté) --- */}
+        {/* --- Routes Privées --- */}
         <Route element={<Private />}>
           <Route path='/detail/:id' element={<Detail/>} />
           <Route path='/parametre' element={<Profil/>}/>
@@ -49,7 +48,6 @@ function App() {
           <Route path='/list-console' element={<Console/>}/>
           <Route path='/list-emulateur' element={<Emulator/>}/>
           
-          {/* Le Dashboard est aussi une route privée */}
            <Route path='/dashboard' element={<Template />}>
             
             <Route index element={<Dashboard />} /> 

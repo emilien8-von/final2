@@ -28,7 +28,6 @@ const Formgame = ({ game, onSave, onCancel }) => {
         }
     });
 
-    // Si on passe un jeu en prop (mode édition), on pré-remplit le formulaire
     useEffect(() => {
         if (game) {
             setFormData(game);

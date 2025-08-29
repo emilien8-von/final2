@@ -7,18 +7,15 @@ import INSTANCE from '../../utils/services/instance';
 const Forget = () => {
     const [email, setEmail] = useState('');
     const [code, setCode] = useState('');
-    const [step, setStep] = useState(1); // 1 = Saisir email, 2 = Saisir code
+    const [step, setStep] = useState(1); 
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Hook pour la redirection
+    const navigate = useNavigate(); 
 
-    // Étape 1 : Demander le code
     const handleEmailSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
-        // LA CORRECTION : On utilise .post() au lieu de .get()
-        // Le deuxième argument de .post() est le corps (body) de la requête.
         const response = await INSTANCE.post(URLS.FORGOT_PASSWORD, { email });
 
         setStep(2);

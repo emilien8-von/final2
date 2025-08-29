@@ -6,7 +6,7 @@
 
 .detail-page-layout {
     display: flex;
-    flex-direction: column-reverse; // Sidebar en haut sur mobile
+    flex-direction: column-reverse; 
     gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
@@ -16,15 +16,15 @@
 // Styles pour les écrans larges (desktop)
 @media (min-width: 992px) {
     .detail-page-layout {
-        flex-direction: row; // Deux colonnes sur desktop
+        flex-direction: row; 
         align-items: flex-start;
     }
 }
 
 /* --- COLONNE PRINCIPALE --- */
 .main-content {
-    flex: 2; // Prend 2/3 de l'espace
-    min-width: 0; // Correction de bug pour flexbox
+    flex: 2; 
+    min-width: 0; 
 
     h1 {
         font-size: 3rem;
@@ -72,13 +72,13 @@
         }
     }
      .detail-page-body {
-        padding: 2rem 0; // On remet le padding normal
+        padding: 2rem 0; 
     }
 
     .detail-page-layout {
-        flex-direction: row; // ON REPASSE EN DEUX COLONNES
+        flex-direction: row; 
         align-items: flex-start;
-        gap: 3rem; // On augmente l'espace entre les colonnes
+        gap: 3rem; 
         padding: 0 2rem;
     }
 
@@ -92,19 +92,18 @@
     .sidebar {
         order: 2;
         flex: 1;
-        // ON REACTIVE LE POSITIONNEMENT "COLLANT" UNIQUEMENT SUR DESKTOP
         position: sticky;
         top: 2rem;
     }
 
     .sidebar-cover-image {
-        max-width: 100%; // L'image peut reprendre toute la largeur de sa colonne
+        max-width: 100%; 
     }
 }
 
 /* --- COLONNE LATÉRALE (SIDEBAR) --- */
  .sidebar {
-        order: 2; // La sidebar redevient la deuxième (à droite)
+        order: 2; 
         position: sticky;
         top: 2rem;
     }
@@ -171,28 +170,27 @@
 .detail-page-body {
     background-image: linear-gradient(#42106D, #5B0F53, #160430);
     color: snow;
-    padding: 1rem 0; // Moins de padding vertical sur mobile
+    padding: 1rem 0;
 }
 
 .detail-page-layout {
     display: flex;
-    flex-direction: column; // LA BASE : une seule colonne sur mobile
+    flex-direction: column; 
     gap: 2rem;
-    padding: 0 1rem; // Espace sur les côtés
+    padding: 0 1rem;
 }
 
 /* --- COLONNE LATÉRALE (SIDEBAR) - Apparaît en premier sur mobile --- */
 .sidebar {
-    // On annule le positionnement "collant" sur mobile
+    
     position: static; 
         order: 1; 
 }
 
 .sidebar-cover-image {
     width: 100%;
-    // On limite la largeur de l'image pour qu'elle ne soit pas "énorme"
     max-width: 400px; 
-    margin: 0 auto; // Centre l'image
+    margin: 0 auto; 
     display: block;
     border-radius: 12px;
 }
@@ -201,7 +199,7 @@
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     padding: 1.5rem;
-    margin-top: 1.5rem; // Espace sous l'image de couverture
+    margin-top: 1.5rem; 
 
     h3 {
         margin-top: 0;
@@ -223,7 +221,7 @@
 .main-content {
        order: 2;
     h1 {
-        font-size: 2.5rem; // Titre un peu plus petit sur mobile
+        font-size: 2.5rem; 
         text-align: center;
     }
     h2 {
@@ -240,7 +238,6 @@
 /* --- GALERIE D'IMAGES --- */
 .gallery-grid {
     display: grid;
-    // Une seule colonne sur les très petits écrans, deux sur les plus grands
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
 }

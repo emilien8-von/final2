@@ -32,7 +32,7 @@ const Tablegame = () => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer ce jeu ? Cette action est irréversible.")) {
             try {
                 await INSTANCE.delete(`${URLS.DELETE_GAME}/${gameId}`);
-                fetchAllGames(); // Rafraîchir la liste après suppression
+                fetchAllGames(); 
             } catch (error) {
                 console.error("Erreur lors de la suppression du jeu:", error);
                 alert("La suppression a échoué.");
@@ -44,15 +44,13 @@ const Tablegame = () => {
     const handleSave = async (gameData) => {
         try {
             if (editingGame) {
-                // Mode Modification (PUT)
                 await INSTANCE.put(`${URLS.UPDATE_GAME}/${editingGame._id}`, gameData);
             } else {
-                // Mode Ajout (POST)
                 await INSTANCE.post(URLS.CREATE_GAME, gameData);
             }
             setIsModalOpen(false); // Fermer la modale
             setEditingGame(null); // Réinitialiser l'état d'édition
-            fetchAllGames(); // Rafraîchir la liste
+            fetchAllGames(); 
         } catch (error) {
             console.error("Erreur lors de la sauvegarde du jeu:", error);
             alert("La sauvegarde a échoué.");

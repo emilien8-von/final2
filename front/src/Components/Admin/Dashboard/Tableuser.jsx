@@ -36,7 +36,7 @@ const Tableuser = () => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.")) {
             try {
                 await INSTANCE.delete(`${URLS.DELETE_USER}/${userId}`);
-                fetchAllUsers(); // On rafraîchit la liste
+                fetchAllUsers(); 
             } catch (error) {
                 console.error("Erreur lors de la suppression de l'utilisateur:", error);
                 alert("La suppression a échoué.");
@@ -48,7 +48,7 @@ const Tableuser = () => {
             await INSTANCE.put(`${URLS.UPDATE_USER_ROLE}/${userId}`, { role: newRole });
             setIsModalOpen(false);
             setEditingUser(null);
-            fetchAllUsers(); // Rafraîchir la liste
+            fetchAllUsers(); 
         } catch (error) {
             console.error("Erreur lors de la mise à jour du rôle:", error);
             alert("La mise à jour a échoué.");
@@ -60,9 +60,9 @@ const Tableuser = () => {
       const handleForceLogout = async (userId) => {
         if (window.confirm("Voulez-vous vraiment marquer cet utilisateur comme inactif ?")) {
             try {
-                // On appelle la nouvelle route
+               
                 await INSTANCE.delete(`${URLS.LOGOUT_USER}/${userId}`);
-                fetchAllUsers(); // On rafraîchit la liste pour voir le nouveau statut
+                fetchAllUsers();
             } catch (error) {
                 console.error("Erreur:", error);
                 alert("L'opération a échoué.");
@@ -83,7 +83,6 @@ const Tableuser = () => {
    <div className="management-panel">
             <div className="panel-header">
                 <h3>Gestion des Utilisateurs ({users.length})</h3>
-                {/* On pourra ajouter un bouton "Ajouter un admin" plus tard si besoin */}
             </div>
             <div className="panel-body">
                 <div className="table-responsive">

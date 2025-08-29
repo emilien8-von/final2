@@ -92,8 +92,6 @@
   overflow: hidden;
   background-color: #fff;
   
-  /* LA TRANSITION SE MET ICI ! Pour la bordure et le transform. */
-  /* On combine les transitions pour la bordure, le transform et l'ombre */
   transition: 
     border-color 0.4s ease-in-out,
     transform 0.4s ease-in-out,
@@ -108,43 +106,39 @@
   filter: grayscale(90%);
   cursor: pointer;
   
-  /* LA TRANSITION POUR LE FILTRE SE MET ICI ! */
   transition: filter 0.4s ease-in-out;
 }
 
-/* 4. Effets de survol COMMUNS à toutes les cartes */
 .item-card:hover {
-  transform: scale(1.05); /* J'ai mis 1.05 au lieu de 1.1 qui est souvent trop grand, mais vous pouvez remettre 1.1 */
+  transform: scale(1.05);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .item-card:hover img {
-  filter: none; /* Enlève le filtre gris sur toutes au survol */
+  filter: none;
 }
 
 
-/* 5. Effets de survol SPÉCIFIQUES (vos couleurs !) */
 
 /* Pour les cartes dans la section Nintendo */
 .nintendo-section .item-card:hover {
-  border-color: #C1121F; /* Rouge Nintendo */
+  border-color: #C1121F;
 }
 
 /* Pour les cartes dans la section PlayStation */
 .playstation-section .item-card:hover {
-  border-color: #0F07AC; /* Bleu PlayStation */
+  border-color: #0F07AC;
 }
 
 /* Pour les cartes dans la section Xbox */
 .xbox-section .item-card:hover {
-  border-color: #6A994E; /* Vert Xbox */
+  border-color: #6A994E; 
 }
 
 /* Pour les cartes dans la section PC */
 .pc-section .item-card:hover {
-  border-color: #FFBD00; /* Jaune/Or PC */
+  border-color: #FFBD00;
 }
-  /*Partie des jeux INSTANCE avec map*/
   .u-flex
    {
      display: grid ;
@@ -180,24 +174,23 @@
 }
    .item-card--contain {
   
-   padding: 1rem; /* Crée une marge intérieure pour que l'image ne touche pas les bords */
+   padding: 1rem;
   
   }
 
   .image-grid {
   display: grid;
-  /* Crée des colonnes responsives qui s'adaptent à la largeur de l'écran */
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   padding: 2rem;
-  max-width: 1400px; /* Limite la largeur max */
-  margin: 0 auto;    /* Centre la grille */
+  max-width: 1400px; 
+  margin: 0 auto;    
 }
 
 .image-card {
   border-radius: 12px;
   overflow: hidden;
-  background-color: #221e2b; /* Fond sombre pour les consoles */
+  background-color: #221e2b;
   object-fit: cover;
   filter: grayscale(90%);  display: flex;
   align-items: center;
@@ -223,20 +216,20 @@
 }
 
 .game-grid .image-card {
-  aspect-ratio: 3 / 4; /* Ratio vertical */
+  aspect-ratio: 3 / 4; 
 }
 .game-grid .image-card img {
-  object-fit: cover; /* On zoome pour remplir */
+  object-fit: cover; 
 }
 
 /* Pour les grilles de CONSOLES (type matériel) */
 .console-grid .image-card {
-  aspect-ratio: 16 / 9; /* Ratio horizontal */
-  padding: 1rem; /* Espace pour que la console ne touche pas les bords */
+  aspect-ratio: 16 / 9; 
+  padding: 1rem; 
   box-sizing: border-box;
 }
 .console-grid .image-card img {
-  object-fit: contain; /* On affiche toute l'image */
+  object-fit: contain; 
 }
 
   /*Pati du blog**/

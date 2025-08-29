@@ -1,9 +1,7 @@
 const Category = require('../models/jeux')
 const erreur = require('../middlewares/erreur')
-const Connecte = require('../models/pseudo')
 
 const pCategory = async (req, res, next) => {
-    // On vérifie le rôle directement au début
     if (req.user.role !== 'admin') {
         return next(erreur(403, "Action non autorisée."));
     }
@@ -15,7 +13,7 @@ const pCategory = async (req, res, next) => {
     }
 };
 
-const gCategory = async(req,res,next) =>{
+const gCategory = async(req,res) =>{
     try{
          const reponse = await Category.find().sort({ createdAt: -1 });
         res.status(200).json(reponse)
@@ -26,8 +24,6 @@ const gCategory = async(req,res,next) =>{
         
     }
 }
-
-
 const idCategory = async(req,res) =>{
     try{
         const check = await Category.findById(req.params.id)
@@ -67,11 +63,10 @@ const Changecategorie = async(req,res,next) =>{
 
 const getRecentGames = async (req, res, next) => {
     try {
-        // On cherche les 5 derniers jeux, triés par date de création décroissante
         const recentGames = await Category.find()
             .sort({ createdAt: -1 })
             .limit(5)
-            .select('titre brand'); // On ne sélectionne que les champs nécessaires
+            .select('titre brand'); 
 
         res.status(200).json(recentGames);
     } catch (error) {

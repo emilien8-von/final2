@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-//CSS
 import './css/Acceuil.css'
 import './css/mobile.css'
 import './css/tablette.css'

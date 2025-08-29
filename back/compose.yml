@@ -2,10 +2,8 @@ version: '3.8'
 
 services:
   backend:
-    # Construit l'image en utilisant le Dockerfile dans le répertoire actuel
     build: .
     
-    # Nom du conteneur
     container_name: alpha-gaming-backend
     
     ports:

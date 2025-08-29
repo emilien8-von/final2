@@ -9,7 +9,7 @@
 
 .histoire-layout {
     display: flex;
-    flex-direction: column; // Mobile first
+    flex-direction: column; 
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -23,35 +23,34 @@
     }
 
     .histoire-layout {
-        flex-direction: row; // ON REPASSE EN DEUX COLONNES
+        flex-direction: row; 
         align-items: flex-start;
         gap: 3rem;
         padding: 0 2rem;
     }
 
-    /* On remet l'ordre normal pour le desktop */
     .main-content {
-        order: 1; // Le contenu principal redevient le premier (à gauche)
+        order: 1; 
         flex: 2.5;
         h1 { text-align: left; }
     }
 
     .sidebar {
-        order: 2; // La sidebar redevient la deuxième (à droite)
+        order: 2; 
         flex: 1;
         position: sticky;
         top: 2rem;
     }
 
     .sidebar-infobox .console-image {
-        max-width: 100%; // L'image peut reprendre toute la largeur de sa colonne
+        max-width: 100%;
     }
 }
 
 /* --- COLONNE PRINCIPALE --- */
 .main-content {
-    order: 2; // S'affiche en deuxième sur mobile
-    flex: 2.5; // Prend plus de place
+    order: 2; 
+    flex: 2.5; 
     min-width: 0;
 
     h1 { font-size: 3rem; }
@@ -62,7 +61,7 @@
 
 /* --- COLONNE LATÉRALE (SIDEBAR) --- */
 .sidebar {
-    order: 1; // S'affiche en premier sur mobile
+    order: 1; 
     flex: 1;
     position: sticky;
     top: 2rem;
@@ -72,12 +71,12 @@
     background-color: rgba(0, 0, 0, 0.2);
     border: 1px solid #4a2c7a;
     border-radius: 8px;
-    overflow: hidden; // Pour que l'image respecte les coins arrondis
+    overflow: hidden; 
 
     .console-image {
         width: 100%;
         height: auto;
-        background-color: #fff; // Fond blanc pour les images avec transparence
+        background-color: #fff; 
         padding: 1rem;
         box-sizing: border-box;
     }
@@ -113,15 +112,15 @@
 
 .histoire-layout {
     display: flex;
-    flex-direction: column; // LA BASE : une seule colonne sur mobile
+    flex-direction: column; 
     gap: 2rem;
     padding: 0 1rem;
 }
 
 /* --- COLONNE LATÉRALE (SIDEBAR) - Apparaît en premier sur mobile --- */
 .sidebar {
-    order: 1; // S'affiche en premier
-    position: static; // On annule le positionnement "collant"
+    order: 1; 
+    position: static; 
 }
 
 .sidebar-infobox {
@@ -132,9 +131,9 @@
 
     .console-image {
         width: 100%;
-        max-width: 400px; // TAILLE RAISONNABLE pour l'image sur mobile
+        max-width: 400px;
         display: block;
-        margin: 0 auto; // Centre l'image si elle est plus petite que le conteneur
+        margin: 0 auto; 
         background-color: #fff;
         padding: 1rem;
         box-sizing: border-box;

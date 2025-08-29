@@ -59,20 +59,16 @@
   display: grid;
   gap: 1.5rem;
 
-  /* Par défaut (Mobile et Tablette jusqu'à 1023px) : 1 colonne */
   grid-template-columns: 1fr;
   
-  /* On limite la largeur pour que ce ne soit pas trop large sur tablette */
   max-width: 400px;
-  margin: 0 auto; /* Centre la colonne unique */
+  margin: 0 auto; 
 
-  /* Pour les desktops (1024px et plus) : On passe à une grille multi-colonnes */
   @media (min-width: 1024px) {
-    /* On réinitialise la largeur max et les marges */
+    
     max-width: none;
     margin: 0;
     
-    /* On utilise la règle "magique" pour le desktop */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }

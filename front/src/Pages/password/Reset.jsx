@@ -11,7 +11,7 @@ const Reset = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-    const [success, setSuccess] = useState(''); // État pour le message de succès
+    const [success, setSuccess] = useState('');
 
     const [visibility, setVisibility] = useState({ new: false, confirm: false });
     const toggleVisibility = (field) => {
@@ -103,7 +103,7 @@ const Reset = () => {
                                     id="newPassword"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    onInput={checkPasswordStrength} // On ajoute l'appel à la fonction de validation
+                                    onInput={checkPasswordStrength} 
                                     required
                                 />
                                 <img

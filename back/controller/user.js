@@ -4,6 +4,7 @@ const jwr = require('jsonwebtoken')
 const ENV  = require('../config/env')
 const erreur = require('../middlewares/erreur')
 const { sendEmail, sendVerificationEmail, createResetCodeEmailHTML } = require('../services/mail')
+//Partie Create
 const Puser = async(req,res) =>{
     try{
         const passwordH = await bcrypt.hash(req.body.password,10)
@@ -21,7 +22,6 @@ const Puser = async(req,res) =>{
     }
     catch(error){
           if (error.code === 11000) {
-        // Il renvoie un message d'erreur clair et spécifique
         return next(erreur(409, "Cette adresse email est déjà utilisée par un autre compte."));
         }  
         console.log(error.message);
@@ -30,12 +30,10 @@ const Puser = async(req,res) =>{
 }
 //Partie Get
 const Guser = async (req, res, next) => {
-    // On s'assure que seul un admin peut lister tous les utilisateurs
     if (req.user.role !== 'admin') {
         return next(erreur(403, "Action non autorisée."));
     }
     try {
-        // LA CORRECTION : On utilise .select('-password') pour exclure le champ du mot de passe
         const reponse = await Users.find().select('-password');
         res.status(200).json(reponse);
     } catch (error) {
@@ -56,18 +54,16 @@ const Iduser = async(req,res) =>{
 }
 
 
-
+//Partie Connexion
 const Luser = async (req, res, next) => {
     try {
         const { email, password } = req.body;
 
-        // 1. Trouver l'utilisateur
         const user = await Users.findOne({ email });
         if (!user) {
             return next(erreur(404, 'Email ou mot de passe incorrect'));
         }
 
-        // 2. Vérifier le mot de passe
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return next(erreur(401, 'Email ou mot de passe incorrect'));
@@ -80,7 +76,6 @@ const Luser = async (req, res, next) => {
             { expiresIn: '1d' } // Le token expire dans 1 jour
         );
 
-        // 4. Séparer le mot de passe du reste des données utilisateur
         const { password: userPassword, ...userInfo } = user._doc;
 
         res.cookie('access_token', token, {
@@ -161,7 +156,6 @@ const Cuser = async (req, res, next) => {
             return next(erreur(403, 'Action non autorisée. Vous ne pouvez modifier que votre propre profil.'));
         }
 
-        // Si on passe cette vérification, l'utilisateur a le droit de continuer
         const user = await Users.findById(req.params.id);
         if (!user) return next(erreur(404, 'Utilisateur non trouvé'));
 
@@ -178,7 +172,7 @@ const updateProfil = async (req, res, next) => {
         const { pseudo, email, avatar } = req.body;
 
         const updatedUser = await Users.findByIdAndUpdate(
-            req.user.id, // Utilise l'ID du token, c'est parfait !
+            req.user.id,
             { $set: { pseudo, email, avatar } },
             { new: true, runValidators: true }
         ).select('-password');
@@ -197,7 +191,6 @@ const updateUserPassword = async (req, res, next) => {
     const { currentPassword, newPassword } = req.body;
 
     try {
-        // 1. Récupérer l'utilisateur depuis la base de données
         const user = await Users.findById(req.user.id);
         if (!user) {
             return next(erreur(404, 'Utilisateur non trouvé'));
@@ -238,11 +231,9 @@ const forgotPassword = async (req, res, next) => {
         user.passwordResetCode = resetCode;
         user.passwordResetExpires = resetCodeExpires;
         
-        // LA CORRECTION CRITIQUE EST ICI :
         await user.save(); 
 
-        // Pour vérifier, vous pouvez ajouter ce log :
-        console.log('Code sauvegardé pour l\'utilisateur:', user.pseudo);
+      
 
         const emailHTML = createResetCodeEmailHTML(user.pseudo, resetCode);
         await sendEmail(user.email, "Votre code de réinitialisation de mot de passe", emailHTML);
@@ -257,7 +248,6 @@ const forgotPassword = async (req, res, next) => {
 const verifyResetCode = async (req, res, next) => {
     const { email, code } = req.body;
 
-    // LA CORRECTION : On ajoute une vérification au début
     if (!email || !code) {
         return next(erreur(400, "L'email et le code sont requis."));
     }
@@ -276,7 +266,6 @@ const verifyResetCode = async (req, res, next) => {
             return next(erreur(400, "Code invalide ou expiré. Veuillez réessayer."));
         }
 
-        // ... le reste de la fonction
         user.passwordResetCode = null;
         user.passwordResetExpires = null;
         await user.save();
@@ -295,15 +284,14 @@ const resetPassword = async (req, res, next) => {
     if (!resetToken || !newPassword) {
         return next(erreur(400, "Informations manquantes."));
     }
-     if (newPassword.length < 3) { // Utilisez la même valeur que dans votre modèle
-        return next(erreur(400, "Le mot de passe doit contenir au moins 3 caractères."));
+     if (newPassword.length < 8) { 
+        return next(erreur(400, "Le mot de passe doit contenir au moins 8 caractères."));
       }
     try {
         const decoded = jwr.verify(resetToken, ENV.TOKEN);
         const user = await Users.findById(decoded.id);
 
         if (!user) {
-            // Cette erreur est importante si l'utilisateur a été supprimé entre-temps
             return next(erreur(404, "Le lien est invalide ou l'utilisateur n'existe plus."));
         }
 
@@ -316,7 +304,6 @@ const resetPassword = async (req, res, next) => {
         user.passwordResetExpires = undefined;
         await user.save();
 
-        // LA CORRECTION : On renvoie une réponse JSON claire
         res.status(200).json({ message: "Votre mot de passe a été réinitialisé avec succès." });
 
     } catch (error) {
@@ -326,18 +313,15 @@ const resetPassword = async (req, res, next) => {
                 console.error("ERREUR JWT:", error.name, error.message); 
             return next(erreur(401, "Le lien de réinitialisation est invalide ou a expiré. Veuillez recommencer."));
         }
-        // Pour tout autre cas, on renvoie une erreur générique
         next(erreur(500, "Une erreur interne est survenue."));
     }
 };
 const getDashboardStats = async (req, res, next) => {
     try {
-        // On compte le nombre de documents dans chaque collection
         const gameCount = await Jeux.countDocuments();
         const userCount = await Users.countDocuments();
         const consoleCount = await Console.countDocuments();
 
-        // On renvoie un objet avec toutes les statistiques
         res.status(200).json({
             games: gameCount,
             users: userCount,
@@ -348,15 +332,12 @@ const getDashboardStats = async (req, res, next) => {
     }
 };
 const updateUserRoleByAdmin = async (req, res, next) => {
-    // On vérifie que la personne qui fait la requête est bien un admin
     if (req.user.role !== 'admin') {
         return next(erreur(403, "Action non autorisée."));
     }
 
-    // On récupère le nouveau rôle depuis le corps de la requête
     const { role } = req.body;
     
-    // On vérifie que le rôle est valide (correspond à l'enum du modèle)
     const validRoles = ["user", "admin"];
     if (!role || !validRoles.includes(role)) {
         return next(erreur(400, "Le rôle fourni est invalide."));
@@ -368,11 +349,9 @@ const updateUserRoleByAdmin = async (req, res, next) => {
             return next(erreur(404, 'Utilisateur non trouvé'));
         }
 
-        // On met à jour uniquement le champ "role"
         userToUpdate.role = role;
         await userToUpdate.save();
 
-        // On renvoie l'utilisateur mis à jour (sans le mot de passe)
         const { password, ...userInfo } = userToUpdate._doc;
         res.status(200).json(userInfo);
 
@@ -393,9 +372,6 @@ const forceLogoutByAdmin = async (req, res, next) => {
         userToLogout.isActif = false;
         await userToLogout.save();
 
-        // La déconnexion réelle se fera la prochaine fois que l'utilisateur essaiera
-        // d'utiliser son token, mais son statut est maintenant "inactif".
-        // Pour une déconnexion immédiate, il faudrait une blacklist de tokens.
         res.status(200).json({ message: `Le statut de ${userToLogout.pseudo} a été mis sur "inactif".` });
 
     } catch (error) {
@@ -421,7 +397,6 @@ const createContactEmailHTML = (senderName, senderEmail, message) => {
 const handleContactForm = async (req, res, next) => {
     const { name, email, message } = req.body;
 
-    // Validation simple
     if (!name || !email || !message) {
         return next(erreur(400, "Tous les champs sont requis."));
     }
@@ -429,7 +404,6 @@ const handleContactForm = async (req, res, next) => {
     try {
         const emailHTML = createContactEmailHTML(name, email, message);
         
-        // On envoie l'email À VOUS-MÊME (l'admin du site)
         await sendEmail(ENV.EMAIL_USER, `Nouveau message de ${name}`, emailHTML);
         res.status(200).json({ message: "Votre message a bien été envoyé. Merci !" });
 

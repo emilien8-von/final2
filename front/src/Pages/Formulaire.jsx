@@ -88,7 +88,6 @@ const Formulaire = () => {
         return setFormError("Formulaire incomplet");
     }
 
-    // --- Validation côté client (identique à avant) ---
     const aUneMajuscule = /[A-Z]/;
     const aUnCaractereSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
     const aUnChiffre = /[0-9]/;

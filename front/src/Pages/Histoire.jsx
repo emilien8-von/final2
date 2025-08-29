@@ -11,7 +11,6 @@ const Histoire = () => {
      useEffect(() => {
     const fetchConsoleDetails = async () => {
         try {
-            // ASSUREZ-VOUS QUE CE SONT BIEN DES BACKTICKS ``
             const response = await INSTANCE.get(`${URLS.GET_CONSOLE_BY_ID}/${id}`)
             
             if (response.status === 200) {
@@ -22,10 +21,9 @@ const Histoire = () => {
         }
     };
 
-    // On ajoute un log pour vérifier la valeur de "id" avant l'appel
     console.log("ID de la console récupéré depuis l'URL :", id);
     
-    if (id) { // On s'assure que l'id existe avant de faire l'appel
+    if (id) { 
         fetchConsoleDetails();
     }
 }, [id]);

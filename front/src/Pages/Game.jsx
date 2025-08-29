@@ -12,7 +12,6 @@ const Game = () => {
     useEffect(() => {
         const fetchGames = async () => {
             try {
-                // On appelle la route du backend qui renvoie tous les jeux
                 const response = await INSTANCE.get(`${URLS.GET_ALL_GAMES}`)
                 setGames(response.data);
             } catch (error) {

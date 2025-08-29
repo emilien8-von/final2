@@ -4,7 +4,6 @@
   margin: 2rem auto;
 }
 
-/* --- Formulaire pour poster un commentaire --- */
 
 .comment-form-container {
   display: flex;
@@ -12,13 +11,12 @@
   gap: 1rem;
 }
 
-/* LA CORRECTION EST ICI : Style pour l'avatar */
 .user-avatar {
   width: 40px;
   height: 40px;
-  border-radius: 50%; /* Pour un avatar parfaitement rond */
-  object-fit: cover; /* S'assure que l'image remplit le cercle sans se déformer */
-  flex-shrink: 0; /* Empêche l'avatar de rétrécir si le texte est long */
+  border-radius: 50%; 
+  object-fit: cover; 
+  flex-shrink: 0; 
 }
 
 .comment-form {
@@ -71,13 +69,11 @@
   }
 }
 
-/* --- Section de notation par étoiles --- */
 .rating-section {
     margin-bottom: 1rem;
     p { margin: 0 0 0.5rem; color: #ccc; }
 }
 
-/* --- Liste des commentaires existants --- */
 
 .comments-list {
   margin-top: 2rem;
@@ -108,7 +104,6 @@
   }
 }
 
-/* Message pour les utilisateurs non connectés ou s'il n'y a pas de commentaires */
 .comment-section-login-prompt, .no-comments-message {
   text-align: center;
   padding: 2rem;

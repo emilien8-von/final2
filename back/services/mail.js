@@ -2,9 +2,8 @@
 const nodemailer = require('nodemailer');
 const ENV = require('../config/env');
 
-// On configure le "transporteur" une seule fois
 const transporter = nodemailer.createTransport({
-    service: 'gmail', // Utiliser "service: 'gmail'" est plus simple et plus fiable
+    service: 'gmail', 
     auth: {
         user: ENV.EMAIL_USER,
         pass: ENV.EMAIL_PASS
@@ -12,15 +11,14 @@ const transporter = nodemailer.createTransport({
 });
 
 /**
- * Fonction générique pour envoyer un email.
- * @param {string} to - L'adresse email du destinataire.
- * @param {string} subject - Le sujet de l'email.
- * @param {string} html - Le contenu HTML de l'email.
+ * @param {string} to - 
+ * @param {string} subject - 
+ * @param {string} html - 
  */
 const sendEmail = async (to, subject, html) => {
     try {
         await transporter.sendMail({
-            from: `"Alpha Gaming" <${ENV.EMAIL_USER}>`, // Expéditeur avec un nom
+            from: `"Alpha Gaming" <${ENV.EMAIL_USER}>`, 
             to: to,
             subject: subject,
             html: html
@@ -28,7 +26,6 @@ const sendEmail = async (to, subject, html) => {
         console.log(`Email envoyé avec succès à ${to}`);
     } catch (error) {
         console.error(`Erreur lors de l'envoi de l'email à ${to}:`, error);
-        // Il est important de "rejeter" l'erreur pour que le controller sache qu'il y a eu un problème
         throw new Error("Erreur lors de l'envoi de l'email.");
     }
 };
@@ -40,11 +37,9 @@ const sendVerificationEmail = async (userEmail, userPseudo, verificationToken) =
         <p>Merci pour votre inscription ! Nous espèreront que vous prendre du plasir à consulter nos différents jeux!</p>
     `;
 
-    // On utilise la fonction générique sendEmail que nous avions créée
     await sendEmail(userEmail, "Validez votre inscription sur Alpha Gaming", emailHTML);
 };
 
-// Fonction spécifique pour créer le template HTML du code de réinitialisation
 const createResetCodeEmailHTML = (pseudo, resetCode) => {
     return `
         <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px;">

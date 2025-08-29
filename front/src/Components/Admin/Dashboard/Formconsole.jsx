@@ -4,7 +4,7 @@ const Formconsole = ({ consoleToEdit, onSave, onCancel }) => {
     const [formData, setFormData] = useState({
         nom: "",
         brand: "",
-        sortie: new Date().toISOString().split('T')[0], // Format YYYY-MM-DD
+        sortie: new Date().toISOString().split('T')[0], 
         emulable: true,
         emulateur: '',
         image: '',
@@ -13,7 +13,6 @@ const Formconsole = ({ consoleToEdit, onSave, onCancel }) => {
 
     useEffect(() => {
         if (consoleToEdit) {
-            // On s'assure que la date est bien formatée pour l'input type="date"
             const formattedData = {
                 ...consoleToEdit,
                 sortie: new Date(consoleToEdit.sortie).toISOString().split('T')[0]
@@ -24,7 +23,6 @@ const Formconsole = ({ consoleToEdit, onSave, onCancel }) => {
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-        // On gère les booléens pour les checkboxes/selects
         const finalValue = type === 'checkbox' ? checked : (name === 'emulable' || name === 'vente') ? value === 'true' : value;
         setFormData(prev => ({ ...prev, [name]: finalValue }));
     };

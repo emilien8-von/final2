@@ -21,7 +21,6 @@ const Commentform = ({ gameId, onCommentPosted }) => {
     };
 
     try {
-        // LA CORRECTION : On envoie l'objet "newComment"
         const response = await INSTANCE.post(URLS.POST_COMMENT, newComment);
         
         if (response.status === 201) {
@@ -40,7 +39,6 @@ const Commentform = ({ gameId, onCommentPosted }) => {
             <img src={auth.avatar} alt="Avatar" className="user-avatar" referrerPolicy="no-referrer" />
             <form onSubmit={handleCommentSubmit} className="comment-form">
                 
-                {/* On ajoute le composant de notation ici */}
                 <div className="rating-section">
                     <p>Mettre une Note :</p>
                     <Starrating onRatingChange={setUserRating} />
