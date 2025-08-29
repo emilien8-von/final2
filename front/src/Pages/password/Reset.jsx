@@ -54,7 +54,7 @@ const Reset = () => {
             /[A-Z]/.test(password) &&
             /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password) &&
             /[0-9]/.test(password) &&
-            password.length >= 3; 
+            password.length >= 8; 
 
         if (!isPasswordValid) {
             return setError("Le mot de passe ne respecte pas tous les critères de sécurité.");
@@ -131,7 +131,7 @@ const Reset = () => {
                             </p>
                             <p>
                                 <img id="length-check" src="/croosing.svg" alt="check" />
-                                Au moins 3 caractères (recommandé)
+                                Au moins 8 caractères 
                             </p>
                         </div>
 

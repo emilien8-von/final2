@@ -37,8 +37,7 @@ const sendVerificationEmail = async (userEmail, userPseudo, verificationToken) =
     
     const emailHTML = `
         <h3>Bonjour ${userPseudo},</h3>
-        <p>Merci pour votre inscription ! Veuillez cliquer sur le lien ci-dessous pour vérifier votre adresse email :</p>
-        <a href="${verificationLink}">Vérifier mon compte</a>
+        <p>Merci pour votre inscription ! Nous espèreront que vous prendre du plasir à consulter nos différents jeux!</p>
     `;
 
     // On utilise la fonction générique sendEmail que nous avions créée

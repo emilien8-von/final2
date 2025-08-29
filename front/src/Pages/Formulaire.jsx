@@ -97,9 +97,9 @@ const Formulaire = () => {
         
         if(password && pvalue && email.value){
          try{ 
-           if(password.length < 3)
+           if(password.length < 8)
             {
-             alert("votre mot de passe doit être superieur où égale à 3")
+             alert("votre mot de passe doit être superieur où égale à 8")
              console.log(error.message);
              
              event.preventDefault()
@@ -123,8 +123,7 @@ const Formulaire = () => {
              }
             }
             catch(error){
-            console.log(error.message);
-            
+            console.error("Erreur lors de l'inscription:", error)            
             event.preventDefault()
            }
           
@@ -167,10 +166,10 @@ const Formulaire = () => {
                 <div className="input-wrapper">
                     <img src="/lock.svg" alt="lock icon" className="input-icon" />
                     <input 
-                        onInput={check} // On peut garder ça pour les indicateurs visuels
+                        onInput={check} 
                         type="password" 
                         id="passwi"
-                        name="password" // On ajoute le "name" pour le handleChange
+                        name="password" 
                         placeholder="Ton mot de passe (ex: *azerty*1)"
                         value={inscrit.password}
                         onChange={handleChange}
@@ -181,7 +180,7 @@ const Formulaire = () => {
            <p className='pm'>Le mot de passe doit avoir au moins une majuscule <img id="maj" className='maj' src= "/croosing.svg" alt="cross"  /></p>
            <p className='p2'>Le mot de passe doit avoir au moins 1 caractères spécial  <img id='carac' className='carac' src=  "/croosing.svg"/> </p>
            <p className='p3'>Le mot de passe doit avoir au moins un chiffre  <img id="chiffre" className='chiffre' src=  "/croosing.svg"  /></p>
-           <p className='p4'>Le mot de passe doit avoir au moins 3 caractères  <img id='crossx'  className='crossx' src="./croosing.svg" /></p>
+           <p className='p4'>Le mot de passe doit avoir au moins 8 caractères  <img id='crossx'  className='crossx' src="./croosing.svg" /></p>
          <button  className='valide'>Valider</button>
       </form>
       <div className='retour'> 

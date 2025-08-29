@@ -203,7 +203,7 @@ const handlePasswordSubmit = async (e) => {
         <p><img id="maj-check" src="/croosing.svg" alt="check" /> Au moins une majuscule</p>
         <p><img id="special-check" src="/croosing.svg" alt="check" /> Au moins un caractère spécial</p>
         <p><img id="chiffre-check" src="/croosing.svg" alt="check" /> Au moins un chiffre</p>
-        <p><img id="length-check" src="/croosing.svg" alt="check" /> Au moins 3 caractères</p>
+        <p><img id="length-check" src="/croosing.svg" alt="check" /> Au moins 8 caractères</p>
                 </div>
 
                 <div className="form-group">
