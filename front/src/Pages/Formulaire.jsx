@@ -94,7 +94,7 @@ const Formulaire = () => {
     const aUnChiffre = /[0-9]/;
 
     if (password.length < 8) {
-        return setFormError("Votre mot de passe doit contenir au moins 3 caractères.");
+        return setFormError("Votre mot de passe doit contenir au moins 8 caractères.");
     }
     if (!aUneMajuscule.test(password)) {
         return setFormError("Votre mot de passe doit avoir une majuscule !");

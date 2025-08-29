@@ -153,3 +153,32 @@
     -webkit-text-fill-color: white !important;
     border-color: #555 !important;
 }
+/* Style pour le message d'erreur du formulaire */
+.form-error-popup {
+  /* LA CORRECTION : On change la couleur de fond pour correspondre à votre image */
+  background-color: #8c7a7a; /* Un marron/rose désaturé */
+  color: white;
+  
+  padding: 1rem;
+  border-radius: 12px; /* Coins plus arrondis */
+  margin-top: 1.5rem;
+  margin-bottom: 1rem; /* Espace avant le bouton "Valider" */
+  text-align: center;
+  font-weight: 500; /* Un peu moins gras que "bold" */
+  font-size: 1rem;
+  
+  /* On ajoute une petite transition pour une apparition en douceur */
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
