@@ -104,6 +104,15 @@
     color: #ABA41C;
     
 }
+.form-error-popup {
+  background-color: #f56565; /* Un fond rouge pour l'erreur */
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1.5rem; /* Espace au-dessus du bouton "Valider" */
+  text-align: center;
+  font-weight: bold;
+}
 /*Retourner*/
 .input-wrapper input {
   width: 84%; 

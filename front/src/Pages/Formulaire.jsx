@@ -1,6 +1,4 @@
 
-//import { REGISITER } from '../utils/configs/Form'
-//import erreur from '../../../back/middlewares/erreur'
 import React, { useState } from 'react'
 import INSTANCE from '../utils/services/instance'
 import { Link, useNavigate } from 'react-router'
@@ -12,6 +10,7 @@ const Formulaire = () => {
       password : "",
       email : ""
     })
+    const [formError, setFormError] = useState(''); 
 
  
     const navigate = useNavigate()
@@ -79,60 +78,47 @@ const Formulaire = () => {
       
       
     }
-    const verification = async event =>
-    {
-      event.preventDefault()
-         
-         const pass2 = document.getElementById("passwi")
-         const password= pass2.value     
-         const aUneMajuscule = /[A-Z]/;
-         const aUnCaractereSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-         const aUnChiffre = /[0-9]/;
-        
-        const  pseudo = document.getElementById("pseudo")
-        const pvalue = pseudo.value
-        
-        const email = document.getElementById("mail")
-        
-        if(password && pvalue && email.value){
-         try{ 
-           if(password.length < 8)
-            {
-             alert("votre mot de passe doit être superieur où égale à 8")
-             console.log(error.message);
-             
-             event.preventDefault()
-           }
-           else if(!aUneMajuscule.test(password))
-             {
-               alert("Votre mot de passe doit avoir une majuscule!")
-               event.preventDefault()
-             } else if(!aUnCaractereSpecial.test(password)){
-                 alert("Votre mot de passe doit avoir un caractère spéciale!")
-               event.preventDefault()
-             }
-              else if (!aUnChiffre.test(password)){
-                   alert("Votre mot de passe doit avoir un chiffre!")
-               event.preventDefault()
-              }
-              else{ 
-              await INSTANCE.post(URLS.POST_REGISTER, inscrit)
-               alert("Votre inscripion a bien été prise en compte un mail vous sera envoyés")
-               navigate(`/`)
-             }
-            }
-            catch(error){
-            console.error("Erreur lors de l'inscription:", error)            
-            event.preventDefault()
-           }
-          
-        }
-        else
-        {
-          alert("formulaire incomplet")
-          event.preventDefault()
-        } 
+    const verification = async (event) => {
+    event.preventDefault();
+    setFormError(''); 
+
+    const { pseudo, email, password } = inscrit;
+
+    if (!pseudo || !email || !password) {
+        return setFormError("Formulaire incomplet");
     }
+
+    // --- Validation côté client (identique à avant) ---
+    const aUneMajuscule = /[A-Z]/;
+    const aUnCaractereSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    const aUnChiffre = /[0-9]/;
+
+    if (password.length < 8) {
+        return setFormError("Votre mot de passe doit contenir au moins 3 caractères.");
+    }
+    if (!aUneMajuscule.test(password)) {
+        return setFormError("Votre mot de passe doit avoir une majuscule !");
+    }
+    if (!aUnCaractereSpecial.test(password)) {
+        return setFormError("Votre mot de passe doit avoir un caractère spécial !");
+    }
+    if (!aUnChiffre.test(password)) {
+        return setFormError("Votre mot de passe doit avoir un chiffre !");
+    }
+
+    // --- Envoi à l'API ---
+    try {
+        await INSTANCE.post(URLS.POST_REGISTER, inscrit);
+        alert("Votre inscription a bien été prise en compte. Un mail de vérification vous sera envoyé.");
+        navigate(`/`);
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.message) {
+            setFormError(error.response.data.message);
+        } else {
+            setFormError("Une erreur est survenue lors de l'inscription. Veuillez réessayer.");
+        }
+    }
+};
   return (
     <div className='back'> 
        <h1 className='titre'>Rejoint Nous ! </h1>
@@ -180,6 +166,12 @@ const Formulaire = () => {
            <p className='p2'>Le mot de passe doit avoir au moins 1 caractères spécial  <img id='carac' className='carac' src=  "/croosing.svg"/> </p>
            <p className='p3'>Le mot de passe doit avoir au moins un chiffre  <img id="chiffre" className='chiffre' src=  "/croosing.svg"  /></p>
            <p className='p4'>Le mot de passe doit avoir au moins 8 caractères  <img id='crossx'  className='crossx' src="./croosing.svg" /></p>
+           {formError && (
+                <div className="form-error-popup">
+                    <p>{formError}</p>
+                </div>
+            )}
+
          <button  className='valide'>Valider</button>
       </form>
       <div className='retour'> 
