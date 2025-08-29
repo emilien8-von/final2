@@ -1,7 +1,5 @@
-import React from 'react'
 
 import React, { useState } from 'react';
-import { Link } from 'react-router';
 import URLS from '../utils/constants/URLS';
 import './css/Contact.scss'; 
 import INSTANCE from '../../utils/services/instance';
