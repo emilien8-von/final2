@@ -40,7 +40,7 @@ const URLS = {
     GET_COMMENT_BY_GAME_ID: '/game/comment/game', 
     POST_COMMENT: '/game/comment/add',
     //Formulaire
-    SEND_CONTACT_FORM: '/game/contact/send'
+    SEND_CONTACT_FORM: '/game/user/send'
 }
 
 export default URLS;
