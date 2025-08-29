@@ -7,7 +7,6 @@ import { Link } from 'react-router';
 
 const Dashboard = () => {
     const { auth } = useContext(Context);
-    const [stats, setStats] = useState({ games: 0, users: 0, consoles: 0, emulateurs: 0 });
     const [recentGames, setRecentGames] = useState([]);
     const [loading, setLoading] = useState(true);
     
@@ -18,12 +17,10 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchDashboardData = async () => {
             try {
-                const [statsResponse, recentGamesResponse] = await Promise.all([
-                    INSTANCE.get(URLS.GET_USER_STATS),
+                const [recentGamesResponse] = await Promise.all([
                     INSTANCE.get(URLS.GET_RECENT_GAMES)
                 ]);
                 
-                setStats(statsResponse.data);
                 setRecentGames(recentGamesResponse.data);
             } catch (error) {
                 console.error("Erreur lors de la récupération des données du dashboard:", error);
@@ -65,8 +62,7 @@ const Dashboard = () => {
                     <div className="stat-card card-blue">
                         <div className="card-icon"><i className="fa-solid fa-gamepad"></i></div>
                         <div className="card-content">
-                            <h3>Total des Jeux</h3>
-                            <span>{stats.games}</span>
+                            <h3>Accès aux Jeux</h3>
                         </div>
                     </div>
                 </Link>
@@ -75,8 +71,7 @@ const Dashboard = () => {
                    <div className="stat-card card-green">
                     <div className="card-icon"><i className="fa-solid fa-users"></i></div>
                     <div className="card-content">
-                        <h3>Total des Utilisateurs</h3>
-                        <span>{stats.users}</span>
+                        <h3>Accès aux Utilisateurs</h3>
                     </div>
                    </div>
                </Link>
@@ -84,8 +79,7 @@ const Dashboard = () => {
                  <div className="stat-card card-orange">
                     <div className="card-icon"><i className="fa-solid fa-ghost"></i></div>
                     <div className="card-content">
-                        <h3>Total des Consoles</h3>
-                        <span>{stats.consoles}</span>
+                        <h3>Accès aux Consoles</h3>
                     </div>
                  </div>
                </Link>
@@ -96,8 +90,7 @@ const Dashboard = () => {
                  <div className="stat-card card-red">
                     <div className="card-icon"><i className="fa-solid fa-box"></i></div>
                     <div className="card-content">
-                        <h3>Total des Emulateurs</h3>
-                        <span>{stats.emulateurs}</span>
+                        <h3>Accès aux Emulateurs</h3>
                     </div>
                  </div>
                 </Link>
