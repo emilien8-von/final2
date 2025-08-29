@@ -113,10 +113,10 @@ const Formulaire = () => {
         navigate(`/`);
     } catch (error) {
         if (error.response && error.response.data && error.response.data.message) {
-            setFormError(error.response.data.message);
-        } else {
-            setFormError("Une erreur est survenue lors de l'inscription. Veuillez réessayer.");
-        }
+        return setFormError(error.response.data.message);
+    } else {
+        setFormError("Une erreur est survenue.");
+    }
     }
 };
   return (

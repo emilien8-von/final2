@@ -20,9 +20,10 @@ const Puser = async(req,res) =>{
         res.status(201).json({message : 'users created!, un message vous sera envoyés',reponse})
     }
     catch(error){
-         if (error.code === 11000) {
-            return next(erreur(409, "Cette adresse email est déjà utilisée par un autre compte.")); // 409 Conflict
-        }
+          if (error.code === 11000) {
+        // Il renvoie un message d'erreur clair et spécifique
+        return next(erreur(409, "Cette adresse email est déjà utilisée par un autre compte."));
+        }  
         console.log(error.message);
         
     }
