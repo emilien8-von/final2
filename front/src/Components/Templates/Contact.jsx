@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import './css/Contact.scss'; 
+import './css/contact.scss'; 
 import INSTANCE from '../../utils/services/instance';
 import URLS from '../../utils/constants/URLS';
 const Contact = () => {
