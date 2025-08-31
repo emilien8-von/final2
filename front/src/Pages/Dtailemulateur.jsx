@@ -44,7 +44,7 @@ const Dtailemulateur = () => {
                 <main className="main-content">
                     <h1>{emulatorDetails.nom}</h1>
                     <p className="breadcrumb">
-                        <Link to='/'>Accueil</Link> &gt; Émulateurs &gt; {emulatorDetails.nom}
+                        <Link to='/'>Accueil</Link> &gt; <Link to='/list-emulateur'>Émulateurs</Link>  &gt; {emulatorDetails.nom}
                     </p>
                     <hr className="separator" />
                     

@@ -3,17 +3,17 @@
   background-image: url('/abstrait.jpg');
   background-size: cover;
   padding: 1rem 0;
-  position: relative; /* Pour le menu déroulant */
+  position: relative; 
 }
 
 /* Le conteneur intérieur qui aligne les 3 groupes */
 .nav-container {
   display: flex;
-  justify-content: space-between; /* Pousse les groupes gauche et droit aux extrémités */
+  justify-content: space-between;
   align-items: center;
   
   width: 100%;
-  max-width: 1400px; /* Largeur max du contenu */
+  max-width: 1400px; 
   margin: 0 auto;
   padding: 0 2rem;
   box-sizing: border-box;
@@ -23,19 +23,19 @@
 .nav-left .logo {
   width: 150px;
   height: auto;
-  display: block; /* Évite les espaces indésirables */
+  display: block;
 }
 
 /* Groupe du centre (navigation) - Styles pour le menu déroulant mobile */
 .nav-center {
-  display: none; /* Caché par défaut sur mobile */
+  display: none; 
   
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
   
   position: absolute;
-  top: 100%; /* Se place juste sous le header */
+  top: 100%;
   left: 0;
   width: 100%;
   background-color: #160430;
@@ -45,7 +45,7 @@
 }
 
 .nav-center.is-open {
-  display: flex; /* Affiche le menu quand on clique sur le burger */
+  display: flex; 
 }
 
 /* Groupe de droite (actions) */
@@ -137,12 +137,12 @@
    
    .nav-center {
     display: flex;
-    flex-direction: row; /* On le passe en ligne */
-    position: static; /* On annule le positionnement absolu */
+    flex-direction: row; 
+    position: static;
     width: auto;
     background-color: transparent;
     padding: 0;
-    gap: 2.5rem; /* Espace entre les liens de navigation */
+    gap: 2.5rem; 
   }
 
   /* On cache le menu burger */
@@ -157,23 +157,23 @@
 
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Aligne verticalement logo, liens et boutons */
+  align-items: center; 
 }
 
 /* La liste des liens de navigation */
 .nav-links {
-  display: none; /* Par défaut, le menu est caché sur mobile */
+  display: none; 
   
   /* Styles pour quand le menu est ouvert */
   position: absolute;
-  top: 100px; /* Se positionne sous le header (ajustez si besoin) */
+  top: 100px; 
   left: 0;
   width: 100%;
-  background-color: #160430; /* Fond pour la lisibilité */
+  background-color: #160430; 
   
   /* Styles pour la disposition en colonne */
   flex-direction: column;
-  align-items: center; /* CENTRE LES LIENS HORIZONTALEMENT */
+  align-items: center; 
   padding: 20px 0;
   gap: 20px;
   
@@ -206,9 +206,9 @@
 .header-avatar {
   width: 40px;
   height: 40px;
-  border-radius: 50%; /* Pour un avatar rond */
+  border-radius: 50%; 
   object-fit: cover;
-  border: 2px solid #AE69FF; /* Bordure assortie à votre thème */
+  border: 2px solid #AE69FF; 
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -224,4 +224,28 @@
     text-decoration: none;
     color: snow;
   }
+}
+
+@media (max-width: 767px) {
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    .nav-left .logo {
+        width: 120px;
+    }
+
+    .nav-right {
+        gap: 0.5rem;
+    }
+
+    .but1, .but3 {
+        padding: 5px 8px;
+        font-size: 0.9rem;
+        width: auto; 
+    }
+
+    .li {
+        font-size: 1.2rem;
+    }
 }

@@ -53,7 +53,7 @@ const Histoire = () => {
                 <main className="main-content">
                     <h1>{consoleDetails.nom}</h1>
                     <p className="breadcrumb">
-                        <Link to='/'>Accueil</Link> &gt; Consoles &gt; {consoleDetails.nom}
+                        <Link to='/'>Accueil</Link> &gt; <Link to='/list-console'>Consoles</Link>  &gt; {consoleDetails.nom}
                     </p>
                     <hr className="separator" />
                     
