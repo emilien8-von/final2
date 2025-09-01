@@ -38,10 +38,10 @@ describe('Puser controller', () => {
       password: 'hashedPassword',
     });
 
-    // Fake JWT
+    // Faux JWT
     jwt.sign.mockReturnValue('fakeToken');
 
-    // Fake envoi
+    // Faux envoi
     envoi.mockResolvedValue();
 
     await Puser(req, res);

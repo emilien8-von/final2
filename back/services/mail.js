@@ -30,11 +30,10 @@ const sendEmail = async (to, subject, html) => {
     }
 };
 const sendVerificationEmail = async (userEmail, userPseudo, verificationToken) => {
-    const verificationLink = `${ENV.PORT_APPLI_FRONT}/verify/${verificationToken}`;
     
     const emailHTML = `
         <h3>Bonjour ${userPseudo},</h3>
-        <p>Merci pour votre inscription ! Nous espèreront que vous prendre du plasir à consulter nos différents jeux!</p>
+        <p>Merci pour votre inscription ! Nous espèreront que vous allez prendre du plasir à consulter nos différents jeux !</p>
     `;
 
     await sendEmail(userEmail, "Validez votre inscription sur Alpha Gaming", emailHTML);

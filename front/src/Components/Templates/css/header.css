@@ -98,7 +98,6 @@
   .but2:hover{
     color:#ABA41C;
   }
-  /**/
    .but3{
     margin-top: 2%;
     cursor: pointer;
@@ -145,7 +144,6 @@
     gap: 2.5rem; 
   }
 
-  /* On cache le menu burger */
   .menu {
     display: none;
   }
@@ -180,7 +178,6 @@
   list-style: none;
 }
 
-/* La classe qui rend le menu visible quand l'état est "ouvert" */
 .nav-links.is-open {
   display: flex; 
 }
@@ -194,7 +191,7 @@
 
  }
 
-/* Le menu burger est visible par défaut */
+/* Le menu burger est visible  */
 .menu {
   display: block;
   cursor: pointer;
@@ -217,9 +214,7 @@
   transform: scale(1.1);
 }
 
-/* On s'assure que le bouton Déconnexion est bien un lien */
 .but1, .but3 {
-  /* ... */
   a {
     text-decoration: none;
     color: snow;

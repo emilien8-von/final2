@@ -83,7 +83,7 @@ const Acceuil = () => {
   return (
   <div className='nain'>
         <div className='bord'>
-           <h1 className='h1'>On attaque?! Alors ça va chauffer!!</h1>
+           <h1 className='h1'>On attaque ?! Alors ça va chauffer !!</h1>
            <p className='p1'>“Je me suis rendu compte que les jeux ne sont pas qu'une distraction.
                Les jeux peuvent susciter des émotions.”</p>
                <p className='p'>-Sid Meier</p>
@@ -132,7 +132,7 @@ const Acceuil = () => {
            <img  onClick={acces} src="/turismo.jpg" alt="j" className='img3' />
           </div>
          
-         <p>Montrer votre adréaline et determination grâce au combat qui vous font repousser vos limites et vos envies , tous sur le ring!</p>
+         <p>Montrez votre adréaline et determination grâce au combat qui vous font repousser vos limites et vos envies , tous sur le ring!</p>
           
             <div className='v-flex'> 
               <img onClick={acces} src="/smash.jpg" alt="x" className='img1  img13'/>

@@ -58,7 +58,6 @@ const Section = ({ gameId }) => {
             <Commentform gameId={gameId} onCommentPosted={handleNewComment} />
             
             <hr className='form-separator' />
-            {/* La liste des commentaires est affichée */}
             {loading ? <p>Chargement des commentaires...</p> : <CommentList comments={comments} />}
         </div>
   )

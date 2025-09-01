@@ -58,8 +58,7 @@ const Header = () => {
             </div>
 
         </div>
-        {/* La barre de recherche peut être placée ici si elle doit être en dessous */}
-        {/* <input id='input' type="text" placeholder='Rechercher un jeux...' /> */}
+        
           </header>
     
   )
