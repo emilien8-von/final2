@@ -1,0 +1,34 @@
+.r-flex{
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer {
+    background-image: url('/consitent.svg');
+    color: snow;
+    background-size: cover;
+    padding: 50px;
+  }
+  .text{
+    text-align: center;
+  }
+  
+  .mention,.contact{
+   color : white; 
+ }
+
+ @media (max-width: 767px) {
+    .r-flex {
+        
+        flex-direction: column;
+        align-items: center; 
+        gap: 1rem; 
+    }
+
+    .text, .legend {
+        
+        font-size: 0.8rem;
+        text-align: center;
+        padding: 0 1rem; 
+    }
+}
+ 

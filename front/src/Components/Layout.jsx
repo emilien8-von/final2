@@ -4,16 +4,13 @@ import Header from './Templates/Header'
 import Footer from './Templates/Footer'
 const Layout = () => {
   return (
-    <div>
-       <Header/>
-       <main> 
-        <section>
-          <Outlet/> 
-       </section>
-       </main>
-       <Footer/>
-    </div>
-    
+     <>
+      <Header />
+      <main className="main-content">
+        <Outlet /> 
+      </main>
+      <Footer />
+    </>
   )
 }
 

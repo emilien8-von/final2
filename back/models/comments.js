@@ -1,28 +1,26 @@
-const mongoose = require('mongoose')
-const comment = mongoose.Schema( 
-    {
-        pseudo : {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'Users',
-            required : true
-        },
-        rating:{
-            type : Number,
-            required : true
-        },
-         commentaire : {
-            type:String,
-            required: true
-         },
-         role : {
-            type : String,
-            enum : ["user","admin","gadmin","consultant","designer"],
-            required : true
-         }
+const mongoose = require('mongoose');
 
-
+const commentSchema = new mongoose.Schema({
+    content: { 
+        type: String, 
+        required: true 
     },
-    {timestamps: { createdAt: true } }
-)
+    rating: { 
+        type: Number, 
+        min: 0, 
+        max: 5,
+        default: 0 
+    },
+    user: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Users', 
+        required: true 
+    },
+    game: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Jeux', 
+        required: true 
+    }
+}, { timestamps: true });
 
-module.exports = mongoose.model('Comments',comment)
+module.exports = mongoose.model('Comment', commentSchema);

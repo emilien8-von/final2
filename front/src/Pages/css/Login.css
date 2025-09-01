@@ -1,3 +1,276 @@
 .h1{
-    color : red;
+    color: snow;
+}
+.color{
+    background-color : #160430;
+    color: snow;
+}
+
+.form-separator {
+  width: 100%;    
+  border: none;      
+  height: 1px;         
+  background-color: snow; 
+  
+ 
+    margin: 25px 0; 
+}
+
+.login-page-container {
+   display: flex;
+  align-items: center;     
+  justify-content: center; 
+    gap: 15%;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 2px 1rem;
+  box-sizing: border-box;
+}
+
+.login-image-section {
+  text-align: center; 
+  flex: 1 1 50%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+
+}
+
+.login-form-section {
+ flex: 1 1 50%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   max-width: 500px; 
+}
+
+/* Style de l'image */
+.image {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    object-fit: cover;
+    border-radius: 15px; 
+
+}
+
+.login-wrapper input:-webkit-autofill,
+.login-wrapper input:-webkit-autofill:hover, 
+.login-wrapper input:-webkit-autofill:focus, 
+.login-wrapper input:-webkit-autofill:active {
+    box-shadow: 0 0 0px 1000px #4a2c7a inset !important;
+    -webkit-text-fill-color: white !important;
+    border-color: #555 !important;
+}
+
+
+
+.p{
+    text-transform: uppercase;
+    font-size: larger;
+    margin-left: 2%;
+    margin-top: 1.5rem;
+}
+.span{
+    color: #AE69FF;
+}
+
+.button{
+    
+    border-radius: 18px;
+    background-image : linear-gradient( to right ,#501794,#3E70A1);
+    color : white;
+    width: 525px;
+    height : 62.2px;
+    margin-top: 2%;
+    font-size: large;
+}
+.button:hover{
+     color : #FFBD00;
+     opacity: 0.9;
+}
+
+.login-form {
+    width: 100%;
+  max-width: 520px; 
+  background-color: transparent;
+  color: white;
+  border: 2px solid snow;
+  text-align: center;
+  padding: 30px;
+  border-radius: 15px;
+}
+/*Input*/
+.login-wrapper {
+  position: relative; 
+}
+.login-input {
+   width: 100%; 
+  height: 69px;
+  background-color: #261046;
+  border: 1px solid #4a2c7a;
+  border-radius: 12px;
+  color: #E0E0E0;
+  font-size: 16px;
+  
+  padding-left: 60px; 
+  
+  box-sizing: border-box; 
+}
+
+.login-passw {
+  padding-right: 60px; 
+}
+
+
+.login-input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Icônes de gauche */
+.login-input-wrapper i.login-input-icon {
+  left: 20px;
+  font-size: 22px;
+  color: #A4A4A4;
+}
+
+/* Icône de droite (l'œil) */
+.login-input-wrapper .login-eye-icon {
+  right: 20px;
+  width: 24px;
+  cursor: pointer;
+}
+
+
+/*RESPONSIVE*/
+@media (max-width : 1024px) {
+   .login-page-container {
+    flex-direction: column; 
+    gap: 3rem; 
+    padding: 2rem 1rem;
+  }
+
+  .login-image-section,
+  .login-form-section {
+    max-width: 525px;
+    width: 100%;
+  }
+
+  .image {
+    max-width: 400px;
+
+    margin-top: 0; 
+  }
+
+  .login-form, .button {
+    width: 100%;
+  }
+}   
+@media (max-width : 767px) {
+  .back {
+    background-color: #160430;
+    color: snow;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.titre {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.form {
+    width: 100%;
+    max-width: 500px; 
+    background-color: transparent;
+    border: 2px solid snow;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.input-wrapper {
+    position: relative; 
+    margin-bottom: 1rem;
+}
+
+.input-wrapper input {
+    width: 100%;
+    height: 55px;
+    background-color: #261046;
+    border: 1px solid #4a2c7a;
+    border-radius: 10px;
+    color: #E0E0E0;
+    font-size: 1rem;
+    padding-left: 50px; 
+    padding-right: 50px; 
+    box-sizing: border-box;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.input-icon:not(.eye-icon) {
+    left: 15px;
+}
+
+.eye-icon {
+    right: 15px;
+    cursor: pointer;
+}
+
+/* Indicateurs de mot de passe */
+.pm, .p2, .p3, .p4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    text-align: left;
+    margin: 0.5rem 0;
+}
+
+.pm img, .p2 img, .p3 img, .p4 img {
+    width: 16px;
+    height: 16px;
+}
+
+.valide {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    background-color: #215b96;
+    color: white;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+.retour {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+.link {
+    color: #AE69FF;
+    text-decoration: underline;
+}
 }

@@ -17,17 +17,38 @@ const user = mongoose.Schema(
        role : 
        {
         type: String,
-        enum : ["user", "admin","gadmin","consultant","moderateur","designer"],
+        enum : ["user", "admin"],
         default : 'user'
        },
        password : 
        {
         type : String,
-        minLength:3,
-        required: true
+        minLength : 8,
+        required : true
         
-       }                     
-    } , {Timestamps : {createdAt : true}}
-)
+       } ,
+       avatar :
+       {
+        type : String,
+        default : "https://cdn-icons-png.flaticon.com/512/3541/3541871.png"
+       } ,  
+       passwordResetCode: {
+        type: String,
+        default: null
+       },
+       passwordResetExpires: {
+        type: Date,
+        default: null
+      },
+      isActif:{
+        type:Boolean,
+        default:false
+      },
+       isVerified : {
+        type : Boolean,
+        default : false
+       },
+    }    , {Timestamps : {createdAt : true}}
+    )
 
 module.exports = mongoose.model('Users',user)

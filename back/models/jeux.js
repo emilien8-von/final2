@@ -32,13 +32,13 @@ const jeux = mongoose.Schema(
            type : mongoose.Schema.Types.ObjectId, ref :"Comments"
         },
         status : {
-            type : Boolean,
+            type : String,
+            enum : ["oui", "non"],
             required : true
         },
         image:{
             type: String,
             required : true
-
         },
         rating:{
             type: Number,
@@ -46,11 +46,53 @@ const jeux = mongoose.Schema(
             maxlength : 5
         },
         exclusivite : {
-            type : Boolean,
+            type : String,
+             enum : ["oui", "non"],
             required :  true
-        }
+        },
+        online  : 
+        {
+            type :String,
+             enum : ["oui", "non"],
+            required : true,
+         } ,
+         multijoueur :
+         {
+             type : String,
+              enum : ["oui", "non"],
+             required : true
+         },
+         nombre_de_joueur : {
+            type : Number,
+            requiered : true
+         },
+         disponible : {
+            type : String,
+            required:true
+         },
+         emulateur : {
+            type : String,
+            requiered : true
+         }
+         ,
+        gallery:{
+        img : {type : String},
+        img2 : {type : String},
+        img3 : {type: String},
+        img4 : {type: String},
+        img5 : {type: String},
+        img6 : {type: String},
+    }
 
-    } ,{Timestamp : {createdAt : true} }
+
+    } ,{
+        timestamps : true,
+        toJSON: {virtuals : true},
+        toObject : {virtuals : true}
+         
+       }
 )
+
+
 
 module.exports = mongoose.model("Jeux",jeux)

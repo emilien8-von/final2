@@ -1,6 +1,6 @@
 const app = require('./app')
 const ENV = require('./config/env')
-const PORT = 8000 || ENV.PORT
+const PORT = ENV.PORT || 8000
 
 app.listen(PORT,() =>{
 

@@ -1,0 +1,265 @@
+.detail-page-body {
+    background-image: linear-gradient(#42106D, #5B0F53, #160430);
+    color: snow;
+    padding: 2rem 0;
+}
+
+.detail-page-layout {
+    display: flex;
+    flex-direction: column-reverse; 
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+// Styles pour les écrans larges (desktop)
+@media (min-width: 992px) {
+    .detail-page-layout {
+        flex-direction: row; 
+        align-items: flex-start;
+    }
+}
+
+/* --- COLONNE PRINCIPALE --- */
+.main-content {
+    flex: 2; 
+    min-width: 0; 
+
+    h1 {
+        font-size: 3rem;
+        text-align: left;
+    }
+
+    .breadcrumb {
+        color: #ccc;
+        a { color: #AE69FF; text-decoration: none; }
+    }
+
+    h2 {
+        font-size: 2rem;
+        text-align: left;
+        border-left: 4px solid #AE69FF;
+        padding-left: 1rem;
+        margin: 2rem 0 1rem;
+    }
+
+    .description {
+        line-height: 1.7;
+        color: #e0e0e0;
+    }
+}
+
+/* --- GALERIE D'IMAGES --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+     .detail-page-body {
+        padding: 2rem 0; 
+    }
+
+    .detail-page-layout {
+        flex-direction: row; 
+        align-items: flex-start;
+        gap: 3rem; 
+        padding: 0 2rem;
+    }
+
+    /* On inverse l'ordre pour que la sidebar soit à droite */
+    .main-content {
+        order: 1;
+        flex: 2;
+        h1, h2 { text-align: left; }
+    }
+
+    .sidebar {
+        order: 2;
+        flex: 1;
+        position: sticky;
+        top: 2rem;
+    }
+
+    .sidebar-cover-image {
+        max-width: 100%; 
+    }
+}
+
+/* --- COLONNE LATÉRALE (SIDEBAR) --- */
+ .sidebar {
+        order: 2; 
+        position: sticky;
+        top: 2rem;
+    }
+
+.sidebar-cover-image {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.game-info-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+
+    h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        border-bottom: 1px solid #4a2c7a;
+        padding-bottom: 0.5rem;
+    }
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #3a3a52;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        color: #ccc;
+        font-weight: bold;
+    }
+
+    .info-value {
+        text-align: right;
+    }
+}
+
+/* --- ÉLÉMENTS COMMUNS --- */
+.separator {
+    border: none;
+    height: 1px;
+    background-color: #4a2c7a;
+    margin: 2rem 0;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 2rem;
+    color: snow;
+    background-color: #160430;
+}
+
+@media (max-width : 991px) {
+  
+.detail-page-body {
+    background-image: linear-gradient(#42106D, #5B0F53, #160430);
+    color: snow;
+    padding: 1rem 0;
+}
+
+.detail-page-layout {
+    display: flex;
+    flex-direction: column; 
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+/* --- COLONNE LATÉRALE (SIDEBAR) - Apparaît en premier sur mobile --- */
+.sidebar {
+    
+    position: static; 
+        order: 1; 
+}
+
+.sidebar-cover-image {
+    width: 100%;
+    max-width: 400px; 
+    margin: 0 auto; 
+    display: block;
+    border-radius: 12px;
+}
+
+.game-info-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem; 
+
+    h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+    }
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #3a3a52;
+    &:last-child { border-bottom: none; }
+    .info-label { color: #ccc; font-weight: bold; }
+    .info-value { text-align: right; }
+}
+
+/* --- COLONNE PRINCIPALE - Apparaît en deuxième sur mobile --- */
+.main-content {
+       order: 2;
+    h1 {
+        font-size: 2.5rem; 
+        text-align: center;
+    }
+    h2 {
+        font-size: 1.8rem;
+        border-left: 4px solid #AE69FF;
+        padding-left: 1rem;
+        margin: 2rem 0 1rem;
+    }
+    .description {
+        line-height: 1.7;
+    }
+}
+
+/* --- GALERIE D'IMAGES --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* --- ÉLÉMENTS COMMUNS --- */
+.separator {
+    border: none;
+    height: 1px;
+    background-color: #4a2c7a;
+    margin: 2rem 0;
+}
+
+
+}

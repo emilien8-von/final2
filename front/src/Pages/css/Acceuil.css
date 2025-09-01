@@ -1,0 +1,253 @@
+
+/*Main*/
+.nain{
+    background-image: linear-gradient(to right ,#42106D,#5B0F53,#160430);
+    color: snow !important;
+    background-repeat: no-repeat;
+    background-size:cover;
+    padding: 5px;
+    
+  }
+  .h1,.level{
+    text-align: center;
+  }
+  .p1{
+    font-family: 'Skranji';font-size: 22px;
+  }
+  .bord{
+    border: 3px solid black;
+    background-repeat: no-repeat;
+    background-size: cover ;
+    opacity: 0.6 ;
+    color: snow;
+    padding: 50px;
+  }
+  /*Partie flex*/
+  /*Image des jeux où il y a pas d'utilisateur */
+  .v-flex{
+    display: flex;
+    justify-content: space-between;
+   
+  }
+
+  .img1:hover{
+    filter: none;
+    border:2px solid #C1121F;
+    transform: scale(1.1);
+    transition: transform 1s ease-in-out;
+  }
+  .img2:hover{
+    filter: none;
+    border: 2px solid #0F07AC;
+    transform: scale(1.1);
+    transition: transform 1s ease-in-out;
+  }
+  .img3:hover{
+    filter: none;
+    border: 2px solid #6A994E;
+    transform: scale(1.1);
+    transition: transform 1s ease-in-out;
+    
+  }
+  .img4:hover{
+    filter: none;
+    border: 2px solid #FFBD00;
+    transform: scale(1.1);
+    transition: transform 1s ease-in-out;
+  }
+  
+  /*3 images (start,easy,carte)*/
+  .t-flex{
+    display: flex;
+    justify-content: space-around;
+    max-width: 100%;
+  }
+ 
+  /*Image des jeux */
+  .img1,.img2,.img3,.img4,.img5{
+    width:150px;
+    filter: grayscale(90%);
+    border: 2px solid black;
+    cursor: pointer;
+    object-fit: cover;
+  }
+   .img5:hover{
+    filter: none;
+  }
+  /* 1. Le conteneur pour une rangée d'images */
+.items-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+/* 2. La "carte" de base (styles communs à toutes) */
+.item-card {
+  width: 250px;
+  aspect-ratio: 16 / 9;
+  border: 2px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  
+  transition: 
+    border-color 0.4s ease-in-out,
+    transform 0.4s ease-in-out,
+    box-shadow 0.4s ease-in-out;
+}
+
+/* 3. L'image à l'intérieur de la carte */
+.item-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(90%);
+  cursor: pointer;
+  
+  transition: filter 0.4s ease-in-out;
+}
+
+.item-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.item-card:hover img {
+  filter: none;
+}
+
+
+
+/* Pour les cartes dans la section Nintendo */
+.nintendo-section .item-card:hover {
+  border-color: #C1121F;
+}
+
+/* Pour les cartes dans la section PlayStation */
+.playstation-section .item-card:hover {
+  border-color: #0F07AC;
+}
+
+/* Pour les cartes dans la section Xbox */
+.xbox-section .item-card:hover {
+  border-color: #6A994E; 
+}
+
+/* Pour les cartes dans la section PC */
+.pc-section .item-card:hover {
+  border-color: #FFBD00;
+}
+  .u-flex
+   {
+     display: grid ;
+     grid-template-columns: repeat(3, 1fr);
+     justify-content: space-between;
+     padding: 17px;
+     gap : 30px;
+     max-width: 1400px;
+   }
+  .img7
+  {
+    filter: grayscale(90%);
+    border: 2px solid black;
+    cursor: pointer;
+    object-fit: cover;
+    width: 80%;
+    height: 90%;
+  }
+  .img7:hover{
+    filter: none;
+    border:2px solid skyblue;
+    transform: scale(1.1);
+    transition: transform 1s ease-in-out;
+  }
+  /**Ligne*/
+   .ligne,.ligne2{
+    border-bottom: 3px solid snow ;
+    margin-top: 2%;
+  }
+  /*2ème Partie (console)*/
+  .item-card--contain img {
+  object-fit: contain; 
+}
+   .item-card--contain {
+  
+   padding: 1rem;
+  
+  }
+
+  .image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px; 
+  margin: 0 auto;    
+}
+
+.image-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #221e2b;
+  object-fit: cover;
+  filter: grayscale(90%);  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+   filter: none;
+    border:2px solid skyblue;
+    transform: scale(1.1);
+    transition: transform 1s ease-in-out;
+}
+
+/* L'image à l'intérieur de la carte */
+.image-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.game-grid .image-card {
+  aspect-ratio: 3 / 4; 
+}
+.game-grid .image-card img {
+  object-fit: cover; 
+}
+
+/* Pour les grilles de CONSOLES (type matériel) */
+.console-grid .image-card {
+  aspect-ratio: 16 / 9; 
+  padding: 1rem; 
+  box-sizing: border-box;
+}
+.console-grid .image-card img {
+  object-fit: contain; 
+}
+
+  /*Pati du blog**/
+  .N1:hover{
+    color: #C1121F ;
+    text-decoration: underline;
+  }
+  .P1:hover{
+    color: #0077B6;
+    text-decoration: underline;
+  }
+  .X1:hover{
+    color: #6A994E;
+    text-decoration: underline;
+  }
+  .G1:hover{
+    color: #FFBD00 ;
+    text-decoration: underline;
+  }
+  
+  

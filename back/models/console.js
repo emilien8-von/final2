@@ -4,23 +4,37 @@ const mongoose = require('mongoose')
 const console = mongoose.Schema({
      nom: {
         type : String,
-        require : true
+        required : true
      },
      brand :{
           type : String,
-          require : true
+          required : true
      } ,
      sortie : 
      {
          type : Date,
-         require : true
+         required : true
      },
-     emulable : {
+     emulable : 
+     {
           type : Boolean,
-          require : true
+          required : true
+     },
+     emulateur : {
+          type : String,
+          required : true
+     },
+     image : 
+     {
+          type : String,
+          required : true
+     },
+     vente : {
+          type : Boolean,
+          required : true
      }
         
-} ,{Timestamp : {createdAt : true} }
+} ,{timestamps : {createdAt : true} }
 
 )
 

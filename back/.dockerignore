@@ -1,0 +1,7 @@
+node_modules
+
+# Exclure le fichier des variables d'environnement locales
+.env
+
+# Exclure les logs de npm
+npm-debug.log
