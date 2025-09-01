@@ -30,7 +30,6 @@ app.use(cookieParser());
 
 app.use(express.static('dist'));
 
-app.use(logger);
 
 
 
