@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser');
 const ENV = require('./config/env');
 const connect = require('./config/dbmongo');
 const app = express();
-const logger = require('./middlewares/requestLogger');
 
 connect(ENV.DB_URI, ENV.DB_NAME);
 
