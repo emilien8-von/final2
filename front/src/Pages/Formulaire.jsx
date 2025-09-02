@@ -162,9 +162,9 @@ const Formulaire = () => {
          </div>
                      
            <p className='pm'>Le mot de passe doit avoir au moins une majuscule <img id="maj" className='maj' src= "/croosing.svg" alt="cross"  /></p>
-           <p className='p2'>Le mot de passe doit avoir au moins 1 caractères spécial  <img id='carac' className='carac' src=  "/croosing.svg"/> </p>
-           <p className='p3'>Le mot de passe doit avoir au moins un chiffre  <img id="chiffre" className='chiffre' src=  "/croosing.svg"  /></p>
-           <p className='p4'>Le mot de passe doit avoir au moins 8 caractères  <img id='crossx'  className='crossx' src="./croosing.svg" /></p>
+           <p className='p2'>Le mot de passe doit avoir au moins 1 caractères spécial  <img id='carac' className='carac' src=  "/croosing.svg" alt="cross"/> </p>
+           <p className='p3'>Le mot de passe doit avoir au moins un chiffre  <img id="chiffre" className='chiffre' src=  "/croosing.svg" alt="cross"  /></p>
+           <p className='p4'>Le mot de passe doit avoir au moins 8 caractères  <img id='crossx'  className='crossx' src="./croosing.svg" alt="cross" /></p>
            {formError && (
                 <div className="form-error-popup">
                     <p>{formError}</p>

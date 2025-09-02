@@ -115,7 +115,7 @@ const Acceuil = () => {
 
           : <div>
               <p>
-                 Les jeux de types plateformes sont les plus connues et qui ont permis de donner des jeux comme 
+                 Les jeux de types plateformes sont les plus connus et qui ont permis de donner des jeux comme 
                  (Mario , Sonic,Crash bandicoot , ect..)
               </p>
               <div className='v-flex'> 
@@ -140,7 +140,7 @@ const Acceuil = () => {
               <img onClick={acces} src="/ball.jpg" alt="i" className='img3'/>
             </div>
           
-          <p>Quoi de mieux pour bon divertissement familiale ou amicale avec le jeux de sport .Bien qu’on peut rencontrer quelque de tension , au final ce qu’on retiendra c’est une super soirée !  </p>
+          <p>Quoi de mieux pour bon divertissement familial ou amical avec le jeux de sport .Bien qu’on peut rencontrer quelque fois des tensions , au final ce qu’on retiendra c’est une super soirée !  </p>
           
              <div className='v-flex'>
              <img onClick={acces} src="/olympic.jpg" alt="g" className='img1 '/>
@@ -148,7 +148,7 @@ const Acceuil = () => {
                <img onClick={acces} src="/basket.jpg" alt="z" className='img3' />
                
              </div>
-          <p>Quoi de mieux qu'un bon RPG , Pour un site jeu vidéo.</p>
+          <p>Quoi de mieux qu'un bon RPG , Pour un site de jeux vidéo.</p>
              <div className='v-flex'>
            <img onClick={acces} className='img1 ' src="/pokemon.jpg" alt="s"   />
            <img onClick={acces} className=' img2 ' src="/dragon.jpg" alt="t" />
@@ -180,7 +180,7 @@ const Acceuil = () => {
           :
           <div> 
           <h3 className='N1'>Les consoles Nintendo</h3>
-          <p>La marque Nintendo est une des marque de jeux le plus poulaire au monde , avec des consoles qui varie du salon familiale jusqu’a la version portable.</p>
+          <p>La marque Nintendo est une des marque de jeux le plus populaire au monde , avec des consoles qui varie du salon familial jusqu’a la version portable.</p>
           <div className='items-row nintendo-section nintendo'> 
         <div className='item-card'> 
             <img onClick={acces} src="/switch.jpg" alt="Nintendo Switch" />
@@ -223,7 +223,7 @@ const Acceuil = () => {
       
   
           <h3 className='G1'>Le PC</h3>
-          <p>Comme on peut s’attendre le PC est devenu un outil important dans le monde du gaming ,ce qui va mettre au fur et à mesure remplace les consoles .</p>
+          <p>Comme on peut s’attendre le PC est devenu un outil important dans le monde du gaming ,ce qui va permettre au fur et à mesure de remplacer les consoles .</p>
           <div className='items-row pc-section pc'>
         <div className='item-card'>
             <img onClick={acces} src="/pc.jpg" alt="PC de bureau gamer" />
