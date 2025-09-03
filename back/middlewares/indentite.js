@@ -1,12 +1,9 @@
-// Dans middlewares/indentite.js
 const jwr = require('jsonwebtoken');
 const ENV = require('../config/env');
 const erreur = require('./erreur');
 
 const verifie = (req, res, next) => {
-    console.log('--- NOUVELLE REQUÊTE PROTÉGÉE ---');
-    console.log('Cookies reçus par le backend :', req.cookies);
-
+   
     const token = req.cookies.access_token;
 
     if (!token) {
