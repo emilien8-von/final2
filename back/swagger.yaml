@@ -1,0 +1,127 @@
+# --- Informations Générales sur l'API ---
+openapi: 3.0.0
+info:
+  title: Alpha Gaming API
+  description: L'API RESTful pour la plateforme Alpha Gaming, une encyclopédie interactive du jeu vidéo.
+  version: 1.0.0
+servers:
+  - url: https://alpha-gaming-back.onrender.com
+    description: Serveur de Production
+  - url: https://final3-eta.vercel.app
+    description: Serveur de Développement Local
+
+# --- Définition des "Tags" pour regrouper les routes ---
+tags:
+  - name: Utilisateurs
+    description: Routes liées à l'authentification et à la gestion des utilisateurs.
+  - name: Jeux
+    description: Routes pour la gestion des jeux.
+
+# --- Définition des Routes (Paths) ---
+paths:
+
+  # --- Route de Connexion ---
+  /game/user/login:
+    post:
+      tags:
+        - Utilisateurs
+      summary: Connecte un utilisateur
+      description: Permet à un utilisateur de se connecter en fournissant son email et son mot de passe. Renvoie les informations de l'utilisateur et un cookie d'authentification httpOnly.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "joueur1@gmail.com"
+                password:
+                  type: string
+                  example: "MonMotDePasse123!"
+      responses:
+        '200':
+          description: Connexion réussie.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User' # Référence à un modèle réutilisable
+        '401':
+          description: Mot de passe incorrect.
+        '404':
+          description: Utilisateur non trouvé.
+
+  # --- Route pour lister tous les jeux ---
+  /game/jeux/all:
+    get:
+      tags:
+        - Jeux
+      summary: Récupère la liste de tous les jeux
+      description: Renvoie un tableau contenant tous les jeux de la base de données.
+      responses:
+        '200':
+          description: Liste des jeux récupérée avec succès.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Jeu' # Référence au modèle de jeu
+                
+
+# --- Définition des Modèles Réutilisables (Schemas) ---
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: "687a21cf77c6fc0eef8bfeeb"
+        pseudo:
+          type: string
+          example: "Joueur1"
+        email:
+          type: string
+          example: "joueur1@gmail.com"
+        role:
+          type: string
+          example: "user"
+        avatar:
+          type: string
+          example: "https://cdn-icons-png.flaticon.com/512/3541/3541871.png"
+    Jeu:
+      type: object
+      properties:
+        _id:
+          type: string
+        titre:
+          type: string
+        brand:
+          type: string
+        genre:
+          type: string
+        annee_sortie:
+          type : number
+        status:
+          type : string,
+        image:
+          type: string
+        rating:
+           type: number
+        exclusivite:
+           type: string
+        online:
+           type: string
+        multijoueur:
+           type: string
+        nombre_de_joueur:
+           type: string
+        disponible:
+            type: string  
+        emulateur:
+            type: string
+        
+         
+

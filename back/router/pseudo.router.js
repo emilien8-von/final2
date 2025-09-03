@@ -5,13 +5,12 @@ const verify = require('../middlewares/indentite')
 
 router.post("/add",Pcontroller.Puser)
 router.post("/login",Pcontroller.Luser)
-router.post('/forgot-password', Pcontroller.forgotPassword);
+router.post('/forgot-password', Pcontroller.forgotPassword)
 router.post("/reset",Pcontroller.verifyResetCode)
 router.post("/reset-password",Pcontroller.resetPassword)
-router.post('/send', Pcontroller.handleContactForm);
+router.post('/send', Pcontroller.handleContactForm)
 router.get("/all",verify,Pcontroller.Guser)
 router.get('/get/:id',Pcontroller.Iduser)
-router.get('/stats', verify, Pcontroller.getDashboardStats);
 router.delete('/logout/:id',verify,Pcontroller.Duser)
 router.delete('/delete/:id',verify,Pcontroller.EffacerUser)
 router.delete('/forced',verify,Pcontroller.forceLogoutByAdmin)
@@ -19,7 +18,7 @@ router.put('/put/:id',verify,Pcontroller.Cuser)
 router.put('/profile/update',verify,Pcontroller.updateProfil)
 router.put('/update',verify,Pcontroller.updateUserPassword)
 router.put("/verify/:token",Pcontroller.Emailverify)
-router.put('/role/:id', verify, Pcontroller.updateUserRoleByAdmin);
-router.put('/force-logout/:id', verify, Pcontroller.forceLogoutByAdmin);
+router.put('/role/:id', verify, Pcontroller.updateUserRoleByAdmin)
+router.put('/force-logout/:id', verify, Pcontroller.forceLogoutByAdmin)
 
 module.exports = router

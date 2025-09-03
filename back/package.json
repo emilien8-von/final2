@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-     "start": "node server.js", 
-    
+    "start": "node server.js",
     "test": "jest",
     "dev": "nodemon server.js"
   },
@@ -24,7 +23,9 @@
     "nodemailer": "^6.10.0",
     "run": "^1.5.0",
     "supertest": "^7.1.4",
-    "test": "^3.3.0"
+    "swagger-ui-express": "^5.0.1",
+    "test": "^3.3.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^3.2.4",

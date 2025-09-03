@@ -9,5 +9,5 @@ router.get('/all',request,Category.gCategory)
 router.get('/get/:id',Category.idCategory)
 router.delete('/delete/:id',verify,Category.deleteCategory)
 router.put('/put/:id',verify,Category.Changecategorie)
-router.get('/recent', verify, Category.getRecentGames);
+router.get('/recent', verify, Category.getRecentGames)
 module.exports = router

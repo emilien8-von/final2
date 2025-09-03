@@ -5,6 +5,8 @@ const ENV = require('./config/env');
 const connect = require('./config/dbmongo');
 const app = express();
 const logger = require('./middlewares/requestLogger');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
 
 connect(ENV.DB_URI, ENV.DB_NAME);
 
@@ -42,6 +44,8 @@ const jeux = require('./router/jeux.router');
 const consoleRouter = require('./router/console.router');
 const emulateur = require('./router/emulateur.router');
 const gallery = require('./router/gallery.router');
+const swaggerDocument = YAML.load('./swagger.yaml'); 
+
 
 // Appliquer les routers aux bonnes URL
 app.use("/game/user", user);
@@ -50,6 +54,7 @@ app.use("/game/jeux", jeux);
 app.use("/game/console", consoleRouter);
 app.use("/game/emulateur", emulateur);
 app.use("/game/gallery", gallery);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 module.exports = app;
