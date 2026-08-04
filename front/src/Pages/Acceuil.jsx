@@ -75,7 +75,7 @@ const Acceuil = () => {
     }
   const acces = ()=>
   {
-     alert("Pour consulter le jeu veuillez vous inscrire ou vous connecter !")
+     alert("Pour consulter le jeu veuillez vous inscrire ou vous connectez à votre compte !")
   }
    
 
