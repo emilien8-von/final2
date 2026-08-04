@@ -33,7 +33,7 @@ const sendVerificationEmail = async (userEmail, userPseudo, verificationToken) =
     
     const emailHTML = `
         <h3>Bonjour ${userPseudo},</h3>
-        <p>Merci pour votre inscription ! Nous espèreront que vous allez prendre du plasir à consulter nos différents jeux !</p>
+        <p>Merci pour votre inscription ! Nous espèrerons que vous allez prendre du plasir à consulter nos différents jeux lors de votre visite dans notre site !</p>
     `;
 
     await sendEmail(userEmail, "Validez votre inscription sur Alpha Gaming", emailHTML);
